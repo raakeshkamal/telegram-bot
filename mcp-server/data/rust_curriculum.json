@@ -1,0 +1,754 @@
+[
+  {
+    "index": 0,
+    "section": "intro",
+    "exercise": "intro1",
+    "title": "Introduction to Rustlings",
+    "explanation": "Welcome to Rust! Rustlings is an interactive way to learn Rust by solving small exercises. The exercises contain compiler or logic errors that you need to fix. Open the exercise file in your editor, fix errors and save the file - Rustlings will automatically detect the change and rerun the exercise.",
+    "hint": "Enter `n` to move on to the next exercise. You might need to press ENTER after typing `n`."
+  },
+  {
+    "index": 1,
+    "section": "intro",
+    "exercise": "intro2",
+    "title": "The Print Macro",
+    "explanation": "In Rust, the `println!` macro is used to print to stdout. Macros are distinguished from functions by the `!` at the end. The compiler will helpfully suggest the correct macro name if you make a typo. The typo in this exercise is `printline!` which should be corrected to `println!`.",
+    "hint": "The compiler is informing us that we've got the name of the print macro wrong. It also suggests an alternative."
+  },
+  {
+    "index": 2,
+    "section": "variables",
+    "exercise": "variables1",
+    "title": "Variables - Declaration",
+    "explanation": "In Rust, variables are declared using the `let` keyword. Unlike some languages, Rust requires explicit variable declarations - you cannot just assign to a variable without declaring it first. The exercise has `x = 5;` which needs `let` to become a proper variable binding.",
+    "hint": "The declaration in the `main` function is missing a keyword that is needed in Rust to create a new variable binding."
+  },
+  {
+    "index": 3,
+    "section": "variables",
+    "exercise": "variables2",
+    "title": "Variables - Initialization",
+    "explanation": "Rust doesn't allow using uninitialized variables. You must give a variable a value before using it. This prevents a whole class of bugs common in other languages. The exercise has `let x;` used in an `if` condition - this fails because `x` is declared but never assigned a value.",
+    "hint": "The compiler message is saying that Rust can't infer the type that the variable binding `x` has. What happens if you annotate the type? What if you give `x` a value? What if you do both?"
+  },
+  {
+    "index": 4,
+    "section": "variables",
+    "exercise": "variables3",
+    "title": "Variables - Type Annotations",
+    "explanation": "Rust is a statically typed language with powerful type inference. The exercise has `let x: i32;` with a type annotation - this works because the type is specified, but the variable must still be initialized before use. You can add a value to satisfy both requirements.",
+    "hint": "We have a variable binding that we've created, and we're trying to use it, but we haven't given it a value. We can't print out something that isn't there; try giving `x` a value!"
+  },
+  {
+    "index": 5,
+    "section": "variables",
+    "exercise": "variables4",
+    "title": "Variables - Mutability",
+    "explanation": "By default, Rust variables are immutable. This is a design choice that helps write safer code. If you need to change a variable's value after declaration, use the `mut` keyword: `let mut x = 5;`",
+    "hint": "In Rust, variable bindings are immutable by default. But here, we're trying to reassign a different value to `x`! There's a keyword we can use to make a variable binding mutable instead."
+  },
+  {
+    "index": 6,
+    "section": "variables",
+    "exercise": "variables5",
+    "title": "Variables - Shadowing",
+    "explanation": "Rust allows you to declare a new variable with the same name as a previous one. This is called 'shadowing'. The new variable shadows the previous one, and can even have a different type! This is useful for transforming values without needing different variable names. In this exercise, `number` is first bound to \"T-H-R-E-E\" (a string), and you need to shadow it with a numeric type to enable `number + 2` arithmetic.",
+    "hint": "Sometimes you may like to reuse existing variable names because you are just converting values to different types. Fortunately Rust has a powerful solution to this problem: 'Shadowing'!"
+  },
+  {
+    "index": 7,
+    "section": "variables",
+    "exercise": "variables6",
+    "title": "Variables - Constants",
+    "explanation": "Constants are declared with `const` instead of `let`. They must always have a type annotation and can't be mutable. Constants can be declared in any scope, including the global scope, and live for the entire program. This exercise has `const NUMBER = 3;` which is missing the type annotation - it should be `const NUMBER: i32 = 3;`",
+    "hint": "Constants are always immutable. They are declared with the keyword `const` instead of `let`. The type of Constants must always be annotated."
+  },
+  {
+    "index": 8,
+    "section": "functions",
+    "exercise": "functions1",
+    "title": "Functions - Definition",
+    "explanation": "Functions in Rust are declared with `fn`. The main function is the entry point of the program. Functions must be defined before they're called (or declared with a prototype).",
+    "hint": "This `main` function is calling a function that it expects to exist, but the function doesn't exist. It expects this function to have the name `call_me`."
+  },
+  {
+    "index": 9,
+    "section": "functions",
+    "exercise": "functions2",
+    "title": "Functions - Parameters",
+    "explanation": "Function parameters must have their types explicitly annotated. Unlike variables, Rust won't infer parameter types - this makes function signatures clear and serves as documentation.",
+    "hint": "Rust requires that all parts of a function's signature have type annotations, but `call_me` is missing the type annotation of `num`."
+  },
+  {
+    "index": 10,
+    "section": "functions",
+    "exercise": "functions3",
+    "title": "Functions - Calling",
+    "explanation": "When calling a function, you must provide the correct number and type of arguments. The function signature defines what's expected.",
+    "hint": "This time, the function *declaration* is okay, but there's something wrong with the place where we are calling the function."
+  },
+  {
+    "index": 11,
+    "section": "functions",
+    "exercise": "functions4",
+    "title": "Functions - Return Values",
+    "explanation": "Functions can return values. The return type is specified with `->` after the parameter list. The final expression in a function is implicitly returned (no semicolon), or you can use `return` keyword for early returns.",
+    "hint": "The error message points to the function and says it expects a type after `->`. This is where the function's return type should be."
+  },
+  {
+    "index": 12,
+    "section": "functions",
+    "exercise": "functions5",
+    "title": "Functions - Expressions vs Statements",
+    "explanation": "Rust distinguishes between expressions (which return a value) and statements (which don't). Adding a semicolon turns an expression into a statement. To return a value implicitly, omit the semicolon from the final expression.",
+    "hint": "We want to return a value with the type `i32`, but it is returning the type `()`. Solutions: Add `return` keyword before `num * num;` OR remove the semicolon after `num * num`."
+  },
+  {
+    "index": 13,
+    "section": "if",
+    "exercise": "if1",
+    "title": "If Expressions - Basics",
+    "explanation": "In Rust, `if` is an expression, not a statement. It can return a value! The condition doesn't need parentheses, but blocks need curly braces. The ternary operator from other languages is just a regular `if` expression in Rust.",
+    "hint": "It's possible to do this in one line! In C/C++ this would be: `a > b ? a : b`. In Python: `a if a > b else b`. Remember: `if`/`else` are expressions, each condition followed by a `{}` block."
+  },
+  {
+    "index": 14,
+    "section": "if",
+    "exercise": "if2",
+    "title": "If Expressions - Multiple Conditions",
+    "explanation": "Each branch of an `if` expression must return the same type. This is enforced at compile time. Use `else if` for multiple conditions.",
+    "hint": "For that first compiler error, it's important in Rust that each conditional block returns the same type of value! Read the tests to find out what they expect."
+  },
+  {
+    "index": 15,
+    "section": "if",
+    "exercise": "if3",
+    "title": "If Expressions - Type Consistency",
+    "explanation": "All arms of an `if` expression must return the same type. Rust enforces this strictly at compile time, preventing type-related bugs.",
+    "hint": "In Rust, every arm of an `if` expression has to return the same type of value. Make sure the type is consistent across all arms."
+  },
+  {
+    "index": 16,
+    "section": "quiz",
+    "exercise": "quiz1",
+    "title": "Quiz 1 - Variables & Functions",
+    "explanation": "Time to test what you've learned! This quiz covers variables, functions, and basic control flow. The specific scenario is an apple farm pricing problem: calculate the price of apples where 40 or fewer apples cost 2 rustbucks each, and more than 40 cost 1 rustbuck each. Apply all the concepts from the previous exercises.",
+    "hint": "No hints this time - you've got this!"
+  },
+  {
+    "index": 17,
+    "section": "primitive_types",
+    "exercise": "primitive_types1",
+    "title": "Primitive Types - Booleans",
+    "explanation": "Rust has several primitive types: booleans (`bool`), integers (`i8`, `i16`, `i32`, `i64`, `i128`, `u8`, etc.), floating point (`f32`, `f64`), characters (`char`), and more. Booleans can be negated with `!` operator.",
+    "hint": "In Rust, a boolean can be negated using the operator `!` before it. Example: `!true == false`. This also works with boolean variables."
+  },
+  {
+    "index": 18,
+    "section": "primitive_types",
+    "exercise": "primitive_types2",
+    "title": "Primitive Types - Characters",
+    "explanation": "The `char` type in Rust represents a Unicode Scalar Value, which means it can represent much more than just ASCII. It's 4 bytes and can hold any valid Unicode code point, including emojis!",
+    "hint": "No hints this time - explore and learn!"
+  },
+  {
+    "index": 19,
+    "section": "primitive_types",
+    "exercise": "primitive_types3",
+    "title": "Primitive Types - Arrays",
+    "explanation": "Arrays in Rust have a fixed size and are stored on the stack. You can initialize an array with a repeated value using the syntax `[value; count]`. For example: `let arr = [0; 100];` creates an array of 100 zeros.",
+    "hint": "There's a shorthand to initialize arrays with a certain size. For example: `let array = [\"Are we there yet?\"; 100];`"
+  },
+  {
+    "index": 20,
+    "section": "primitive_types",
+    "exercise": "primitive_types4",
+    "title": "Primitive Types - Slices",
+    "explanation": "A slice is a reference to a contiguous sequence of elements in a collection. Slices are written as `&[T]`. You create them with indexing syntax like `&arr[1..3]` (elements at index 1 and 2, end is exclusive).",
+    "hint": "Use the starting and ending (plus one) indices of the items in the array that you want to end up in the slice. Like `&arr[1..3]` for elements at index 1 and 2."
+  },
+  {
+    "index": 21,
+    "section": "primitive_types",
+    "exercise": "primitive_types5",
+    "title": "Primitive Types - Tuples",
+    "explanation": "Tuples group together values of different types. They have a fixed length. You can destructure tuples to extract their values: `let (x, y, z) = my_tuple;` or access by index: `my_tuple.0`.",
+    "hint": "You'll need to make a pattern to bind `name` and `age` to the appropriate parts of the tuple. Try destructuring!"
+  },
+  {
+    "index": 22,
+    "section": "primitive_types",
+    "exercise": "primitive_types6",
+    "title": "Primitive Types - Tuple Indexing",
+    "explanation": "Tuples can be accessed by index using dot notation: `tuple.0`, `tuple.1`, etc. Indexing starts at 0. This is useful when you don't want to destructure.",
+    "hint": "Try indexing into the tuple instead of destructuring, as in: `tuple.0`, `tuple.1`, etc."
+  },
+  {
+    "index": 23,
+    "section": "vecs",
+    "exercise": "vecs1",
+    "title": "Vectors - Creation",
+    "explanation": "Vectors (`Vec<T>`) are growable arrays stored on the heap. Create with `Vec::new()` or the `vec![]` macro. The `vec![]` macro is convenient when you know the initial values.",
+    "hint": "Two ways to define a Vector: 1. Use `Vec::new()` and fill with `push()` 2. Use `vec![]` macro with elements inside square brackets."
+  },
+  {
+    "index": 24,
+    "section": "vecs",
+    "exercise": "vecs2",
+    "title": "Vectors - Mutation",
+    "explanation": "Vectors can grow and shrink. Use `push()` to add elements, `pop()` to remove the last element. The vector must be declared as `mut` to modify it.",
+    "hint": "Use the `.push()` method on the vector to push new elements to it."
+  },
+  {
+    "index": 25,
+    "section": "move_semantics",
+    "exercise": "move_semantics1",
+    "title": "Move Semantics - Ownership",
+    "explanation": "Rust has a unique ownership system. When you pass a value to a function, ownership moves to that function (unless it's a Copy type or you pass a reference). The original variable can no longer be used after the move.",
+    "hint": "The fix is adding one keyword `mut`. Try accessing `vec0` after having called `fill_vec()` - see what happens!"
+  },
+  {
+    "index": 26,
+    "section": "move_semantics",
+    "exercise": "move_semantics2",
+    "title": "Move Semantics - Clone",
+    "explanation": "When you want to keep using a value after passing it to a function, you can clone it first. `.clone()` creates a deep copy of the data. This is explicit - you always know when copying happens.",
+    "hint": "You could make another, separate version of the data that's in `vec0` and pass it to `fill_vec` instead. This is called cloning in Rust."
+  },
+  {
+    "index": 27,
+    "section": "move_semantics",
+    "exercise": "move_semantics3",
+    "title": "Move Semantics - Mutable References",
+    "explanation": "Instead of moving ownership, you can pass a mutable reference with `&mut`. This lets the function modify the data without taking ownership. Only one mutable reference can exist at a time.",
+    "hint": "Add `mut` in one place that will change an existing binding to be a mutable binding instead of an immutable one."
+  },
+  {
+    "index": 28,
+    "section": "move_semantics",
+    "exercise": "move_semantics4",
+    "title": "Move Semantics - Reference Scope",
+    "explanation": "Mutable references have strict scoping rules. A mutable reference must not overlap with any other references (mutable or immutable) to the same data. The reference's scope ends when it's last used, not when it goes out of scope.",
+    "hint": "Carefully reason about the range in which each mutable reference is in scope. Does it help to update the value of `x` immediately after the mutable reference is taken?"
+  },
+  {
+    "index": 29,
+    "section": "move_semantics",
+    "exercise": "move_semantics5",
+    "title": "Move Semantics - Ownership vs Borrowing",
+    "explanation": "Understanding when to take ownership vs when to borrow is key. Functions that don't need to consume data should take references. This allows the caller to keep using their data.",
+    "hint": "The first problem is that `get_char` is taking ownership of the string. So `data` is moved and can't be used for `string_uppercase`."
+  },
+  {
+    "index": 30,
+    "section": "structs",
+    "exercise": "structs1",
+    "title": "Structs - Definition",
+    "explanation": "Structs let you create custom data types. There are three types: (1) Regular structs with named fields like `struct Color { red: u8, green: u8, blue: u8 }`, (2) Tuple structs like `struct Color(u8, u8, u8)` which are like named tuples, and (3) Unit structs like `struct UnitStruct` with no fields, useful for traits or markers. This exercise requires defining all three types: `ColorRegularStruct`, `ColorTupleStruct`, and `UnitStruct`.",
+    "hint": "Rust has regular structs, tuple structs (named tuples), and unit structs (no fields). In this exercise, you need to complete one of each kind."
+  },
+  {
+    "index": 31,
+    "section": "structs",
+    "exercise": "structs2",
+    "title": "Structs - Instantiation",
+    "explanation": "Create struct instances with `StructName { field: value, ... }`. Use the 'struct update syntax' `..other_instance` to copy fields from another instance. Use 'field init shorthand' when variable name matches field name.",
+    "hint": "There are shortcuts when instantiating structs. Look up 'struct update syntax' and 'field init shorthand' in The Book."
+  },
+  {
+    "index": 32,
+    "section": "structs",
+    "exercise": "structs3",
+    "title": "Structs - Methods",
+    "explanation": "Methods are defined in an `impl` block. The first parameter is `&self` (immutable borrow) or `&mut self` (mutable borrow). Methods can access the struct's fields and are called with dot notation. This exercise uses the `Package` struct with fields `sender_country`, `recipient_country`, and `weight_in_grams`. You need to implement `is_international()` to check if countries differ and `get_fees(cents_per_gram)` to calculate shipping fees.",
+    "hint": "For `is_international`: What makes a package international? For `get_fees`: This method takes an additional argument. Look at the Package struct fields."
+  },
+  {
+    "index": 33,
+    "section": "enums",
+    "exercise": "enums1",
+    "title": "Enums - Definition",
+    "explanation": "Enums allow you to define a type that can be one of several variants. Each variant can have different data associated with it. Enums are perfect for representing states or alternatives. This exercise defines a `Message` enum with five variants: `Resize`, `Move`, `Echo`, `ChangeColor`, and `Quit`.",
+    "hint": "No hints this time - explore creating enum variants!"
+  },
+  {
+    "index": 34,
+    "section": "enums",
+    "exercise": "enums2",
+    "title": "Enums - Variants with Data",
+    "explanation": "Enum variants can hold different types of data: no data, anonymous structs, tuples, or single values. This makes enums incredibly flexible for modeling real-world concepts. This exercise shows variants with different data: `Resize { width: u64, height: u64 }`, `Move(Point)` (tuple), `Echo(String)`, `ChangeColor(u8, u8, u8)` (tuple), and `Quit` (unit-like).",
+    "hint": "You can create enumerations that have different variants with different types such as anonymous structs, structs, a single string, tuples, no data, etc."
+  },
+  {
+    "index": 35,
+    "section": "enums",
+    "exercise": "enums3",
+    "title": "Enums - Match Expressions",
+    "explanation": "The `match` expression is Rust's powerful pattern matching. You must handle all possible variants (or use `_` as a catch-all). Match arms can destructure enum variants to access their data. This exercise has a `Message` enum and a `State` struct. You need to implement methods that use match to process each variant: `resize()`, `move_position()`, `echo()`, `change_color()`, and `quit()`, all triggered through the `process()` method.",
+    "hint": "Define enums to compile the code, then create a match expression in `process()`. Note that you need to deconstruct some message variants in the match expression."
+  },
+  {
+    "index": 36,
+    "section": "strings",
+    "exercise": "strings1",
+    "title": "Strings - String vs &str",
+    "explanation": "Rust has two string types: `String` (heap-allocated, growable, owned) and `&str` (string slice, reference to UTF-8 bytes). Convert `&str` to `String` with `.to_string()` or `String::from()`.",
+    "hint": "The function is returning a string slice with `'static` lifetime. Convert it to a `String` using `.to_string()` or `String::from()`."
+  },
+  {
+    "index": 37,
+    "section": "strings",
+    "exercise": "strings2",
+    "title": "Strings - Deref Coercion",
+    "explanation": "Rust automatically converts `&String` to `&str` through deref coercion. This is why you can pass `&String` where `&str` is expected. The `&` operator creates the reference needed.",
+    "hint": "Add one character to the `if` statement that will coerce the `String` into a string slice. Think about references!"
+  },
+  {
+    "index": 38,
+    "section": "strings",
+    "exercise": "strings3",
+    "title": "Strings - Common Operations",
+    "explanation": "Strings have many useful methods: `trim()`, `replace()`, `push_str()`. Use `format!` macro for combining strings. String slices can be concatenated with `+` operator (takes ownership of left operand). This exercise implements three string functions: `trim_me()` using `.trim()`, `compose_me()` adding \" world!\" to input, and `replace_me()` replacing \"cars\" with \"balloons\".",
+    "hint": "Use `.trim()`, `format!` macro, or `.replace()` method. Check the String documentation for useful methods."
+  },
+  {
+    "index": 39,
+    "section": "strings",
+    "exercise": "strings4",
+    "title": "Strings - Function Parameters",
+    "explanation": "Functions taking `&str` are more flexible - they can accept both `&str` and `&String`. Functions taking `String` require ownership. Choose parameter types based on whether you need ownership. This exercise has two functions: `string_slice(arg: &str)` takes a string slice, and `string(arg: String)` takes an owned string. You need to identify which type each argument is and call the correct function.",
+    "hint": "Replace `placeholder` with either `string` or `string_slice` based on what type the argument is."
+  },
+  {
+    "index": 40,
+    "section": "modules",
+    "exercise": "modules1",
+    "title": "Modules - Visibility",
+    "explanation": "Everything in Rust is private by default. Use `pub` keyword to make items public. Modules help organize code into logical units and control visibility.",
+    "hint": "Everything is private in Rust by default. But there's a keyword we can use to make something public!"
+  },
+  {
+    "index": 41,
+    "section": "modules",
+    "exercise": "modules2",
+    "title": "Modules - Re-exporting",
+    "explanation": "Use `pub use` to re-export items from modules, creating a different public API than the internal structure. This is called the 'Facade pattern' - hiding internal organization while exposing a clean interface.",
+    "hint": "Complete the `use` statements with `pub use` to fit the uses in `main`. Find the one keyword missing for both constants."
+  },
+  {
+    "index": 42,
+    "section": "modules",
+    "exercise": "modules3",
+    "title": "Modules - Use Declarations",
+    "explanation": "The `use` keyword brings items into scope. You can use nested paths like `use std::time::{SystemTime, UNIX_EPOCH}` to import multiple items in one line.",
+    "hint": "`UNIX_EPOCH` and `SystemTime` are in the `std::time` module. Add a `use` statement using nested paths."
+  },
+  {
+    "index": 43,
+    "section": "hashmaps",
+    "exercise": "hashmaps1",
+    "title": "HashMaps - Creation",
+    "explanation": "HashMaps store key-value pairs. Create with `HashMap::new()` and insert with `.insert(key, value)`. Access values with `.get(&key)` which returns `Option<&V>`. This exercise builds a fruit basket - you need at least 3 fruit types with a total count of 5 or more. Two bananas are pre-populated.",
+    "hint": "The number of fruits should be at least 5 and you have to put at least 3 different types of fruits."
+  },
+  {
+    "index": 44,
+    "section": "hashmaps",
+    "exercise": "hashmaps2",
+    "title": "HashMaps - Entry API",
+    "explanation": "The `.entry()` method returns an `Entry` enum that lets you check if a key exists. Use `.or_insert(value)` to insert only if the key doesn't exist. This is cleaner than checking and inserting separately. This exercise tracks fruit quantities: Apple(4), Mango(2), and Lychee(5) are pre-populated. You need to add Banana and Pineapple (not the pre-populated ones) to have 5 types with total > 11.",
+    "hint": "Use the `entry()` and `or_insert()` methods of HashMap to insert a value only if the key doesn't exist."
+  },
+  {
+    "index": 45,
+    "section": "hashmaps",
+    "exercise": "hashmaps3",
+    "title": "HashMaps - Updating Values",
+    "explanation": "You can update HashMap values by getting a mutable reference to the value. The `entry().or_default()` pattern is useful for inserting default values when the key doesn't exist. This exercise parses match results in format \"team1,team2,score1,score2\" and calculates goals_scored and goals_conceded for each team.",
+    "hint": "Use `entry()` and `or_default()` to insert default values. Update existing entries by getting mutable references."
+  },
+  {
+    "index": 46,
+    "section": "quiz",
+    "exercise": "quiz2",
+    "title": "Quiz 2 - Collections & Modules",
+    "explanation": "Test your knowledge of vectors, strings, hashmaps, and modules. This quiz defines a `Command` enum with variants: `Uppercase`, `Trim`, and `Append(usize)`. You implement a transformer function that takes a vector of (String, Command) tuples and returns transformed strings: uppercase converts to uppercase, trim removes whitespace, and append repeats the string n times.",
+    "hint": "The `+` operator can concatenate a `String` with a `&str`."
+  },
+  {
+    "index": 47,
+    "section": "options",
+    "exercise": "options1",
+    "title": "Option - Basics",
+    "explanation": "Option represents a value that might exist (`Some(value)`) or not exist (`None`). It's Rust's way of handling nullability safely. Use `.unwrap()` carefully (panics on None) or pattern match for safety. This exercise models ice cream availability: for hours < 22 return Some(5), hours >= 22 return Some(0), and hour > 23 returns None.",
+    "hint": "Options can have `Some` value with an inner value, or `None` without. How do you get the inner value safely?"
+  },
+  {
+    "index": 48,
+    "section": "options",
+    "exercise": "options2",
+    "title": "Option - Pattern Matching",
+    "explanation": "Use `if let` and `while let` for cleaner pattern matching when you only care about one variant. Options can be nested: `Option<Option<T>>`. Use `.flatten()` to convert to `Option<T>`. This exercise has two tests: one using `if let` to extract a value from an Option, and another using `while let` with nested Options to pop values from a Vec.",
+    "hint": "Check out `if let` and `while let` patterns. Remember that Options can be nested: `if let Some(Some(x)) = y`"
+  },
+  {
+    "index": 49,
+    "section": "options",
+    "exercise": "options3",
+    "title": "Option - Reference Patterns",
+    "explanation": "When pattern matching on an Option, you can use `ref` to take a reference instead of moving the value. Or use `&` pattern: `Some(ref x)` or `Some(&x)` depending on what you need. This exercise has a Point struct and an optional Point. The match statement needs both `Some(p)` and `None` cases to avoid partial moves.",
+    "hint": "The compiler says a partial move happened in the `match` statement. How can this be avoided? The compiler shows the correction needed."
+  },
+  {
+    "index": 50,
+    "section": "error_handling",
+    "exercise": "errors1",
+    "title": "Error Handling - Result Type",
+    "explanation": "Result<T, E> is Rust's way of handling recoverable errors. It's either `Ok(value)` or `Err(error)`. This is more explicit than exceptions - you must handle potential errors.",
+    "hint": "Update the return type to be `Result<String, String>`. Return `Ok(...)` instead of `Some(...)` and `Err(...)` instead of `None`."
+  },
+  {
+    "index": 51,
+    "section": "error_handling",
+    "exercise": "errors2",
+    "title": "Error Handling - The ? Operator",
+    "explanation": "The `?` operator is shorthand for: match on Result, return Ok value or propagate Err. It makes error propagation much cleaner. Only works in functions that return Result.",
+    "hint": "Use the `?` operator to propagate errors. It does what a match statement would do but more concisely."
+  },
+  {
+    "index": 52,
+    "section": "error_handling",
+    "exercise": "errors3",
+    "title": "Error Handling - Main with Result",
+    "explanation": "Even `main` can return a Result! Convention is `Result<(), ErrorType>`. The unit type `()` means 'nothing meaningful to return on success'.",
+    "hint": "If other functions can return a `Result`, why shouldn't `main`? Return `Result<(), ErrorType>` from main."
+  },
+  {
+    "index": 53,
+    "section": "error_handling",
+    "exercise": "errors4",
+    "title": "Error Handling - Custom Errors",
+    "explanation": "Create custom error types by implementing the `Error` trait. Return `Err` for validation failures, `Ok` for success. This makes your APIs clear about what can fail. This exercise defines `CreationError` enum with variants `Negative` and `Zero`, and a `PositiveNonzeroInteger(u64)` struct. You need to implement `new(value: i64)` that returns Err(Negative) for negative, Err(Zero) for zero, and Ok for positive values.",
+    "hint": "`PositiveNonzeroInteger::new` should do some checking, returning `Err` if checks fail, and `Ok` only if everything is okay."
+  },
+  {
+    "index": 54,
+    "section": "error_handling",
+    "exercise": "errors5",
+    "title": "Error Handling - Multiple Error Types",
+    "explanation": "When multiple error types are possible, use `Box<dyn Error>` as the error type. The `?` operator automatically converts errors using `From::from`. This is called 'error coercion'.",
+    "hint": "Use `Box<dyn Error>` to capture different error types. The `?` operator converts errors automatically via `From::from`."
+  },
+  {
+    "index": 55,
+    "section": "error_handling",
+    "exercise": "errors6",
+    "title": "Error Handling - map_err",
+    "explanation": "Use `.map_err()` to transform error types when propagating with `?`. This lets you convert between error types while keeping the `?` operator's convenience.",
+    "hint": "Use `map_err()` to transform one error type into another before using `?` to return early."
+  },
+  {
+    "index": 56,
+    "section": "generics",
+    "exercise": "generics1",
+    "title": "Generics - Type Parameters",
+    "explanation": "Generics let you write code that works with multiple types. Use `<T>` after the type name to declare a type parameter. Rust monomorphizes generics at compile time - no runtime cost! This exercise has two values: n1 = 42 (u8) and n2 = -1 (i8). You need a Vec that can hold both - typically `i16` which can represent both u8 and i8 ranges.",
+    "hint": "Vectors use generics: `Vec<T>`. You need a type annotation for the vector to tell the compiler what `T` is."
+  },
+  {
+    "index": 57,
+    "section": "generics",
+    "exercise": "generics2",
+    "title": "Generics - Methods",
+    "explanation": "Methods on generic types can either work with the generic type `T` or have their own type parameters. Use `impl<T>` to define methods for all types, or `impl<Type>` for specific types. This exercise has a `Wrapper` struct that should be made generic over any type T, with a `new(value: T) -> Self` method.",
+    "hint": "Related section in The Book: Generic types in method definitions."
+  },
+  {
+    "index": 58,
+    "section": "traits",
+    "exercise": "traits1",
+    "title": "Traits - Definition",
+    "explanation": "Traits define shared behavior. They're like interfaces in other languages. Implement traits with `impl TraitName for Type { ... }`. All trait methods must be implemented. This exercise defines the `AppendBar` trait with a method that appends \"Bar\" to self. You implement it for String so \"Foo\".append_bar() returns \"FooBar\".",
+    "hint": "Define the trait methods for the given types. The `+` operator can concatenate `String` with `&str`."
+  },
+  {
+    "index": 59,
+    "section": "traits",
+    "exercise": "traits2",
+    "title": "Traits - Ownership in Methods",
+    "explanation": "Trait methods can take ownership (`self`), borrow (`&self`), or mutably borrow (`&mut self`). Even if the trait declares `self`, implementations can use `mut self`.",
+    "hint": "Notice how the trait takes ownership of `self` and returns `Self`. The implementation can take `mut self` instead."
+  },
+  {
+    "index": 60,
+    "section": "traits",
+    "exercise": "traits3",
+    "title": "Traits - Default Implementations",
+    "explanation": "Traits can provide default implementations for methods. Types implementing the trait get these defaults automatically, but can override them. This enables code reuse. This exercise defines the `Licensed` trait with a default `licensing_info()` method returning \"Default license\". Two structs, `SomeSoftware` and `OtherSoftware`, implement the trait using the default implementation.",
+    "hint": "Traits can have default implementations for functions. Types can use defaults or override them."
+  },
+  {
+    "index": 61,
+    "section": "traits",
+    "exercise": "traits4",
+    "title": "Traits - impl Trait Syntax",
+    "explanation": "Use `impl Trait` in function parameters to accept any type implementing that trait. This is simpler than generics when you don't need the concrete type. It's called 'impl Trait syntax'.",
+    "hint": "Replace concrete types with `impl [TraitName]` in function parameters."
+  },
+  {
+    "index": 62,
+    "section": "traits",
+    "exercise": "traits5",
+    "title": "Traits - Multiple Trait Bounds",
+    "explanation": "Use `+` to require multiple traits: `impl Trait1 + Trait2`. This means the type must implement all listed traits. Works in both impl Trait syntax and where clauses.",
+    "hint": "Use `+` syntax: `impl Trait1 + Trait2` to require multiple trait implementations."
+  },
+  {
+    "index": 63,
+    "section": "quiz",
+    "exercise": "quiz3",
+    "title": "Quiz 3 - Generics & Traits",
+    "explanation": "Test your understanding of generics, traits, and trait bounds. This quiz has a `ReportCard` struct with grade, student_name, and student_age. The struct should be made generic over the grade type (T), so it can handle both numeric grades like 2.1 and letter grades like \"A+\". You need to implement the `print()` method with proper trait bounds.",
+    "hint": "Use trait bound syntax: `impl<T: Trait1 + Trait2> for Foo<T>`. You may need `use std::fmt::Display;`"
+  },
+  {
+    "index": 64,
+    "section": "lifetimes",
+    "exercise": "lifetimes1",
+    "title": "Lifetimes - The Basics",
+    "explanation": "Lifetimes ensure references are valid as long as needed. Rust infers most lifetimes, but sometimes you need to annotate them with `'a` syntax. The compiler will guide you when it can't infer.",
+    "hint": "Let the compiler guide you. It will tell you where lifetime annotations are needed."
+  },
+  {
+    "index": 65,
+    "section": "lifetimes",
+    "exercise": "lifetimes2",
+    "title": "Lifetimes - Scope",
+    "explanation": "A reference's lifetime is how long it's valid. When returning a reference, its lifetime must match or exceed the return type's lifetime. The returned reference can't outlive what it refers to.",
+    "hint": "Remember that the lifetime `'a` gets the concrete lifetime equal to the smaller of the lifetimes of `x` and `y`."
+  },
+  {
+    "index": 66,
+    "section": "lifetimes",
+    "exercise": "lifetimes3",
+    "title": "Lifetimes - Structs",
+    "explanation": "Structs can hold references, but need lifetime annotations to ensure the references live long enough. Add `<'a>` after the struct name and use `'a` on reference fields.",
+    "hint": "Let the compiler guide you - it will show where lifetimes are needed."
+  },
+  {
+    "index": 67,
+    "section": "tests",
+    "exercise": "tests1",
+    "title": "Testing - Assert Macro",
+    "explanation": "Rust has built-in test support. Use `#[test]` attribute on functions. `assert!` checks if expression is true. `assert_eq!` compares two values for equality.",
+    "hint": "`assert!` needs an argument. If true, test passes. If false, test fails. Use `!` to negate."
+  },
+  {
+    "index": 68,
+    "section": "tests",
+    "exercise": "tests2",
+    "title": "Testing - Assert Equality",
+    "explanation": "`assert_eq!` compares two values for equality. Both values must implement `Debug` and `PartialEq`. Order doesn't matter for the comparison itself, but affects error messages.",
+    "hint": "`assert_eq!` takes two arguments and compares them. Try different values to understand how it works!"
+  },
+  {
+    "index": 69,
+    "section": "tests",
+    "exercise": "tests3",
+    "title": "Testing - Expected Panics",
+    "explanation": "Use `#[should_panic]` attribute to test that code panics as expected. This is useful for testing error conditions. Add `expected = \"message\"` to check the panic message.",
+    "hint": "We expect `Rectangle::new` to panic for negative values. Add `#[should_panic]` attribute to the test function."
+  },
+  {
+    "index": 70,
+    "section": "iterators",
+    "exercise": "iterators1",
+    "title": "Iterators - Basics",
+    "explanation": "Iterators produce a sequence of values. The `Iterator` trait has a `next()` method returning `Option<Item>`. `None` means the iterator is exhausted. Most loops can be replaced with iterators.",
+    "hint": "An iterator goes through all elements. What happens when we run out? What should we expect?"
+  },
+  {
+    "index": 71,
+    "section": "iterators",
+    "exercise": "iterators2",
+    "title": "Iterators - Transformations",
+    "explanation": "Iterators have powerful methods: `map()` transforms each element, `filter()` keeps matching elements, `collect()` gathers into a collection. These methods chain together elegantly. This exercise implements `capitalize_first(input: &str)` which capitalizes the first character, and `capitalize_words_vector` and `capitalize_words_string` which apply this to multiple words.",
+    "hint": "Use `map()` to transform, `collect()` to gather results. `collect` can produce different types based on type annotation."
+  },
+  {
+    "index": 72,
+    "section": "iterators",
+    "exercise": "iterators3",
+    "title": "Iterators - Collect Patterns",
+    "explanation": "`collect()` is very powerful - it can produce `Vec<T>` or `Result<Vec<T>, E>` depending on type annotation. `FromIterator` trait enables this magic. Use it for fallible iterations. This exercise defines a `DivisionError` enum with variants `DivideByZero`, `IntegerOverflow`, and `NotDivisible`. The `divide()` function returns `Result<i64, DivisionError>`, demonstrating error handling within iterators.",
+    "hint": "See how `FromIterator` trait is used in `collect()`. It can collect into `Result<Vec<T>, E>` or `Vec<Result<T, E>>`."
+  },
+  {
+    "index": 73,
+    "section": "iterators",
+    "exercise": "iterators4",
+    "title": "Iterators - Fold",
+    "explanation": "`fold()` accumulates iterator elements into a single value. It takes an initial value and a closure. `rfold()` folds from the right. Perfect for operations like sum or factorial. This exercise requires computing factorial using `fold` without early returns, loops, or recursion.",
+    "hint": "Check out `fold` and `rfold` methods! They elegantly compute things like factorial."
+  },
+  {
+    "index": 74,
+    "section": "iterators",
+    "exercise": "iterators5",
+    "title": "Iterators - Complex Operations",
+    "explanation": "Combine multiple iterator methods for complex operations. `flat_map()` flattens nested iterators, `filter_map()` combines filter and map. The `fold()` method is a general-purpose tool. This exercise uses a `Progress` enum with variants `None`, `Some`, and `Complete`. You count occurrences of each progress state in a HashMap using iterator methods like `.values().filter().count()`.",
+    "hint": "Look at `Iterator` documentation for helpful methods. `fold` can be used, but there might be a more compact solution!"
+  },
+  {
+    "index": 75,
+    "section": "smart_pointers",
+    "exercise": "box1",
+    "title": "Smart Pointers - Box",
+    "explanation": "`Box<T>` stores data on the heap. It's useful for recursive types (types that contain themselves) because the size is known at compile time. Box has single ownership. This exercise defines a recursive `List` enum with `Cons(i32, List)` and `Nil` variants. The recursive type must be wrapped in `Box` to have a known size: `Cons(i32, Box<List>)`.",
+    "hint": "Place the recursive type inside a `Box`. Creating an empty list is straightforward. Use `Cons` for non-empty lists."
+  },
+  {
+    "index": 76,
+    "section": "smart_pointers",
+    "exercise": "rc1",
+    "title": "Smart Pointers - Rc (Reference Counted)",
+    "explanation": "`Rc<T>` enables multiple ownership. It keeps a count of references and cleans up when count reaches zero. Use `Rc::clone()` to create new references (increments count, doesn't copy data). This exercise has a `Sun` struct and planets (Mercury through Neptune). Each planet should hold an `Rc<Sun>` so all planets share ownership of the same Sun. Use `Rc::clone(&sun)` to create additional references.",
+    "hint": "Use `Rc::clone()` to increment the reference count. Each `Planet` has ownership of the `Sun`."
+  },
+  {
+    "index": 77,
+    "section": "smart_pointers",
+    "exercise": "arc1",
+    "title": "Smart Pointers - Arc (Atomic RC)",
+    "explanation": "`Arc<T>` is like `Rc<T>` but thread-safe. Use it when sharing data across threads. 'Arc' stands for Atomic Reference Count. Clone the Arc (not the data) for each thread. This exercise shares a vector of numbers 0-99 across 8 threads. Each thread sums numbers where n % 8 equals the thread's offset.",
+    "hint": "Make `shared_numbers` an `Arc` from the `numbers` vector. Clone the Arc (not the data) for child threads."
+  },
+  {
+    "index": 78,
+    "section": "smart_pointers",
+    "exercise": "cow1",
+    "title": "Smart Pointers - Cow (Copy on Write)",
+    "explanation": "`Cow<T>` is a smart pointer that provides copy-on-write functionality. It can hold either a borrowed reference or an owned value. `to_mut()` gives a mutable reference, cloning only if necessary. This exercise implements `abs_all(input: &mut Cow<[i32]>)` which converts negative values to absolute values. If the data is borrowed, it clones; if already owned, it modifies in place.",
+    "hint": "If `Cow` already owns the data, it doesn't need to clone when `to_mut()` is called. Check the `Cow` documentation."
+  },
+  {
+    "index": 79,
+    "section": "threads",
+    "exercise": "threads1",
+    "title": "Threads - Join Handles",
+    "explanation": "Spawn threads with `thread::spawn()`. It returns a `JoinHandle`. Call `.join()` to wait for the thread to finish and get its result. Main thread can exit before spawned threads!",
+    "hint": "Use `JoinHandle`s to wait for each thread to finish. Call `.join()` on each handle."
+  },
+  {
+    "index": 80,
+    "section": "threads",
+    "exercise": "threads2",
+    "title": "Threads - Shared State with Mutex",
+    "explanation": "`Mutex<T>` provides mutual exclusion - only one thread can access the data at a time. Combine with `Arc` for thread-safe shared mutable state: `Arc<Mutex<T>>`.",
+    "hint": "Use `Arc<Mutex<T>>` for shared mutable state. Lock the mutex to access the data: `status.lock().unwrap()`."
+  },
+  {
+    "index": 81,
+    "section": "threads",
+    "exercise": "threads3",
+    "title": "Threads - Channels",
+    "explanation": "Channels provide message passing between threads. Use `mpsc::channel()` for multiple producer, single consumer. Clone the sender (`tx.clone()`) for multiple producers.",
+    "hint": "Use `mpsc` channel to communicate between threads. Clone the sender for multiple producers."
+  },
+  {
+    "index": 82,
+    "section": "macros",
+    "exercise": "macros1",
+    "title": "Macros - Calling",
+    "explanation": "Macros are called with `!` after the name. They expand at compile time. Macros can take variable numbers of arguments and do things functions can't (like generate code).",
+    "hint": "When you call a macro, you need to add something special compared to a regular function call - the `!`."
+  },
+  {
+    "index": 83,
+    "section": "macros",
+    "exercise": "macros2",
+    "title": "Macros - Definition Order",
+    "explanation": "Unlike functions, macros must be defined before they're used (within a file). This is because macros are expanded at compile time before the compiler knows about later code.",
+    "hint": "Macros don't play by the same rules as the rest of Rust. The order of 'where you define' vs 'where you use' matters."
+  },
+  {
+    "index": 84,
+    "section": "macros",
+    "exercise": "macros3",
+    "title": "Macros - Exporting",
+    "explanation": "To use a macro from another module, use `#[macro_export]` attribute. This makes the macro available at the crate root. Import with `use crate_name::macro_name;`.",
+    "hint": "To use a macro outside of its module, you need to do something special to lift the macro out into its parent."
+  },
+  {
+    "index": 85,
+    "section": "macros",
+    "exercise": "macros4",
+    "title": "Macros - Multiple Arms",
+    "explanation": "Macro arms are separated by semicolons (for declarative macros with `macro_rules!`). Each arm is a pattern -> expansion pair. The macro tries each arm in order.",
+    "hint": "You only need to add a single character between each 'macro arm' - the semicolon!"
+  },
+  {
+    "index": 86,
+    "section": "clippy",
+    "exercise": "clippy1",
+    "title": "Clippy - Linting",
+    "explanation": "Clippy is Rust's linter that catches common mistakes and suggests improvements. It has many lints for style, correctness, and performance. Use standard library constants instead of approximations.",
+    "hint": "Rust stores precise mathematical constants in `std::f32::consts`. Use those instead of approximations."
+  },
+  {
+    "index": 87,
+    "section": "clippy",
+    "exercise": "clippy2",
+    "title": "Clippy - Idiomatic Code",
+    "explanation": "Clippy helps write idiomatic Rust. It suggests clearer alternatives - like using `if let` instead of `for` loop over `Option`. These lints improve readability.",
+    "hint": "`for` loops over `Option` values are more clearly expressed as `if-let` statements."
+  },
+  {
+    "index": 88,
+    "section": "clippy",
+    "exercise": "clippy3",
+    "title": "Clippy - Best Practices",
+    "explanation": "Clippy catches various code smells and anti-patterns. It's worth running Clippy regularly to improve code quality and learn Rust idioms.",
+    "hint": "No hints this time - let Clippy guide you!"
+  },
+  {
+    "index": 89,
+    "section": "conversions",
+    "exercise": "using_as",
+    "title": "Type Conversion - as Operator",
+    "explanation": "The `as` operator performs type casting between compatible types. It works for numeric types and some pointer conversions. Be careful with truncation when casting to smaller types.",
+    "hint": "Use the `as` operator to cast one of the operands in the calculation to the expected return type."
+  },
+  {
+    "index": 90,
+    "section": "conversions",
+    "exercise": "from_into",
+    "title": "Type Conversion - From/Into Traits",
+    "explanation": "The `From` trait defines how to convert from one type to another. Implementing `From` automatically gives you `Into` for free. This is the idiomatic way to do conversions.",
+    "hint": "Implement the `From` trait following the steps provided in the exercise."
+  },
+  {
+    "index": 91,
+    "section": "conversions",
+    "exercise": "from_str",
+    "title": "Type Conversion - FromStr Trait",
+    "explanation": "The `FromStr` trait defines how to parse a string into a type. It returns `Result` since parsing can fail. The `parse()` method on strings uses this trait.",
+    "hint": "Implement `FromStr` to return `Ok(Person)` on success or `Err` on failure. Use `?` operator with `map_err`."
+  },
+  {
+    "index": 92,
+    "section": "conversions",
+    "exercise": "try_from_into",
+    "title": "Type Conversion - TryFrom/TryInto",
+    "explanation": "`TryFrom` and `TryInto` are fallible versions of `From`/`Into`. They return `Result` since the conversion might fail. Use these when conversion isn't guaranteed to succeed.",
+    "hint": "`TryFrom` can check ranges and do integer conversion. Can you make it generic over integer types?"
+  },
+  {
+    "index": 93,
+    "section": "conversions",
+    "exercise": "as_ref_mut",
+    "title": "Type Conversion - AsRef/AsMut",
+    "explanation": "`AsRef` and `AsMut` traits provide cheap reference-to-reference conversions. They're useful for functions that should accept multiple reference types (like `&str` and `&String`).",
+    "hint": "Add `AsRef<str>` or `AsMut<u32>` as trait bounds to the functions."
+  }
+]

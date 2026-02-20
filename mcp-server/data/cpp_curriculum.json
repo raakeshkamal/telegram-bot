@@ -1,0 +1,2290 @@
+[
+  {
+    "index": 0,
+    "section": "c++_basics",
+    "exercise": "statements_and_the_structure_of_a_program",
+    "title": "1.1 - Statements and the structure of a program",
+    "explanation": "Chapter introduction Welcome to the first primary chapter of these C++ tutorials!",
+    "hint": "Read more about Statements and the structure of a program at LearnCpp."
+  },
+  {
+    "index": 1,
+    "section": "c++_basics",
+    "exercise": "comments",
+    "title": "1.2 - Comments",
+    "explanation": "Acommentis a programmer-readable note that is inserted directly into the source code of the program.  Comments are ignored by the compiler and are for the programmer\u2019s use only. In C++ there are two different styles of comments, both of which serve the same purpose: to help programmers document the code in some way.",
+    "hint": "Read more about Comments at LearnCpp."
+  },
+  {
+    "index": 2,
+    "section": "c++_basics",
+    "exercise": "introduction_to_objects_and_variables",
+    "title": "1.3 - Introduction to objects and variables",
+    "explanation": "Data and values In lesson1.1 -- Statements and the structure of a program, you learned that the majority of instructions in a program are statements, and that functions are groups of statements that execute sequentially.  The statements inside the function perform actions that (hopefully) generate whatever result the program was designed to produce.",
+    "hint": "Read more about Introduction to objects and variables at LearnCpp."
+  },
+  {
+    "index": 3,
+    "section": "c++_basics",
+    "exercise": "variable_assignment_and_initialization",
+    "title": "1.4 - Variable assignment and initialization",
+    "explanation": "In the previous lesson (1.3 -- Introduction to objects and variables), we covered how to define a variable that we can use to store values.  In this lesson, we\u2019ll explore how to actually put values into variables. As a reminder, here\u2019s a short program that first allocates a single integer variable namedx, then allocates two more integer variables namedyandz:",
+    "hint": "Read more about Variable assignment and initialization at LearnCpp."
+  },
+  {
+    "index": 4,
+    "section": "c++_basics",
+    "exercise": "introduction_to_iostream:_cout,_cin,_and_endl",
+    "title": "1.5 - Introduction to iostream: cout, cin, and endl",
+    "explanation": "In this lesson, we\u2019ll talk more about std::cout, which we used in ourHello world!program to output the textHello world!to the console.  We\u2019ll also explore how to get input from the user, which we will use to make our programs more interactive. The input/output library",
+    "hint": "Read more about Introduction to iostream: cout, cin, and endl at LearnCpp."
+  },
+  {
+    "index": 5,
+    "section": "c++_basics",
+    "exercise": "uninitialized_variables_and_undefined_behavior",
+    "title": "1.6 - Uninitialized variables and undefined behavior",
+    "explanation": "Uninitialized variables Unlike some programming languages, C/C++ does not automatically initialize most variables to a given value (such as zero).  When a variable that is not initialized is given a memory address to use to store data, the default value of that variable is whatever (garbage) value happens to already be in that memory address!  A variable that has not been given a known value (through initialization or assignment) is called anuninitialized variable.",
+    "hint": "Read more about Uninitialized variables and undefined behavior at LearnCpp."
+  },
+  {
+    "index": 6,
+    "section": "c++_basics",
+    "exercise": "keywords_and_naming_identifiers",
+    "title": "1.7 - Keywords and naming identifiers",
+    "explanation": "Keywords C++ reserves a set of 92 words (as of C++23) for its own use.  These words are calledkeywords(or reserved words), and each of these keywords has a special meaning within the C++ language.",
+    "hint": "Read more about Keywords and naming identifiers at LearnCpp."
+  },
+  {
+    "index": 7,
+    "section": "c++_basics",
+    "exercise": "whitespace_and_basic_formatting",
+    "title": "1.8 - Whitespace and basic formatting",
+    "explanation": "Whitespaceis a term that refers to characters that are used for formatting purposes.  In C++, this refers primarily to spaces, tabs, and newlines.  Whitespace in C++ is generally used for 3 things: separating certain language elements, inside text, and for formatting code. Some language elements must be whitespace-separated",
+    "hint": "Read more about Whitespace and basic formatting at LearnCpp."
+  },
+  {
+    "index": 8,
+    "section": "c++_basics",
+    "exercise": "introduction_to_literals_and_operators",
+    "title": "1.9 - Introduction to literals and operators",
+    "explanation": "Literals Consider the following two statements:",
+    "hint": "Read more about Introduction to literals and operators at LearnCpp."
+  },
+  {
+    "index": 9,
+    "section": "c++_basics",
+    "exercise": "introduction_to_expressions",
+    "title": "1.10 - Introduction to expressions",
+    "explanation": "Expressions Consider the following series of statements, each of which defines a variable and initializes it:",
+    "hint": "Read more about Introduction to expressions at LearnCpp."
+  },
+  {
+    "index": 10,
+    "section": "c++_basics",
+    "exercise": "developing_your_first_program",
+    "title": "1.11 - Developing your first program",
+    "explanation": "The preceding lessons have introduced a lot of terminology and concepts that we\u2019ll use in just about every program we create.  In this lesson, we\u2019ll walk through the process of integrating this knowledge into our first simple program. Multiply by 2",
+    "hint": "Read more about Developing your first program at LearnCpp."
+  },
+  {
+    "index": 11,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "introduction_to_functions",
+    "title": "2.1 - Introduction to functions",
+    "explanation": "In the last chapter, we defined a function as a collection of statements that execute sequentially.  While that is certainly true, that definition doesn\u2019t provide much insight into why functions are useful.  Let\u2019s update our definition: Afunctionis a reusable sequence of statements designed to do a particular job. You already know that every executable program must have a function namedmain()(which is where the program starts execution when it is run).  However, as programs start to get longer and longer, putting all the code inside themain()function becomes increasingly hard to manage.  Functions provide a way for us to split our programs into small, modular chunks that are easier to organize, test, and use.  Most programs use many functions.  The C++ standard library comes with plenty of already-written functions for you to use -- however, it\u2019s just as common to write your own.  Functions that you write yourself are calleduser-defined functions.",
+    "hint": "Read more about Introduction to functions at LearnCpp."
+  },
+  {
+    "index": 12,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "function_return_values_(value-returning_functions)",
+    "title": "2.2 - Function return values (value-returning functions)",
+    "explanation": "Consider the following program: This program is composed of two conceptual parts: First, we get a value from the user.  Then we tell the user what double that value is.",
+    "hint": "Read more about Function return values (value-returning functions) at LearnCpp."
+  },
+  {
+    "index": 13,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "void_functions_(non-value_returning_functions)",
+    "title": "2.3 - Void functions (non-value returning functions)",
+    "explanation": "In a prior lesson (2.1 -- Introduction to functions), we indicated that the syntax for a function definition looks like this: Although we showed examples of functions that had return-typevoid, we did not discuss what this meant.  In this lesson, we\u2019ll explore functions with a return type ofvoid.",
+    "hint": "Read more about Void functions (non-value returning functions) at LearnCpp."
+  },
+  {
+    "index": 14,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "introduction_to_function_parameters_and_arguments",
+    "title": "2.4 - Introduction to function parameters and arguments",
+    "explanation": "In the previous lesson, we learned that we could have a function return a value back to the function\u2019s caller.  We used that to create a modulargetValueFromUserfunction that we used in this program: However, what if we wanted to put the output line into its own function as well?  You might try something like this:",
+    "hint": "Read more about Introduction to function parameters and arguments at LearnCpp."
+  },
+  {
+    "index": 15,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "introduction_to_local_scope",
+    "title": "2.5 - Introduction to local scope",
+    "explanation": "Local variables Variables defined inside the body of a function are calledlocal variables(as opposed toglobal variables, which we\u2019ll discuss in a future chapter):",
+    "hint": "Read more about Introduction to local scope at LearnCpp."
+  },
+  {
+    "index": 16,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "why_functions_are_useful,_and_how_to_use_them_effectively",
+    "title": "2.6 - Why functions are useful, and how to use them effectively",
+    "explanation": "Now that we\u2019ve covered what functions are and some of their basic capabilities, let\u2019s take a closer look at why they\u2019re useful. Why use functions?",
+    "hint": "Read more about Why functions are useful, and how to use them effectively at LearnCpp."
+  },
+  {
+    "index": 17,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "forward_declarations_and_definitions",
+    "title": "2.7 - Forward declarations and definitions",
+    "explanation": "Take a look at this seemingly innocent sample program: You would expect this program to produce the result:",
+    "hint": "Read more about Forward declarations and definitions at LearnCpp."
+  },
+  {
+    "index": 18,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "programs_with_multiple_code_files",
+    "title": "2.8 - Programs with multiple code files",
+    "explanation": "Adding files to your project As programs get larger, it is common to split them into multiple files for organizational or reusability purposes.  One advantage of working with an IDE is that they make working with multiple files much easier.  You already know how to create and compile single-file projects.  Adding new files to existing projects is very easy.",
+    "hint": "Read more about Programs with multiple code files at LearnCpp."
+  },
+  {
+    "index": 19,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "naming_collisions_and_an_introduction_to_namespaces",
+    "title": "2.9 - Naming collisions and an introduction to namespaces",
+    "explanation": "Let\u2019s say you are driving to a friend\u2019s house for the first time, and the address given to you is 245 Front Street in Mill City.  Upon reaching Mill City, you take out your map, only to discover that Mill City actually has two different Front Streets across town from each other!  Which one would you go to?  Unless there were some additional clue to help you decide (e.g. you remember your friend\u2019s house is near the river) you\u2019d have to call your friend and ask for more information.  Because this would be confusing and inefficient (particularly for your mail carrier), in most countries, all street names and house addresses within a city are required to be unique. Similarly, C++ requires that all identifiers be non-ambiguous.  If two identical identifiers are introduced into the same program in a way that the compiler or linker can\u2019t tell them apart, the compiler or linker will produce an error. This error is generally referred to as anaming collision(ornaming conflict).",
+    "hint": "Read more about Naming collisions and an introduction to namespaces at LearnCpp."
+  },
+  {
+    "index": 20,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "introduction_to_the_preprocessor",
+    "title": "2.10 - Introduction to the preprocessor",
+    "explanation": "When you compile your project, you might expect that the compiler compiles each code file exactly as you\u2019ve written it.  This actually isn\u2019t the case. Instead, prior to compilation, each code (.cpp) file goes through apreprocessingphase.  In this phase, a program called thepreprocessormakes various changes to the text of the code file. The preprocessor does not actually modify the original code files in any way -- rather, all changes made by the preprocessor happen either temporarily in-memory or using temporary files.",
+    "hint": "Read more about Introduction to the preprocessor at LearnCpp."
+  },
+  {
+    "index": 21,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "header_files",
+    "title": "2.11 - Header files",
+    "explanation": "In lesson2.8 -- Programs with multiple code files, we discussed how programs can be split across multiple files.  We also discussed how forward declarations are used to allow the code in one file to access something defined in another file. When programs contain only a few small files, manually adding a few forward declarations to the top of each file isn\u2019t too bad.  However, as programs grow larger (and make use of more files and functions), having to manually add a large number of (possibly different) forward declarations to the top of each file becomes extremely tedious.  For example, if you have a 5 file program, each of which requires 10 forward declarations, you\u2019re going to have to copy/paste in 50 forward declarations.  Now consider the case where you have 100 files and they each require 100 forward declarations.  This simply doesn\u2019t scale!",
+    "hint": "Read more about Header files at LearnCpp."
+  },
+  {
+    "index": 22,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "header_guards",
+    "title": "2.12 - Header guards",
+    "explanation": "The duplicate definition problem In lesson2.7 -- Forward declarations and definitions, we noted that a variable or function identifier can only have one definition (the one definition rule).  Thus, a program that defines a variable identifier more than once will cause a compile error:",
+    "hint": "Read more about Header guards at LearnCpp."
+  },
+  {
+    "index": 23,
+    "section": "c++_basics:_functions_and_files",
+    "exercise": "how_to_design_your_first_programs",
+    "title": "2.13 - How to design your first programs",
+    "explanation": "Now that you\u2019ve learned some basics about programs, let\u2019s look more closely athowto design a program. When you sit down to write a program, generally you have some kind of idea, which you\u2019d like to write a program for.  New programmers often have trouble figuring out how to convert that idea into actual code.  But it turns out, you have many of the problem solving skills you need already, acquired from everyday life.",
+    "hint": "Read more about How to design your first programs at LearnCpp."
+  },
+  {
+    "index": 24,
+    "section": "debugging_c++_programs",
+    "exercise": "syntax_and_semantic_errors",
+    "title": "3.1 - Syntax and semantic errors",
+    "explanation": "Software errors are prevalent.  It\u2019s easy to make them, and it\u2019s hard to find them.  In this chapter, we\u2019ll explore topics related to the finding and removal of bugs within our C++ programs, including learning how to use the integrated debugger that is part of our IDE. Although debugging tools and techniques aren\u2019t part of the C++ standard, learning to find and remove bugs in the programs you write is an extremely important part of being a successful programmer.  Therefore, we\u2019ll spend a bit of time covering such topics, so that as the programs you write become more complex, your ability to diagnose and remedy issues advances at a similar pace.",
+    "hint": "Read more about Syntax and semantic errors at LearnCpp."
+  },
+  {
+    "index": 25,
+    "section": "debugging_c++_programs",
+    "exercise": "the_debugging_process",
+    "title": "3.2 - The debugging process",
+    "explanation": "Let\u2019s say you\u2019ve written a program, and it\u2019s not working correctly -- the code compiles fine, but when you run it, you\u2019re getting an incorrect result.  You must have a semantic error somewhere.  How can you find it?  If you\u2019ve been following best practices by writing a little bit of code and then testing it, you may have a good idea where your error is.  Or you may have no clue at all. All bugs stem from a simple premise: Something that you thought was correct, isn\u2019t.  Actually figuring out where that error is can be challenging.  In this lesson, we\u2019ll outline the general process of debugging a program.",
+    "hint": "Read more about The debugging process at LearnCpp."
+  },
+  {
+    "index": 26,
+    "section": "debugging_c++_programs",
+    "exercise": "a_strategy_for_debugging",
+    "title": "3.3 - A strategy for debugging",
+    "explanation": "When debugging a program, in most cases the vast majority of your time will be spent trying to find where the error actually is.  Once the issue is found, the remaining steps (fixing the issue and validating that the issue was fixed) are often trivial in comparison. In this lesson, we\u2019ll start exploring how to find errors.",
+    "hint": "Read more about A strategy for debugging at LearnCpp."
+  },
+  {
+    "index": 27,
+    "section": "debugging_c++_programs",
+    "exercise": "basic_debugging_tactics",
+    "title": "3.4 - Basic debugging tactics",
+    "explanation": "In the previous lesson, we explored a strategy for finding issues by running our programs and using guesswork to home in on where the problem is.  In this lesson, we\u2019ll explore some basic tactics for actually making those guesses and collecting information to help find issues. Debugging tactic #1: Commenting out your code",
+    "hint": "Read more about Basic debugging tactics at LearnCpp."
+  },
+  {
+    "index": 28,
+    "section": "debugging_c++_programs",
+    "exercise": "more_debugging_tactics",
+    "title": "3.5 - More debugging tactics",
+    "explanation": "In the previous lesson (3.4 -- Basic debugging tactics), we started exploring how to manually debug problems.  In that lesson, we offered some criticisms of using statements to print debug text: We can mitigate some of these issues.  In this lesson, we\u2019ll explore some basic techniques for doing so.",
+    "hint": "Read more about More debugging tactics at LearnCpp."
+  },
+  {
+    "index": 29,
+    "section": "debugging_c++_programs",
+    "exercise": "using_an_integrated_debugger:_stepping",
+    "title": "3.6 - Using an integrated debugger: Stepping",
+    "explanation": "When you run your program, execution begins at the top of themainfunction, and then proceeds sequentially statement by statement, until the program ends.  At any point in time while your program is running, the program is keeping track of a lot of things: the value of the variables you\u2019re using, which functions have been called (so that when those functions return, the program will know where to go back to), and the current point of execution within the program (so it knows which statement to execute next).  All of this tracked information is called yourprogram state(or juststate, for short). In previous lessons, we explored various ways to alter your code to help with debugging, including printing diagnostic information or using a logger.  These are simple methods for examining the state of a program while it is running.  Although these can be effective if used properly, they still have downsides: they require altering your code, which takes time and can introduce new bugs, and they clutter your code, making the existing code harder to understand.",
+    "hint": "Read more about Using an integrated debugger: Stepping at LearnCpp."
+  },
+  {
+    "index": 30,
+    "section": "debugging_c++_programs",
+    "exercise": "using_an_integrated_debugger:_running_and_breakpoints",
+    "title": "3.7 - Using an integrated debugger: Running and breakpoints",
+    "explanation": "While stepping (covered in lesson3.6 -- Using an integrated debugger: Stepping) is useful for examining each individual line of your code in isolation, in a large program, it can take a long time to step through your code to even get to the point where you want to examine in more detail. Fortunately, modern debuggers provide more tools to help us efficiently debug our programs.  In this lesson, we\u2019ll look at some of the debugger features that let us more quickly navigate our code.",
+    "hint": "Read more about Using an integrated debugger: Running and breakpoints at LearnCpp."
+  },
+  {
+    "index": 31,
+    "section": "debugging_c++_programs",
+    "exercise": "using_an_integrated_debugger:_watching_variables",
+    "title": "3.8 - Using an integrated debugger: Watching variables",
+    "explanation": "In the previous lessons (3.6 -- Using an integrated debugger: Steppingand3.7 -- Using an integrated debugger: Running and breakpoints), you learned how to use the debugger to watch the path of execution through your program.  However, stepping through a program is only half of what makes the debugger useful.  The debugger also lets you examine the value of variables as you step through your code, all without having to modify your code. As per previous lessons, our examples here will use Visual Studio -- if you are using a different IDE/debugger, the commands may have slightly different names or be located in different locations.",
+    "hint": "Read more about Using an integrated debugger: Watching variables at LearnCpp."
+  },
+  {
+    "index": 32,
+    "section": "debugging_c++_programs",
+    "exercise": "using_an_integrated_debugger:_the_call_stack",
+    "title": "3.9 - Using an integrated debugger: The call stack",
+    "explanation": "Modern debuggers contain one more debugging information window that can be very useful in debugging your program, and that is the call stack window. When your program calls a function, you already know that it bookmarks the current location, makes the function call, and then returns.  How does it know where to return to?  The answer is that it keeps track in the call stack.",
+    "hint": "Read more about Using an integrated debugger: The call stack at LearnCpp."
+  },
+  {
+    "index": 33,
+    "section": "debugging_c++_programs",
+    "exercise": "finding_issues_before_they_become_problems",
+    "title": "3.10 - Finding issues before they become problems",
+    "explanation": "When you make a semantic error, that error may or may not be immediately noticeable when you run your program.  An issue may lurk undetected in your code for a long time before newly introduced code or changed circumstances cause it to manifest as a program malfunction.  The longer an error sits in the code base before it is found, the more likely it is to be hard to find, and something that may have been easy to fix originally turns into a debugging adventure that eats up time and energy. So what can we do about that?",
+    "hint": "Read more about Finding issues before they become problems at LearnCpp."
+  },
+  {
+    "index": 34,
+    "section": "fundamental_data_types",
+    "exercise": "introduction_to_fundamental_data_types",
+    "title": "4.1 - Introduction to fundamental data types",
+    "explanation": "Bits, bytes, and memory addressing In lesson1.3 -- Introduction to objects and variables, we talked about the fact that variables are names for a piece of memory that can be used to store information.  To recap briefly, computers have random access memory (RAM) that is available for programs to use.  When a variable is defined, a piece of that memory is set aside for that variable.",
+    "hint": "Read more about Introduction to fundamental data types at LearnCpp."
+  },
+  {
+    "index": 35,
+    "section": "fundamental_data_types",
+    "exercise": "void",
+    "title": "4.2 - Void",
+    "explanation": "Void is the easiest of the data types to explain.  Basically,voidmeans \u201cno type\u201d! Void is our first example of an incomplete type.  Anincomplete typeis a type that has been declared but not yet defined.  The compiler knows about the existence of such types, but does not have enough information to determine how much memory to allocate for objects of that type.voidis intentionally incomplete since it represents the lack of a type, and thus cannot be defined.",
+    "hint": "Read more about Void at LearnCpp."
+  },
+  {
+    "index": 36,
+    "section": "fundamental_data_types",
+    "exercise": "object_sizes_and_the_sizeof_operator",
+    "title": "4.3 - Object sizes and the sizeof operator",
+    "explanation": "Object sizes As you learned in the lesson4.1 -- Introduction to fundamental data types, memory on modern machines is typically organized into byte-sized units, with each byte of memory having a unique address.  Up to this point, it has been useful to think of memory as a bunch of cubbyholes or mailboxes where we can put and retrieve information, and variables as names for accessing those cubbyholes or mailboxes.",
+    "hint": "Read more about Object sizes and the sizeof operator at LearnCpp."
+  },
+  {
+    "index": 37,
+    "section": "fundamental_data_types",
+    "exercise": "signed_integers",
+    "title": "4.4 - Signed integers",
+    "explanation": "Anintegeris an integral type that can represent positive and negative whole numbers, including 0 (e.g. -2, -1, 0, 1, 2).  C++ has4primary fundamental integer types available for use: ",
+    "hint": "Read more about Signed integers at LearnCpp."
+  },
+  {
+    "index": 38,
+    "section": "fundamental_data_types",
+    "exercise": "unsigned_integers,_and_why_to_avoid_them",
+    "title": "4.5 - Unsigned integers, and why to avoid them",
+    "explanation": "Unsigned integers In the previous lesson (4.4 -- Signed integers), we covered signed integers, which are a set of types that can hold positive and negative whole numbers, including 0.",
+    "hint": "Read more about Unsigned integers, and why to avoid them at LearnCpp."
+  },
+  {
+    "index": 39,
+    "section": "fundamental_data_types",
+    "exercise": "fixed-width_integers_and_size_t",
+    "title": "4.6 - Fixed-width integers and size_t",
+    "explanation": "In the previous lessons on integers, we covered that C++ only guarantees that integer variables will have a minimum size -- but they could be larger, depending on the target system. For example, aninthas a minimum size of 16-bits, but it\u2019s typically 32-bits on modern architectures.",
+    "hint": "Read more about Fixed-width integers and size_t at LearnCpp."
+  },
+  {
+    "index": 40,
+    "section": "fundamental_data_types",
+    "exercise": "introduction_to_scientific_notation",
+    "title": "4.7 - Introduction to scientific notation",
+    "explanation": "Before we talk about our next subject, we\u2019re going to sidebar into the topic of scientific notation. Scientific notationis a useful shorthand for writing lengthy numbers in a concise manner.  And although scientific notation may seem foreign at first, understanding scientific notation will help you understand how floating point numbers work, and more importantly, what their limitations are.",
+    "hint": "Read more about Introduction to scientific notation at LearnCpp."
+  },
+  {
+    "index": 41,
+    "section": "fundamental_data_types",
+    "exercise": "floating_point_numbers",
+    "title": "4.8 - Floating point numbers",
+    "explanation": "Integers are great for counting whole numbers, but sometimes we need to storeverylarge (positive or negative) numbers, or numbers with a fractional component.  Afloating pointtype variable is a variable that can hold a number with a fractional component, such as 4320.0, -3.33, or 0.01226.  Thefloatingpart of the namefloating pointrefers to the fact that the decimal point can \u201cfloat\u201d -- that is, it can support a variable number of digits before and after the decimal point.  Floating point data types are always signed (can hold positive and negative values). C++ floating point types",
+    "hint": "Read more about Floating point numbers at LearnCpp."
+  },
+  {
+    "index": 42,
+    "section": "fundamental_data_types",
+    "exercise": "boolean_values",
+    "title": "4.9 - Boolean values",
+    "explanation": "In real-life, it\u2019s common to ask or be asked questions that can be answered with \u201cyes\u201d or \u201cno\u201d.  \u201cIs an apple a fruit?\u201d  Yes.  \u201cDo you like asparagus?\u201d  No. Now consider a similar statement that can be answered with a \u201ctrue\u201d or \u201cfalse\u201d: \u201cApples are a fruit\u201d.  It\u2019s clearly true.  Or how about, \u201cI like asparagus\u201d.  Absolutely false (yuck!).",
+    "hint": "Read more about Boolean values at LearnCpp."
+  },
+  {
+    "index": 43,
+    "section": "fundamental_data_types",
+    "exercise": "introduction_to_if_statements",
+    "title": "4.10 - Introduction to if statements",
+    "explanation": "Consider a case where you\u2019re going to go to the market, and your roommate tells you, \u201cif they have strawberries on sale, buy some\u201d.  This is a conditional statement, meaning that you\u2019ll execute some action (\u201cbuy some\u201d) only if the condition (\u201cthey have strawberries on sale\u201d) is true. Such conditions are common in programming, as they allow us to implement conditional behavior into our programs.  The simplest kind of conditional statement in C++ is called anif statement.  Anif statementallows us to execute one (or more) lines of code only if some condition is true.",
+    "hint": "Read more about Introduction to if statements at LearnCpp."
+  },
+  {
+    "index": 44,
+    "section": "fundamental_data_types",
+    "exercise": "chars",
+    "title": "4.11 - Chars",
+    "explanation": "To this point, the fundamental data types we\u2019ve looked at have been used to hold numbers (integers and floating points) or true/false values (Booleans).  But what if we want to store letters or punctuation? Thechardata type was designed to hold a singlecharacter.  Acharactercan be a single letter, number, symbol, or whitespace.",
+    "hint": "Read more about Chars at LearnCpp."
+  },
+  {
+    "index": 45,
+    "section": "fundamental_data_types",
+    "exercise": "introduction_to_type_conversion_and_static_cast",
+    "title": "4.12 - Introduction to type conversion and static_cast",
+    "explanation": "Implicit type conversion Consider the following program:",
+    "hint": "Read more about Introduction to type conversion and static_cast at LearnCpp."
+  },
+  {
+    "index": 46,
+    "section": "constants_and_strings",
+    "exercise": "constant_variables_(named_constants)",
+    "title": "5.1 - Constant variables (named constants)",
+    "explanation": "Introduction to constants In programming, aconstantis a value that may not be changed during the program\u2019s execution.",
+    "hint": "Read more about Constant variables (named constants) at LearnCpp."
+  },
+  {
+    "index": 47,
+    "section": "constants_and_strings",
+    "exercise": "literals",
+    "title": "5.2 - Literals",
+    "explanation": "Literalsare values that are inserted directly into the code.  For example: Literals are sometimes calledliteral constantsbecause their meaning cannot be redefined (5always means the integral value 5).",
+    "hint": "Read more about Literals at LearnCpp."
+  },
+  {
+    "index": 48,
+    "section": "constants_and_strings",
+    "exercise": "numeral_systems_(decimal,_binary,_hexadecimal,_and_octal)",
+    "title": "5.3 - Numeral systems (decimal, binary, hexadecimal, and octal)",
+    "explanation": "In everyday life, we count usingdecimalnumbers, where each numerical digit can be 0, 1, 2, 3, 4, 5, 6, 7, 8, or 9.  Decimal is also called \u201cbase 10\u201d, because there are 10 possible digits (0 through 9).  In this system, we count like this: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, \u2026  By default, numbers in C++ programs are assumed to be decimal. Inbinary, there are only 2 digits: 0 and 1, so it is called \u201cbase 2\u201d.  In binary, we count like this: 0, 1, 10, 11, 100, 101, 110, 111, \u2026  To make them easier to read, longer binary numbers are often space-separated into groups of 4 digits (e.g. 1101 0100).",
+    "hint": "Read more about Numeral systems (decimal, binary, hexadecimal, and octal) at LearnCpp."
+  },
+  {
+    "index": 49,
+    "section": "constants_and_strings",
+    "exercise": "the_as-if_rule_and_compile-time_optimization",
+    "title": "5.4 - The as-if rule and compile-time optimization",
+    "explanation": "Introduction to optimization In programming,optimizationis the process of modifying software to make it work more efficiently (e.g. to run faster, or use fewer resources).  Optimization can have a huge impact on the overall performance level of an application.",
+    "hint": "Read more about The as-if rule and compile-time optimization at LearnCpp."
+  },
+  {
+    "index": 50,
+    "section": "constants_and_strings",
+    "exercise": "constant_expressions",
+    "title": "5.5 - Constant expressions",
+    "explanation": "In lesson1.10 -- Introduction to expressions, we introduced expressions.  By default, expressions evaluate at runtime.  And in some cases, they must do so: Because input and output can\u2019t be performed at compile time, the expressions above are required to evaluate at runtime.",
+    "hint": "Read more about Constant expressions at LearnCpp."
+  },
+  {
+    "index": 51,
+    "section": "constants_and_strings",
+    "exercise": "constexpr_variables",
+    "title": "5.6 - Constexpr variables",
+    "explanation": "In the previous lesson5.5 -- Constant expressions, we defined what a constant expression is, discussed why constant expressions are desirable, and concluded with when constant expressions actually evaluate at compile-time. In this lesson, we\u2019ll take a closer look at how we create variables that can be used in constant expressions in modern C++.  We\u2019ll also explore our first method for ensuring that code actually executes at compile-time.",
+    "hint": "Read more about Constexpr variables at LearnCpp."
+  },
+  {
+    "index": 52,
+    "section": "constants_and_strings",
+    "exercise": "introduction_to_std::string",
+    "title": "5.7 - Introduction to std::string",
+    "explanation": "In lesson5.2 -- Literals, we introduced C-style string literals: While C-style string literals are fine to use, C-style string variables behave oddly, are hard to work with (e.g. you can\u2019t use assignment to assign a C-style string variable a new value), and are dangerous (e.g. if you copy a larger C-style string into the space allocated for a shorter C-style string, undefined behavior will result).  In modern C++, C-style string variables are best avoided.",
+    "hint": "Read more about Introduction to std::string at LearnCpp."
+  },
+  {
+    "index": 53,
+    "section": "constants_and_strings",
+    "exercise": "introduction_to_std::string_view",
+    "title": "5.8 - Introduction to std::string_view",
+    "explanation": "Consider the following program: When the definition forxis executed, the initialization value5is copied into the memory allocated for variableint x.  For fundamental types, initializing and copying a variable is fast.",
+    "hint": "Read more about Introduction to std::string_view at LearnCpp."
+  },
+  {
+    "index": 54,
+    "section": "constants_and_strings",
+    "exercise": "std::string_view_(part_2)",
+    "title": "5.9 - std::string_view (part 2)",
+    "explanation": "In prior lessons, we introduced two string types:std::string(5.7 -- Introduction to std::string) andstd::string_view(5.8 -- Introduction to std::string_view). Becausestd::string_viewis our first encounter with a view type, we\u2019re going to spend some additional time discussing it further.  We will focus on how to usestd::string_viewsafely, and provide some examples illustrating how it can be used incorrectly.  We\u2019ll conclude with some guidelines on when to usestd::stringvsstd::string_view.",
+    "hint": "Read more about std::string_view (part 2) at LearnCpp."
+  },
+  {
+    "index": 55,
+    "section": "operators",
+    "exercise": "operator_precedence_and_associativity",
+    "title": "6.1 - Operator precedence and associativity",
+    "explanation": "Chapter introduction This chapter builds on top of the concepts from lesson1.9 -- Introduction to literals and operators.  A quick review follows:",
+    "hint": "Read more about Operator precedence and associativity at LearnCpp."
+  },
+  {
+    "index": 56,
+    "section": "operators",
+    "exercise": "arithmetic_operators",
+    "title": "6.2 - Arithmetic operators",
+    "explanation": "Unary arithmetic operators There are two unary arithmetic operators, plus (+), and minus (-).  As a reminder, unary operators are operators that only take one operand.",
+    "hint": "Read more about Arithmetic operators at LearnCpp."
+  },
+  {
+    "index": 57,
+    "section": "operators",
+    "exercise": "remainder_and_exponentiation",
+    "title": "6.3 - Remainder and Exponentiation",
+    "explanation": "The remainder operator (operator%) Theremainder operator(also commonly called themodulo operatorormodulus operator) is an operator that returns the remainder after doing an integer division.  For example, 7 / 4 = 1 remainder 3.  Therefore, 7 % 4 = 3.  As another example, 25 / 7 = 3 remainder 4, thus 25 % 7 = 4.  The remainder operator only works with integer operands.",
+    "hint": "Read more about Remainder and Exponentiation at LearnCpp."
+  },
+  {
+    "index": 58,
+    "section": "operators",
+    "exercise": "increment_decrement_operators,_and_side_effects",
+    "title": "6.4 - Increment/decrement operators, and side effects",
+    "explanation": "Incrementing and decrementing variables Incrementing (adding 1 to) and decrementing (subtracting 1 from) a variable are both so common that they have their own operators.",
+    "hint": "Read more about Increment/decrement operators, and side effects at LearnCpp."
+  },
+  {
+    "index": 59,
+    "section": "operators",
+    "exercise": "the_comma_operator",
+    "title": "6.5 - The comma operator",
+    "explanation": "Thecomma operator (,)allows you to evaluate multiple expressions wherever a single expression is allowed.  The comma operator evaluates the left operand, then the right operand, and then returns the result of the right operand. For example:",
+    "hint": "Read more about The comma operator at LearnCpp."
+  },
+  {
+    "index": 60,
+    "section": "operators",
+    "exercise": "the_conditional_operator",
+    "title": "6.6 - The conditional operator",
+    "explanation": "Theconditional operator(?:) (also sometimes called thearithmetic ifoperator) is a ternary operator (an operator that takes 3 operands).  Because it has historically been C++\u2019s only ternary operator, it\u2019s also sometimes referred to as \u201cthe ternary operator\u201d. The?:operator provides a shorthand method for doing a particular type of if-else statement.",
+    "hint": "Read more about The conditional operator at LearnCpp."
+  },
+  {
+    "index": 61,
+    "section": "operators",
+    "exercise": "relational_operators_and_floating_point_comparisons",
+    "title": "6.7 - Relational operators and floating point comparisons",
+    "explanation": "Relational operatorsare operators that let you compare two values.  There are 6 relational operators: ",
+    "hint": "Read more about Relational operators and floating point comparisons at LearnCpp."
+  },
+  {
+    "index": 62,
+    "section": "operators",
+    "exercise": "logical_operators",
+    "title": "6.8 - Logical operators",
+    "explanation": "While relational (comparison) operators can be used to test whether a particular condition is true or false, they can only test one condition at a time.  Often we need to know whether multiple conditions are true simultaneously.  For example, to check whether we\u2019ve won the lottery, we have to compare whether all of the multiple numbers we picked match the winning numbers.  In a lottery with 6 numbers, this would involve 6 comparisons,allof which have to be true.  In other cases, we need to know whether any one of multiple conditions is true.  For example, we may decide to skip work today if we\u2019re sick, or if we\u2019re too tired, or if we won the lottery in our previous example.  This would involve checking whetheranyof 3 comparisons is true. Logical operators provide us with the capability to test multiple conditions.",
+    "hint": "Read more about Logical operators at LearnCpp."
+  },
+  {
+    "index": 63,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "compound_statements_(blocks)",
+    "title": "7.1 - Compound statements (blocks)",
+    "explanation": "Acompound statement(also called ablock, orblock statement) is a group ofzero or more statementsthat is treated by the compiler as if it were a single statement. Blocks begin with a{symbol, end with a}symbol, with the statements to be executed being placed in between.  Blocks can be used anywhere a single statement is allowed.  No semicolon is needed at the end of a block.",
+    "hint": "Read more about Compound statements (blocks) at LearnCpp."
+  },
+  {
+    "index": 64,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "user-defined_namespaces_and_the_scope_resolution_operator",
+    "title": "7.2 - User-defined namespaces and the scope resolution operator",
+    "explanation": "In lesson2.9 -- Naming collisions and an introduction to namespaces, we introduced the concept ofnaming collisionsandnamespaces.  As a reminder, a naming collision occurs when two identical identifiers are introduced into the same scope, and the compiler can\u2019t disambiguate which one to use.  When this happens, compiler or linker will produce an error because they do not have enough information to resolve the ambiguity. Let\u2019s revisit an example of a naming collision, and then show how we can improve things using namespaces.  In the following example,foo.cppandgoo.cppare the source files that contain functions that do different things but have the same name and parameters.",
+    "hint": "Read more about User-defined namespaces and the scope resolution operator at LearnCpp."
+  },
+  {
+    "index": 65,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "local_variables",
+    "title": "7.3 - Local variables",
+    "explanation": "In lesson2.5 -- Introduction to local scope, we introducedlocal variables, which are variables that are defined inside a function (including function parameters). It turns out that C++ actually doesn\u2019t have a single attribute that defines a variable as being a local variable. Instead, local variables have several different properties that differentiate how these variables behave from other kinds of (non-local) variables. We\u2019ll explore these properties in this and upcoming lessons.",
+    "hint": "Read more about Local variables at LearnCpp."
+  },
+  {
+    "index": 66,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "introduction_to_global_variables",
+    "title": "7.4 - Introduction to global variables",
+    "explanation": "In lesson7.3 -- Local variables, we covered that local variables are variables defined inside a function body.  Local variables have block scope (are only visible within the block they are declared in), and have automatic duration (they are created at the point of definition and destroyed when the block is exited). In C++, variables can also be declaredoutsideof a function.  Such variables are calledglobal variables.",
+    "hint": "Read more about Introduction to global variables at LearnCpp."
+  },
+  {
+    "index": 67,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "variable_shadowing_(name_hiding)",
+    "title": "7.5 - Variable shadowing (name hiding)",
+    "explanation": "Each block defines its own scope region.  So what happens when we have a variable inside a nested block that has the same name as a variable in an outer block?  When this happens, the nested variable \u201chides\u201d the outer variable in areas where they are both in scope.  This is calledname hidingorshadowing. Shadowing of local variables",
+    "hint": "Read more about Variable shadowing (name hiding) at LearnCpp."
+  },
+  {
+    "index": 68,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "internal_linkage",
+    "title": "7.6 - Internal linkage",
+    "explanation": "In lesson7.3 -- Local variables, we said, \u201cAn identifier\u2019s linkage determines whether other declarations of that name refer to the same object or not\u201d, and we discussed how local variables haveno linkage. Global variables and function identifiers can have eitherinternal linkageorexternal linkage.  We\u2019ll cover the internal linkage case in this lesson, and the external linkage case in lesson7.7 -- External linkage and variable forward declarations.",
+    "hint": "Read more about Internal linkage at LearnCpp."
+  },
+  {
+    "index": 69,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "external_linkage_and_variable_forward_declarations",
+    "title": "7.7 - External linkage and variable forward declarations",
+    "explanation": "In the prior lesson (7.6 -- Internal linkage), we discussed howinternal linkagelimits the use of an identifier to a single file.  In this lesson, we\u2019ll explore the concept ofexternal linkage. An identifier withexternal linkagecan be seen and used both from the file in which it is defined, and from other code files (via a forward declaration).  In this sense, identifiers with external linkage are truly \u201cglobal\u201d in that they can be used anywhere in your program!",
+    "hint": "Read more about External linkage and variable forward declarations at LearnCpp."
+  },
+  {
+    "index": 70,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "why_(non-const)_global_variables_are_evil",
+    "title": "7.8 - Why (non-const) global variables are evil",
+    "explanation": "If you were to ask a veteran programmer foronepiece of advice on good programming practices, after some thought, the most likely answer would be, \u201cAvoid global variables!\u201d.  And with good reason: global variables are one of the most historically abused concepts in the language.  Although they may seem harmless in small academic programs, they are often problematic in larger ones. New programmers are often tempted to use lots of global variables, because they are easy to work with, especially when many calls to different functions are involved (passing data through function parameters is a pain).  However, this is generally a bad idea.  Many developers believe non-const global variables should be avoided completely!",
+    "hint": "Read more about Why (non-const) global variables are evil at LearnCpp."
+  },
+  {
+    "index": 71,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "inline_functions_and_variables",
+    "title": "7.9 - Inline functions and variables",
+    "explanation": "Consider the case where you need to write some code to perform some discrete task, like reading input from the user, or outputting something to a file, or calculating a particular value.  When implementing this code, you essentially have two options: Putting the code in a new function provides many potential benefits, as small functions:",
+    "hint": "Read more about Inline functions and variables at LearnCpp."
+  },
+  {
+    "index": 72,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "sharing_global_constants_across_multiple_files_(using_inline_variables)",
+    "title": "7.10 - Sharing global constants across multiple files (using inline variables)",
+    "explanation": "In some applications, certain symbolic constants may need to be used throughout your code (not just in one location).  These can include physics or mathematical constants that don\u2019t change (e.g. pi or Avogadro\u2019s number), or application-specific \u201ctuning\u201d values (e.g. friction or gravity coefficients).  Instead of redefining these constants in every file that needs them (a violation of the \u201cDon\u2019t Repeat Yourself\u201d rule), it\u2019s better to declare them once in a central location and use them wherever needed.  That way, if you ever need to change them, you only need to change them in one place, and those changes can be propagated out. This lesson discusses the most common ways to do this.",
+    "hint": "Read more about Sharing global constants across multiple files (using inline variables) at LearnCpp."
+  },
+  {
+    "index": 73,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "static_local_variables",
+    "title": "7.11 - Static local variables",
+    "explanation": "The termstaticis one of the most confusing terms in the C++ language, in large part becausestatichas different meanings in different contexts. In prior lessons, we covered that global variables have static duration, which means they are created when the program starts and destroyed when the program ends.",
+    "hint": "Read more about Static local variables at LearnCpp."
+  },
+  {
+    "index": 74,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "scope,_duration,_and_linkage_summary",
+    "title": "7.12 - Scope, duration, and linkage summary",
+    "explanation": "The concepts of scope, duration, and linkage cause a lot of confusion, so we\u2019re going to take an extra lesson to summarize everything.  Some of these things we haven\u2019t covered yet, and they\u2019re here just for completeness / reference later. ",
+    "hint": "Read more about Scope, duration, and linkage summary at LearnCpp."
+  },
+  {
+    "index": 75,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "using_declarations_and_using_directives",
+    "title": "7.13 - Using declarations and using directives",
+    "explanation": "You\u2019ve probably seen this program in a lot of textbooks and tutorials: If you see this, run.  Your textbook or tutorial are probably out of date.  In this lesson, we\u2019ll explore why.",
+    "hint": "Read more about Using declarations and using directives at LearnCpp."
+  },
+  {
+    "index": 76,
+    "section": "scope,_duration,_and_linkage",
+    "exercise": "unnamed_and_inline_namespaces",
+    "title": "7.14 - Unnamed and inline namespaces",
+    "explanation": "C++ supports two variants of namespaces that are worth at least knowing about.  We won\u2019t build on these, so consider this lesson optional for now. Unnamed (anonymous) namespaces",
+    "hint": "Read more about Unnamed and inline namespaces at LearnCpp."
+  },
+  {
+    "index": 77,
+    "section": "control_flow",
+    "exercise": "control_flow_introduction",
+    "title": "8.1 - Control flow introduction",
+    "explanation": "When a program is run, the CPU begins execution at the top ofmain(), executes some number of statements (in sequential order by default), and then the program terminates at the end ofmain().  The specific sequence of statements that the CPU executes is called the program\u2019sexecution path(orpath, for short). Consider the following program:",
+    "hint": "Read more about Control flow introduction at LearnCpp."
+  },
+  {
+    "index": 78,
+    "section": "control_flow",
+    "exercise": "if_statements_and_blocks",
+    "title": "8.2 - If statements and blocks",
+    "explanation": "The first category of control flow statements we\u2019ll talk about is conditional statements.  Aconditional statementis a statement that specifies whether some associated statement(s) should be executed or not. C++ supports two basic kinds of conditionals:if statements(which we introduced in lesson4.10 -- Introduction to if statements, and will talk about further here) andswitch statements(which we\u2019ll cover in a couple of lessons).",
+    "hint": "Read more about If statements and blocks at LearnCpp."
+  },
+  {
+    "index": 79,
+    "section": "control_flow",
+    "exercise": "common_if_statement_problems",
+    "title": "8.3 - Common if statement problems",
+    "explanation": "This lesson is a continuation of lesson8.2 -- If statements and blocks.  In this lesson, we\u2019ll take a look at some common problems that occur when using if-statements. Nested if-statements and the dangling else problem",
+    "hint": "Read more about Common if statement problems at LearnCpp."
+  },
+  {
+    "index": 80,
+    "section": "control_flow",
+    "exercise": "constexpr_if_statements",
+    "title": "8.4 - Constexpr if statements",
+    "explanation": "Normally, the conditional of an if-statement is evaluated at runtime. However, consider the case where the conditional is a constant expression, such as in the following example:",
+    "hint": "Read more about Constexpr if statements at LearnCpp."
+  },
+  {
+    "index": 81,
+    "section": "control_flow",
+    "exercise": "switch_statement_basics",
+    "title": "8.5 - Switch statement basics",
+    "explanation": "Although it is possible to chain many if-else-statements together, this is both difficult to read and inefficient.  Consider the following program: VariablexinprintDigitName()will be evaluated up to three times depending on the value passed in (which is inefficient), and the reader has to be sure that it isxbeing evaluated each time (not some other variable).",
+    "hint": "Read more about Switch statement basics at LearnCpp."
+  },
+  {
+    "index": 82,
+    "section": "control_flow",
+    "exercise": "switch_fallthrough_and_scoping",
+    "title": "8.6 - Switch fallthrough and scoping",
+    "explanation": "This lesson continues our exploration of switch statements that we started in the prior lesson8.5 -- Switch statement basics.  In the prior lesson, we mentioned that each set of statements underneath a label should end in abreak statementor areturn statement. In this lesson, we\u2019ll explore why, and talk about some switch scoping issues that sometimes trip up new programmers.",
+    "hint": "Read more about Switch fallthrough and scoping at LearnCpp."
+  },
+  {
+    "index": 83,
+    "section": "control_flow",
+    "exercise": "goto_statements",
+    "title": "8.7 - Goto statements",
+    "explanation": "The next kind of control flow statement we\u2019ll cover is the unconditional jump.  An unconditional jump causes execution to jump to another spot in the code.  The term \u201cunconditional\u201d means the jump always happens (unlike an if-statement or switch-statement, where the jump only happens conditionally based on the result of an expression). In C++, unconditional jumps are implemented via agoto statement, and the spot to jump to is identified through use of astatement label.  Just like with switch case labels, statement labels are conventionally not indented.",
+    "hint": "Read more about Goto statements at LearnCpp."
+  },
+  {
+    "index": 84,
+    "section": "control_flow",
+    "exercise": "introduction_to_loops_and_while_statements",
+    "title": "8.8 - Introduction to loops and while statements",
+    "explanation": "Introduction to loops And now the real fun begins -- in the next set of lessons, we\u2019ll cover loops.  Loops are control flow constructs that allow a piece of code to execute repeatedly until some condition is met.  Loops add a significant amount of flexibility into your programming toolkit, allowing you to do many things that would otherwise be difficult.",
+    "hint": "Read more about Introduction to loops and while statements at LearnCpp."
+  },
+  {
+    "index": 85,
+    "section": "control_flow",
+    "exercise": "do_while_statements",
+    "title": "8.9 - Do while statements",
+    "explanation": "Consider the case where we want to show the user a menu and ask them to make a selection -- and if the user chooses an invalid selection, to ask them again.  Clearly the menu and selection should go inside a loop of some kind (so we can keep asking the user until they enter valid input), but what kind of loop should we choose? Since a while loop evaluates the condition up front, it\u2019s an awkward choice.  We could solve the issue like this:",
+    "hint": "Read more about Do while statements at LearnCpp."
+  },
+  {
+    "index": 86,
+    "section": "control_flow",
+    "exercise": "for_statements",
+    "title": "8.10 - For statements",
+    "explanation": "By far, the most utilized loop statement in C++ is the for-statement.  Thefor statement(also called afor loop) is preferred when we have an obvious loop variable because it lets us easily and concisely define, initialize, test, and change the value of loop variables. As of C++11, there are two different kinds of for-loops.  We\u2019ll cover the classic for-statement in this lesson, and the newer range-based for-statement in a future lesson (16.8 -- Range-based for loops (for-each)) once we\u2019ve covered some other prerequisite topics.",
+    "hint": "Read more about For statements at LearnCpp."
+  },
+  {
+    "index": 87,
+    "section": "control_flow",
+    "exercise": "break_and_continue",
+    "title": "8.11 - Break and continue",
+    "explanation": "Break Although you have already seen thebreakstatement in the context ofswitchstatements (8.5 -- Switch statement basics), it deserves a fuller treatment since it can be used with other types of control flow statements as well.  Thebreak statementcauses a while loop, do-while loop, for loop, or switch statement to end, with execution continuing with the next statement after the loop or switch being broken out of.",
+    "hint": "Read more about Break and continue at LearnCpp."
+  },
+  {
+    "index": 88,
+    "section": "control_flow",
+    "exercise": "halts_(exiting_your_program_early)",
+    "title": "8.12 - Halts (exiting your program early)",
+    "explanation": "The last category of flow control statement we\u2019ll cover in this chapter is the halt.  Ahaltis a flow control statement that terminates the program.  In C++, halts are implemented as functions (rather than keywords), so our halt statements will be function calls. Let\u2019s take a brief detour, and recap what happens when a program exits normally.  When themain()function returns (either by reaching the end of the function, or via areturn statement), a number of different things happen.",
+    "hint": "Read more about Halts (exiting your program early) at LearnCpp."
+  },
+  {
+    "index": 89,
+    "section": "control_flow",
+    "exercise": "introduction_to_random_number_generation",
+    "title": "8.13 - Introduction to random number generation",
+    "explanation": "The ability to generate random numbers can be useful in certain kinds of programs, particularly in games, statistical modelling programs, and cryptographic applications that need to encrypt and decrypt things.  Take games for example -- without random events, monsters would always attack you the same way, you\u2019d always find the same treasure, the dungeon layout would never change, etc\u2026 and that would not make for a very good game. In real life, we often produce randomization by doing things like flipping a coin, rolling a dice, or shuffling a deck of cards.  These events aren\u2019t actually random, but involve so many physical variables (e.g. gravity, friction, air resistance, momentum, etc\u2026) that they become almost impossible to predict or control, and (unless you\u2019re a magician) produce results that are for all intents and purposes random.",
+    "hint": "Read more about Introduction to random number generation at LearnCpp."
+  },
+  {
+    "index": 90,
+    "section": "control_flow",
+    "exercise": "generating_random_numbers_using_mersenne_twister",
+    "title": "8.14 - Generating random numbers using Mersenne Twister",
+    "explanation": "In the previous lesson8.13 -- Introduction to random number generation, we introduced the concept of random number generation, and discussed how PRNG algorithms are typically used to simulate randomness in programs. In this lesson, we\u2019ll take a look at how to generate random numbers in your programs.  To access any of the randomization capabilities in C++, we include the<random>header of the standard library.",
+    "hint": "Read more about Generating random numbers using Mersenne Twister at LearnCpp."
+  },
+  {
+    "index": 91,
+    "section": "control_flow",
+    "exercise": "global_random_numbers_(random.h)",
+    "title": "8.15 - Global random numbers (Random.h)",
+    "explanation": "What happens if we want to use a random number generator in multiple functions or files?  One way is to create (and seed) our PRNG in ourmain()function, and then pass it everywhere we need it.  But that\u2019s a lot of passing for something we may only use sporadically, and in many different places.  It would add a lot of clutter to our code to pass such an object around. Alternately, you could create a static localstd::mt19937variable in each function that needs it (static so that it only gets seeded once).  However, it\u2019s overkill to have every function that uses a random number generator define and seed its own local generator, and the low volume of calls to each generator may lead to lower quality results.",
+    "hint": "Read more about Global random numbers (Random.h) at LearnCpp."
+  },
+  {
+    "index": 92,
+    "section": "error_detection_and_handling",
+    "exercise": "introduction_to_testing_your_code",
+    "title": "9.1 - Introduction to testing your code",
+    "explanation": "So, you\u2019ve written a program, it compiles, and it even appears to work!  What now? Well, it depends.  If you\u2019ve written your program to be run once and discarded, then you\u2019re done.  In this case, it may not matter that your program doesn\u2019t work for every case -- if it works for the one case you needed it for, and you\u2019re only going to run it once, then you\u2019re done.",
+    "hint": "Read more about Introduction to testing your code at LearnCpp."
+  },
+  {
+    "index": 93,
+    "section": "error_detection_and_handling",
+    "exercise": "code_coverage",
+    "title": "9.2 - Code coverage",
+    "explanation": "In the previous lesson9.1 -- Introduction to testing your code, we discussed how to write and preserve simple tests.  In this lesson, we\u2019ll talk about what kind of tests are useful to write to ensure your code is correct. Code coverage",
+    "hint": "Read more about Code coverage at LearnCpp."
+  },
+  {
+    "index": 94,
+    "section": "error_detection_and_handling",
+    "exercise": "common_semantic_errors_in_c++",
+    "title": "9.3 - Common semantic errors in C++",
+    "explanation": "In lesson3.1 -- Syntax and semantic errors, we coveredsyntax errors, which occur when you write code that is not valid according to the grammar of the C++ language.  The compiler will notify you of such errors, so they are trivial to catch, and usually straightforward to fix. We also coveredsemantic errors, which occur when you write code that does not do what you intended.  The compiler generally will not catch semantic errors (though in some cases, smart compilers may be able to generate a warning).",
+    "hint": "Read more about Common semantic errors in C++ at LearnCpp."
+  },
+  {
+    "index": 95,
+    "section": "error_detection_and_handling",
+    "exercise": "detecting_and_handling_errors",
+    "title": "9.4 - Detecting and handling errors",
+    "explanation": "In lesson9.3 -- Common semantic errors in C++, we covered many types of common C++ semantic errors that new C++ programmers run into with the language.  If an error is the result of a misused language feature or logic error, the error can simply be corrected. But most errors in a program don\u2019t occur as the result of inadvertently misusing language features -- rather, most errors occur due to faulty assumptions made by the programmer and/or a lack of proper error detection/handling.",
+    "hint": "Read more about Detecting and handling errors at LearnCpp."
+  },
+  {
+    "index": 96,
+    "section": "error_detection_and_handling",
+    "exercise": "std::cin_and_handling_invalid_input",
+    "title": "9.5 - std::cin and handling invalid input",
+    "explanation": "Most programs that have a user interface of some kind need to handle user input.  In the programs that you have been writing, you have been using std::cin to ask the user to enter text input.  Because text input is so free-form (the user can enter anything), it\u2019s very easy for the user to enter input that is not expected. As you write programs, you should always consider how users will (unintentionally or otherwise) misuse your programs.  A well-written program will anticipate how users will misuse it, and either handle those cases gracefully or prevent them from happening in the first place (if possible).  A program that handles error cases well is said to berobust.",
+    "hint": "Read more about std::cin and handling invalid input at LearnCpp."
+  },
+  {
+    "index": 97,
+    "section": "error_detection_and_handling",
+    "exercise": "assert_and_static_assert",
+    "title": "9.6 - Assert and static_assert",
+    "explanation": "In a function that takes parameters, the caller may be able to pass in arguments that are syntactically valid but semantically meaningless.  For example, in the previous lesson (9.4 -- Detecting and handling errors), we showed the following sample function: This function does an explicit check to see ifyis0, since dividing by zero is a semantic error and will cause the program to crash if executed.",
+    "hint": "Read more about Assert and static_assert at LearnCpp."
+  },
+  {
+    "index": 98,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "implicit_type_conversion",
+    "title": "10.1 - Implicit type conversion",
+    "explanation": "We introduced type conversion in lesson4.12 -- Introduction to type conversion and static_cast.  To recap the most important points from that lesson: In the first half of this chapter, we\u2019re going to dig a bit deeper into how type conversion works.  We\u2019ll start with implicit conversions in this lesson, and explicit type conversions (casting) in upcoming lesson10.6 -- Explicit type conversion (casting) and static_cast.  Since type conversion is used all over the place, having some understanding of what\u2019s happening under the hood when a conversion is needed is important.  This knowledge is also relevant when for understanding how overloaded functions (functions that can have the same name as other functions) work.",
+    "hint": "Read more about Implicit type conversion at LearnCpp."
+  },
+  {
+    "index": 99,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "floating-point_and_integral_promotion",
+    "title": "10.2 - Floating-point and integral promotion",
+    "explanation": "In lesson4.3 -- Object sizes and the sizeof operator, we noted that C++ has minimum size guarantees for each of the fundamental types.  However, the actual size of these types can vary based on the compiler and architecture. This variability was allowed so that theintanddoubledata types could be set to the size that maximizes performance on a given architecture.  For example, a 32-bit computer will typically be able to process 32-bits of data at a time.  In such cases, anintwould likely be set to a width of 32-bits, since this is the \u201cnatural\u201d size of the data that the CPU operates on (and likely to be the most performant).",
+    "hint": "Read more about Floating-point and integral promotion at LearnCpp."
+  },
+  {
+    "index": 100,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "numeric_conversions",
+    "title": "10.3 - Numeric conversions",
+    "explanation": "In the previous lesson (10.2 -- Floating-point and integral promotion), we covered numeric promotions, which are conversions of specific narrower numeric types to wider numeric types (typicallyintordouble) that can be processed efficiently. C++ supports another category of numeric type conversions, callednumeric conversions.  These numeric conversions cover additional type conversions between fundamental types.",
+    "hint": "Read more about Numeric conversions at LearnCpp."
+  },
+  {
+    "index": 101,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "narrowing_conversions,_list_initialization,_and_constexpr_initializers",
+    "title": "10.4 - Narrowing conversions, list initialization, and constexpr initializers",
+    "explanation": "In the previous lesson (10.3 -- Numeric conversions), we covered numeric conversions, which cover a wide range of different type conversions between fundamental types. Narrowing conversions",
+    "hint": "Read more about Narrowing conversions, list initialization, and constexpr initializers at LearnCpp."
+  },
+  {
+    "index": 102,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "arithmetic_conversions",
+    "title": "10.5 - Arithmetic conversions",
+    "explanation": "In lesson6.1 -- Operator precedence and associativity, we discussed how expressions are evaluated according to the precedence and associativity of their operators. Consider the following expression:",
+    "hint": "Read more about Arithmetic conversions at LearnCpp."
+  },
+  {
+    "index": 103,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "explicit_type_conversion_(casting)_and_static_cast",
+    "title": "10.6 - Explicit type conversion (casting) and static_cast",
+    "explanation": "In lesson10.1 -- Implicit type conversion, we discussed that the compiler can use implicit type conversion to convert a value from one data type to another.  When you want to numerically promote a value from one data type to a wider data type, using implicit type conversion is fine. Many new C++ programmers try something like this:",
+    "hint": "Read more about Explicit type conversion (casting) and static_cast at LearnCpp."
+  },
+  {
+    "index": 104,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "typedefs_and_type_aliases",
+    "title": "10.7 - Typedefs and type aliases",
+    "explanation": "Type aliases In C++,usingis a keyword that creates an alias for an existing data type.  To create such a type alias, we use theusingkeyword, followed by a name for the type alias, followed by an equals sign and an existing data type.  For example:",
+    "hint": "Read more about Typedefs and type aliases at LearnCpp."
+  },
+  {
+    "index": 105,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "type_deduction_for_objects_using_the_auto_keyword",
+    "title": "10.8 - Type deduction for objects using the auto keyword",
+    "explanation": "There\u2019s a subtle redundancy lurking in this simple variable definition: In C++, we are required to provide an explicit type for all objects.  Thus, we\u2019ve specified that variabledis of type double.",
+    "hint": "Read more about Type deduction for objects using the auto keyword at LearnCpp."
+  },
+  {
+    "index": 106,
+    "section": "type_conversion,_type_aliases,_and_type_deduction",
+    "exercise": "type_deduction_for_functions",
+    "title": "10.9 - Type deduction for functions",
+    "explanation": "Consider the following program: When this function is compiled, the compiler will determine thatx + yevaluates to anint, then ensure that type of the return value matches the declared return type of the function (or that the return value type can be converted to the declared return type).",
+    "hint": "Read more about Type deduction for functions at LearnCpp."
+  },
+  {
+    "index": 107,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "introduction_to_function_overloading",
+    "title": "11.1 - Introduction to function overloading",
+    "explanation": "Consider the following function: This trivial function adds two integers and returns an integer result.  However, what if we also want a function that can add two floating point numbers?  Thisadd()function is not suitable, as any floating point parameters would be converted to integers, causing the floating point arguments to lose their fractional values.",
+    "hint": "Read more about Introduction to function overloading at LearnCpp."
+  },
+  {
+    "index": 108,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "function_overload_differentiation",
+    "title": "11.2 - Function overload differentiation",
+    "explanation": "In the prior lesson (11.1 -- Introduction to function overloading), we introduced the concept of function overloading, which allows us to create multiple functions with the same name, so long as each identically named function has different parameter types (or the functions can be otherwise differentiated). In this lesson, we\u2019ll take a closer look at how overloaded functions are differentiated.  Overloaded functions that are not properly differentiated will cause the compiler to issue a compile error.",
+    "hint": "Read more about Function overload differentiation at LearnCpp."
+  },
+  {
+    "index": 109,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "function_overload_resolution_and_ambiguous_matches",
+    "title": "11.3 - Function overload resolution and ambiguous matches",
+    "explanation": "In the previous lesson (11.2 -- Function overload differentiation), we discussed which attributes of a function are used to differentiate overloaded functions from each other.  If an overloaded function is not properly differentiated from the other overloads of the same name, then the compiler will issue a compile error. However, having a set of differentiated overloaded functions is only half of the picture.  When any function call is made, the compiler must also ensure that a matching function declaration can be found.",
+    "hint": "Read more about Function overload resolution and ambiguous matches at LearnCpp."
+  },
+  {
+    "index": 110,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "deleting_functions",
+    "title": "11.4 - Deleting functions",
+    "explanation": "In some cases, it is possible to write functions that don\u2019t behave as desired when called with values of certain types. Consider the following example:",
+    "hint": "Read more about Deleting functions at LearnCpp."
+  },
+  {
+    "index": 111,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "default_arguments",
+    "title": "11.5 - Default arguments",
+    "explanation": "Adefault argumentis a default value provided for a function parameter.  For example: When making a function call, the caller can optionally provide an argument for any function parameter that has a default argument.  If the caller provides an argument, the value of the argument in the function call is used.  If the caller does not provide an argument, the value of the default argument is used.",
+    "hint": "Read more about Default arguments at LearnCpp."
+  },
+  {
+    "index": 112,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "function_templates",
+    "title": "11.6 - Function templates",
+    "explanation": "Let\u2019s say you wanted to write a function to calculate the maximum of two numbers.  You might do so like this: While the caller can pass different values into the function, the type of the parameters is fixed, so the caller can only pass inintvalues.  That means this function really only works well for integers (and types that can be promoted toint).",
+    "hint": "Read more about Function templates at LearnCpp."
+  },
+  {
+    "index": 113,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "function_template_instantiation",
+    "title": "11.7 - Function template instantiation",
+    "explanation": "In the previous lesson (11.6 -- Function templates), we introduced function templates, and converted a normalmax()function into amax<T>function template: In this lesson, we\u2019ll focus on how function templates are used.",
+    "hint": "Read more about Function template instantiation at LearnCpp."
+  },
+  {
+    "index": 114,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "function_templates_with_multiple_template_types",
+    "title": "11.8 - Function templates with multiple template types",
+    "explanation": "In lesson11.6 -- Function templates, we wrote a function template to calculate the maximum of two values: Now consider the following similar program:",
+    "hint": "Read more about Function templates with multiple template types at LearnCpp."
+  },
+  {
+    "index": 115,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "non-type_template_parameters",
+    "title": "11.9 - Non-type template parameters",
+    "explanation": "In the previous lessons, we discussed how to create function templates that use type template parameters.  A type template parameter serves as a placeholder for an actual type that is passed in as a template argument. While type template parameters are by far the most common type of template parameter used, there is another kind of template parameter worth knowing about: the non-type template parameter.",
+    "hint": "Read more about Non-type template parameters at LearnCpp."
+  },
+  {
+    "index": 116,
+    "section": "function_overloading_and_function_templates",
+    "exercise": "using_function_templates_in_multiple_files",
+    "title": "11.10 - Using function templates in multiple files",
+    "explanation": "Consider the following program, which doesn\u2019t work correctly: main.cpp:",
+    "hint": "Read more about Using function templates in multiple files at LearnCpp."
+  },
+  {
+    "index": 117,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "introduction_to_compound_data_types",
+    "title": "12.1 - Introduction to compound data types",
+    "explanation": "In lesson4.1 -- Introduction to fundamental data types, we introduced the fundamental data types, which are the basic data types that C++ provides as part of the core language. We\u2019ve made much use of these fundamental types in our programs so far, especially theintdata type.  And while these fundamental types are extremely useful for straightforward uses, they don\u2019t cover our full range of needs as we begin to do more complicated things.",
+    "hint": "Read more about Introduction to compound data types at LearnCpp."
+  },
+  {
+    "index": 118,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "value_categories_(lvalues_and_rvalues)",
+    "title": "12.2 - Value categories (lvalues and rvalues)",
+    "explanation": "Before we talk about our first compound type (lvalue references), we\u2019re going to take a little detour and talk about what anlvalueis. In lesson1.10 -- Introduction to expressions, we defined an expression as \u201ca combination of literals, variables, operators, and function calls that can be executed to produce a singular value\u201d.",
+    "hint": "Read more about Value categories (lvalues and rvalues) at LearnCpp."
+  },
+  {
+    "index": 119,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "lvalue_references",
+    "title": "12.3 - Lvalue references",
+    "explanation": "In C++, areferenceis an alias for an existing object.  Once a reference has been defined, any operation on the reference is applied to the object being referenced.  This means we can use a reference to read or modify the object being referenced. Although references might seem silly, useless, or redundant at first, references are used everywhere in C++ (we\u2019ll see examples of this in a few lessons).",
+    "hint": "Read more about Lvalue references at LearnCpp."
+  },
+  {
+    "index": 120,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "lvalue_references_to_const",
+    "title": "12.4 - Lvalue references to const",
+    "explanation": "In the previous lesson (12.3 --  Lvalue references), we discussed how an lvalue reference can only bind to a modifiable lvalue.  This means the following is illegal: This is disallowed because it would allow us to modify a const variable (x) through the non-const reference (ref).",
+    "hint": "Read more about Lvalue references to const at LearnCpp."
+  },
+  {
+    "index": 121,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "pass_by_lvalue_reference",
+    "title": "12.5 - Pass by lvalue reference",
+    "explanation": "In the previous lessons, we introduced lvalue references (12.3 --  Lvalue references) and lvalue references to const (12.4 -- Lvalue references to const).  In isolation, these may not have seemed very useful -- why create an alias to a variable when you can just use the variable itself? In this lesson, we\u2019ll finally provide some insight into what makes references useful.  And then starting later in this chapter, you\u2019ll see references used regularly.",
+    "hint": "Read more about Pass by lvalue reference at LearnCpp."
+  },
+  {
+    "index": 122,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "pass_by_const_lvalue_reference",
+    "title": "12.6 - Pass by const lvalue reference",
+    "explanation": "Unlike a reference to non-const (which can only bind to modifiable lvalues), a reference to const can bind to modifiable lvalues, non-modifiable lvalues, and rvalues.  Therefore, if we make a reference parameter const, then it will be able to bind to any type of argument: Passing by const reference offers the same primary benefit as pass by non-const reference (avoiding making a copy of the argument), while also guaranteeing that the function cannotchange the value being referenced.",
+    "hint": "Read more about Pass by const lvalue reference at LearnCpp."
+  },
+  {
+    "index": 123,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "introduction_to_pointers",
+    "title": "12.7 - Introduction to pointers",
+    "explanation": "Pointers are one of C++\u2019s historical boogeymen, and a place where many aspiring C++ learners have gotten stuck.  However, as you\u2019ll see shortly, pointers are nothing to be scared of. In fact, pointers behave a lot like lvalue references.  But before we explain that further, let\u2019s do some setup.",
+    "hint": "Read more about Introduction to pointers at LearnCpp."
+  },
+  {
+    "index": 124,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "null_pointers",
+    "title": "12.8 - Null pointers",
+    "explanation": "In the previous lesson (12.7 -- Introduction to pointers), we covered the basics of pointers, which are objects that hold the address of another object.  This address can be dereferenced using the dereference operator (*) to get the object at that address: The above example prints:",
+    "hint": "Read more about Null pointers at LearnCpp."
+  },
+  {
+    "index": 125,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "pointers_and_const",
+    "title": "12.9 - Pointers and const",
+    "explanation": "Consider the following code snippet: With normal (non-const) pointers, we can change both what the pointer is pointing at (by assigning the pointer a new address to hold) or change the value at the address being held (by assigning a new value to the dereferenced pointer).",
+    "hint": "Read more about Pointers and const at LearnCpp."
+  },
+  {
+    "index": 126,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "pass_by_address",
+    "title": "12.10 - Pass by address",
+    "explanation": "In prior lessons, we\u2019ve covered two different ways to pass an argument to a function: pass by value (2.4 -- Introduction to function parameters and arguments) and pass by reference (12.5 -- Pass by lvalue reference). Here\u2019s a sample program that shows astd::stringobject being passed by value and by reference:",
+    "hint": "Read more about Pass by address at LearnCpp."
+  },
+  {
+    "index": 127,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "pass_by_address_(part_2)",
+    "title": "12.11 - Pass by address (part 2)",
+    "explanation": "This lesson is a continuation of12.10 -- Pass by address. Pass by address for \u201coptional\u201d arguments",
+    "hint": "Read more about Pass by address (part 2) at LearnCpp."
+  },
+  {
+    "index": 128,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "return_by_reference_and_return_by_address",
+    "title": "12.12 - Return by reference and return by address",
+    "explanation": "In previous lessons, we discussed that when passing an argument by value, a copy of the argument is made into the function parameter.  For fundamental types (which are cheap to copy), this is fine.  But copying is typically expensive for class types (such asstd::string).  We can avoid making an expensive copy by utilizing passing by (const) reference (or pass by address) instead. We encounter a similar situation when returning by value: a copy of the return value is passed back to the caller.  If the return type of the function is a class type, this can be expensive.",
+    "hint": "Read more about Return by reference and return by address at LearnCpp."
+  },
+  {
+    "index": 129,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "in_and_out_parameters",
+    "title": "12.13 - In and out parameters",
+    "explanation": "A function and its caller communicate with each other via two mechanisms: parameters and return values.  When a function is called, the caller provides arguments, which the function receives via its parameters.  These arguments can be passed by value, reference, or address. Typically, we\u2019ll pass arguments by value or by const reference.  But there are times when we may need to do otherwise.",
+    "hint": "Read more about In and out parameters at LearnCpp."
+  },
+  {
+    "index": 130,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "type_deduction_with_pointers,_references,_and_const",
+    "title": "12.14 - Type deduction with pointers, references, and const",
+    "explanation": "In lesson10.8 -- Type deduction for objects using the auto keyword, we discussed how theautokeyword can be used to have the compiler deduce the type of a variable from the initializer: We also noted that by default, type deduction will dropconstfrom types:",
+    "hint": "Read more about Type deduction with pointers, references, and const at LearnCpp."
+  },
+  {
+    "index": 131,
+    "section": "compound_types:_references_and_pointers",
+    "exercise": "std::optional",
+    "title": "12.15 - std::optional",
+    "explanation": "In lesson9.4 -- Detecting and handling errors, we discussed cases where a function encounters an error that it cannot reasonably handle itself.  For example, consider a function that calculates and returns a value: If the caller passes in a value that is semantically invalid (such asy=0), this function cannot calculate a value to return (as division by 0 is mathematically undefined).  What do we do in that case?  Because functions that calculate results should have no side effects, this function cannot reasonably resolve the error itself.  In such cases, the typical thing to do is have the function detect the error, but then pass the error back to the caller to deal with in some program-appropriate way.",
+    "hint": "Read more about std::optional at LearnCpp."
+  },
+  {
+    "index": 132,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "introduction_to_program-defined_(user-defined)_types",
+    "title": "13.1 - Introduction to program-defined (user-defined) types",
+    "explanation": "Because fundamental types are defined as part of the core C++ language, they are available for immediate use.  For example, if we want to define a variable with a type ofintordouble, we can just do so: This is also true for the compound types that are simple extensions of fundamental types (including functions, pointers, references, and arrays):",
+    "hint": "Read more about Introduction to program-defined (user-defined) types at LearnCpp."
+  },
+  {
+    "index": 133,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "unscoped_enumerations",
+    "title": "13.2 - Unscoped enumerations",
+    "explanation": "C++ contains many useful fundamental and compound data types (which we introduced in lessons4.1 -- Introduction to fundamental data typesand12.1 -- Introduction to compound data types).  But these types aren\u2019t always sufficient for the kinds of things we want to do. For example, let\u2019s say you\u2019re writing a program that needs to keep track of whether an apple is red, yellow, or green, or what color a shirt is (from a preset list of colors).  If only fundamental types were available, how might you do this?",
+    "hint": "Read more about Unscoped enumerations at LearnCpp."
+  },
+  {
+    "index": 134,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "unscoped_enumerator_integral_conversions",
+    "title": "13.3 - Unscoped enumerator integral conversions",
+    "explanation": "In the prior lesson (13.2 -- Unscoped enumerations), we mentioned that enumerators are symbolic constants.  What we didn\u2019t tell you then is that these enumerators have values that are of an integral type. This is similar to the case with chars (4.11 -- Chars).  Consider:",
+    "hint": "Read more about Unscoped enumerator integral conversions at LearnCpp."
+  },
+  {
+    "index": 135,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "converting_an_enumeration_to_and_from_a_string",
+    "title": "13.4 - Converting an enumeration to and from a string",
+    "explanation": "In the prior lesson (13.3 -- Unscoped enumerator integral conversions), we showed an example like this: This prints:",
+    "hint": "Read more about Converting an enumeration to and from a string at LearnCpp."
+  },
+  {
+    "index": 136,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "introduction_to_overloading_the_i_o_operators",
+    "title": "13.5 - Introduction to overloading the I/O operators",
+    "explanation": "In the prior lesson (13.4 -- Converting an enumeration to and from a string), we showed this example, where we used a function to convert an enumeration into an equivalent string: Although the above example works just fine, there are two downsides:",
+    "hint": "Read more about Introduction to overloading the I/O operators at LearnCpp."
+  },
+  {
+    "index": 137,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "scoped_enumerations_(enum_classes)",
+    "title": "13.6 - Scoped enumerations (enum classes)",
+    "explanation": "Although unscoped enumerations are distinct types in C++, they are not type safe, and in some cases will allow you to do things that don\u2019t make sense.  Consider the following case: This prints:",
+    "hint": "Read more about Scoped enumerations (enum classes) at LearnCpp."
+  },
+  {
+    "index": 138,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "introduction_to_structs,_members,_and_member_selection",
+    "title": "13.7 - Introduction to structs, members, and member selection",
+    "explanation": "There are many instances in programming where we need more than one variable in order to represent something of interest.  As we discussed in the introduction to the previous chapter (12.1 -- Introduction to compound data types), a fraction has a numerator and denominator that are linked together into a single mathematical object. Alternatively, lets say we want to write a program where we need to store information about the employees in a company.  We might be interested in keeping track of attributes such as the employee\u2019s name, title, age, employee id, manager id, wage, birthday, hire date, etc\u2026",
+    "hint": "Read more about Introduction to structs, members, and member selection at LearnCpp."
+  },
+  {
+    "index": 139,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "struct_aggregate_initialization",
+    "title": "13.8 - Struct aggregate initialization",
+    "explanation": "In the previous lesson (13.7 -- Introduction to structs, members, and member selection), we talked about how to define structs, instantiate struct objects, and access their members.  In this lesson, we\u2019ll discuss how structs are initialized. Data members are not initialized by default",
+    "hint": "Read more about Struct aggregate initialization at LearnCpp."
+  },
+  {
+    "index": 140,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "default_member_initialization",
+    "title": "13.9 - Default member initialization",
+    "explanation": "When we define a struct (or class) type, we can provide a default initialization value for each member as part of the type definition.  For members not marked asstatic, this process is sometimes callednon-static member initialization.  The initialization value is called adefault member initializer. Here\u2019s an example:",
+    "hint": "Read more about Default member initialization at LearnCpp."
+  },
+  {
+    "index": 141,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "passing_and_returning_structs",
+    "title": "13.10 - Passing and returning structs",
+    "explanation": "Consider an employee represented by 3 loose variables: If we want to pass this employee to a function, we have to pass three variables:",
+    "hint": "Read more about Passing and returning structs at LearnCpp."
+  },
+  {
+    "index": 142,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "struct_miscellany",
+    "title": "13.11 - Struct miscellany",
+    "explanation": "Structs with program-defined members In C++, structs (and classes) can have members that are other program-defined types.  There are two ways to do this.",
+    "hint": "Read more about Struct miscellany at LearnCpp."
+  },
+  {
+    "index": 143,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "member_selection_with_pointers_and_references",
+    "title": "13.12 - Member selection with pointers and references",
+    "explanation": "Member selection for structs and references to structs In lesson13.7 -- Introduction to structs, members, and member selection, we showed that you can use the member selection operator (.) to select a member from a struct object:",
+    "hint": "Read more about Member selection with pointers and references at LearnCpp."
+  },
+  {
+    "index": 144,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "class_templates",
+    "title": "13.13 - Class templates",
+    "explanation": "In lesson11.6 -- Function templates, we introduced the challenge of having to create a separate (overloaded) function for each different set of types we want to work with: The solution to this was to create a function template that the compiler can use to instantiate normal functions for whichever set of types we need:",
+    "hint": "Read more about Class templates at LearnCpp."
+  },
+  {
+    "index": 145,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "class_template_argument_deduction_(ctad)_and_deduction_guides",
+    "title": "13.14 - Class template argument deduction (CTAD) and deduction guides",
+    "explanation": "Class template argument deduction (CTAD)C++17 Starting in C++17, when instantiating an object from a class template, the compiler can deduce the template types from the types of the object\u2019s initializer (this is calledclass template argument deductionorCTADfor short).  For example:",
+    "hint": "Read more about Class template argument deduction (CTAD) and deduction guides at LearnCpp."
+  },
+  {
+    "index": 146,
+    "section": "compound_types:_enums_and_structs",
+    "exercise": "alias_templates",
+    "title": "13.15 - Alias templates",
+    "explanation": "In lesson10.7 -- Typedefs and type aliases, we discussed how type aliases let us define an alias for an existing type. Creating a type alias for a class template where all template arguments are explicitly specified works just like a normal type alias:",
+    "hint": "Read more about Alias templates at LearnCpp."
+  },
+  {
+    "index": 147,
+    "section": "introduction_to_classes",
+    "exercise": "introduction_to_object-oriented_programming",
+    "title": "14.1 - Introduction to object-oriented programming",
+    "explanation": "Procedural programming Back in lesson1.3 -- Introduction to objects and variables, we defined an object in C++ as, \u201ca piece of memory that can be used to store values\u201d.  An object with a name is called a variable.  Our C++ programs have consisted of sequential lists of instructions to the computer that define data (via objects) and operations performed on that data (via functions containing statements and expressions).",
+    "hint": "Read more about Introduction to object-oriented programming at LearnCpp."
+  },
+  {
+    "index": 148,
+    "section": "introduction_to_classes",
+    "exercise": "introduction_to_classes",
+    "title": "14.2 - Introduction to classes",
+    "explanation": "In the previous chapter, we covered structs (13.7 -- Introduction to structs, members, and member selection), and discussed how they are great for bundling multiple member variables into a single object that can be initialized and passed around as a unit.  In other words, structs provide a convenient package for storing and moving related data values. Consider the following struct:",
+    "hint": "Read more about Introduction to classes at LearnCpp."
+  },
+  {
+    "index": 149,
+    "section": "introduction_to_classes",
+    "exercise": "member_functions",
+    "title": "14.3 - Member functions",
+    "explanation": "In lesson13.7 -- Introduction to structs, members, and member selection, we introduced the struct program-defined type, which can contain member variables.  Here is an example of a struct used to hold a date: Now, if we want to print the date to the screen (something we probably want to do a lot), it makes sense to write a function to do this.  Here\u2019s a full program:",
+    "hint": "Read more about Member functions at LearnCpp."
+  },
+  {
+    "index": 150,
+    "section": "introduction_to_classes",
+    "exercise": "const_class_objects_and_const_member_functions",
+    "title": "14.4 - Const class objects and const member functions",
+    "explanation": "In lesson5.1 -- Constant variables (named constants), you learned that objects of a fundamental data type (int,double,char, etc\u2026) can be made constant via theconstkeyword.  All const variables must be initialized at time of creation. Similarly, class type objects (struct, classes, and unions) can also be made const by using theconstkeyword.  Such objects must also be initialized at the time of creation.",
+    "hint": "Read more about Const class objects and const member functions at LearnCpp."
+  },
+  {
+    "index": 151,
+    "section": "introduction_to_classes",
+    "exercise": "public_and_private_members_and_access_specifiers",
+    "title": "14.5 - Public and private members and access specifiers",
+    "explanation": "Let\u2019s say you\u2019re walking down the street on a brisk autumn day, eating a burrito.  You want somewhere to sit, so you look around.  To your left is a park, with mowed grass and shade trees, a few uncomfortable benches, and screaming kids on the nearby playground.  To your right is a stranger\u2019s residence.  Through the window, you see a comfy reclining chair and a crackling fireplace. With a heavy sigh, you choose the park.",
+    "hint": "Read more about Public and private members and access specifiers at LearnCpp."
+  },
+  {
+    "index": 152,
+    "section": "introduction_to_classes",
+    "exercise": "access_functions",
+    "title": "14.6 - Access functions",
+    "explanation": "In previous lesson14.5 -- Public and private members and access specifiers, we discussed the public and private access levels.  As a reminder, classes typically make their data members private, and private members can not be directly accessed by the public. Consider the followingDateclass:",
+    "hint": "Read more about Access functions at LearnCpp."
+  },
+  {
+    "index": 153,
+    "section": "introduction_to_classes",
+    "exercise": "member_functions_returning_references_to_data_members",
+    "title": "14.7 - Member functions returning references to data members",
+    "explanation": "In lesson12.12 -- Return by reference and return by address, we covered return by reference.  In particular, we noted, \u201cThe object being returned by reference must exist after the function returns\u201d.  This means we should not return local variables by reference, as the reference will be left dangling after the local variable is destroyed.  However, it is generally okay to return by reference either function parameters passed by reference, or variables with static duration (either static local variables or global variables), as they will generally not be destroyed after the function returns. For example:",
+    "hint": "Read more about Member functions returning references to data members at LearnCpp."
+  },
+  {
+    "index": 154,
+    "section": "introduction_to_classes",
+    "exercise": "the_benefits_of_data_hiding_(encapsulation)",
+    "title": "14.8 - The benefits of data hiding (encapsulation)",
+    "explanation": "In a previous lesson (14.5 -- Public and private members and access specifiers), we mentioned that the member variables of a class are typically made private.  Programmers who are learning about classes for the first time often have a hard time understanding why you\u2019d want to do this.  After all, making your variables private means they can\u2019t be accessed by the public.  At best, this makes for more work when writing your classes.  At worst, it may seem completely pointless (especially if we\u2019re providing public access functions to the private member data). The answer to this question is so foundational that we\u2019re going to spend an entire lesson on the topic!",
+    "hint": "Read more about The benefits of data hiding (encapsulation) at LearnCpp."
+  },
+  {
+    "index": 155,
+    "section": "introduction_to_classes",
+    "exercise": "introduction_to_constructors",
+    "title": "14.9 - Introduction to constructors",
+    "explanation": "When a class type is an aggregate, we can use aggregate initialization to initialize the class type directly: Aggregate inititalization does memberwise initialization (members are initialized in the order in which they are defined).  So whenfoois instantiated in the above example,foo.xis initialized to6, andfoo.yis initialized to7.",
+    "hint": "Read more about Introduction to constructors at LearnCpp."
+  },
+  {
+    "index": 156,
+    "section": "introduction_to_classes",
+    "exercise": "constructor_member_initializer_lists",
+    "title": "14.10 - Constructor member initializer lists",
+    "explanation": "This lesson continues our introduction of constructors from lesson14.9 -- Introduction to constructors. Member initialization via a member initialization list",
+    "hint": "Read more about Constructor member initializer lists at LearnCpp."
+  },
+  {
+    "index": 157,
+    "section": "introduction_to_classes",
+    "exercise": "default_constructors_and_default_arguments",
+    "title": "14.11 - Default constructors and default arguments",
+    "explanation": "Adefault constructoris a constructor that accepts no arguments.  Typically, this is a constructor that has been defined with no parameters. Here is an example of a class that has a default constructor:",
+    "hint": "Read more about Default constructors and default arguments at LearnCpp."
+  },
+  {
+    "index": 158,
+    "section": "introduction_to_classes",
+    "exercise": "delegating_constructors",
+    "title": "14.12 - Delegating constructors",
+    "explanation": "Whenever possible, we want to reduce redundant code (following the DRY principle -- Don\u2019t Repeat Yourself). Consider the following functions:",
+    "hint": "Read more about Delegating constructors at LearnCpp."
+  },
+  {
+    "index": 159,
+    "section": "introduction_to_classes",
+    "exercise": "temporary_class_objects",
+    "title": "14.13 - Temporary class objects",
+    "explanation": "Consider the following example: In theadd()function, the variablesumis used to store the result of the expressionx + y.  This variable is then evaluated in the return statement to produce the value to be returned.  While this might be occasionally useful for debugging (so we can inspect the value ofsumif desired), it actually makes the function more complex than it needs to be by defining an object that is then only used one time.",
+    "hint": "Read more about Temporary class objects at LearnCpp."
+  },
+  {
+    "index": 160,
+    "section": "introduction_to_classes",
+    "exercise": "introduction_to_the_copy_constructor",
+    "title": "14.14 - Introduction to the copy constructor",
+    "explanation": "Consider the following program: You might be surprised to find that this program compiles just fine, and produces the result:",
+    "hint": "Read more about Introduction to the copy constructor at LearnCpp."
+  },
+  {
+    "index": 161,
+    "section": "introduction_to_classes",
+    "exercise": "class_initialization_and_copy_elision",
+    "title": "14.15 - Class initialization and copy elision",
+    "explanation": "Way back in lesson1.4 -- Variable assignment and initialization, we discuss 6 basic types of initialization for objects with fundamental types: All of these initialization types are valid for object with class types:",
+    "hint": "Read more about Class initialization and copy elision at LearnCpp."
+  },
+  {
+    "index": 162,
+    "section": "introduction_to_classes",
+    "exercise": "converting_constructors_and_the_explicit_keyword",
+    "title": "14.16 - Converting constructors and the explicit keyword",
+    "explanation": "In lesson10.1 -- Implicit type conversion, we introduced type conversion and the concept of implicit type conversion, where the compiler will implicitly convert a value of one type to a value of another type as needed if such a conversion exists. This allows us to do things like this:",
+    "hint": "Read more about Converting constructors and the explicit keyword at LearnCpp."
+  },
+  {
+    "index": 163,
+    "section": "introduction_to_classes",
+    "exercise": "constexpr_aggregates_and_classes",
+    "title": "14.17 - Constexpr aggregates and classes",
+    "explanation": "In lessonF.1 -- Constexpr functions, we covered constexpr functions, which are functions that may be evaluated at either compile-time or runtime.  For example: In this example,greater()is a constexpr function, andgreater(5, 6)is a constant expression, which may be evaluated at either compile-time or runtime.  Becausestd::cout << greater(5, 6)callsgreater(5, 6)in a non-constexpr context, the compiler is free to choose whether to evaluategreater(5, 6) at compile-time or runtime.  Whengreater(5, 6)is used to initialize constexpr variableg,greater(5, 6)is called in a constexpr context, and must be evaluated at compile-time.",
+    "hint": "Read more about Constexpr aggregates and classes at LearnCpp."
+  },
+  {
+    "index": 164,
+    "section": "more_on_classes",
+    "exercise": "the_hidden_\u201cthis\u201d_pointer_and_member_function_chaining",
+    "title": "15.1 - The hidden \u201cthis\u201d pointer and member function chaining",
+    "explanation": "One of the questions about classes that new programmers often ask is, \u201cWhen a member function is called, how does C++ keep track of which object it was called on?\u201d. First, let\u2019s define a simple class to work with.  This class encapsulates an integer value, and provides some access functions to get and set that value:",
+    "hint": "Read more about The hidden \u201cthis\u201d pointer and member function chaining at LearnCpp."
+  },
+  {
+    "index": 165,
+    "section": "more_on_classes",
+    "exercise": "classes_and_header_files",
+    "title": "15.2 - Classes and header files",
+    "explanation": "All of the classes that we have written so far have been simple enough that we have been able to implement the member functions directly inside the class definition itself.  For example, here\u2019s a simpleDateclass where all member functions are defined inside theDateclass definition: However, as classes get longer and more complicated, having all the member function definitions inside the class can make the class harder to manage and work with.  Using an already-written class only requires understanding its public interface (the public member functions), not how the class works underneath the hood.  The member function implementations clutter up the public interface with details that aren\u2019t relevant to actually using the class.",
+    "hint": "Read more about Classes and header files at LearnCpp."
+  },
+  {
+    "index": 166,
+    "section": "more_on_classes",
+    "exercise": "nested_types_(member_types)",
+    "title": "15.3 - Nested types (member types)",
+    "explanation": "Consider the following short program: There\u2019s nothing wrong with this program.  But becauseenum class FruitTypeis meant to be used in conjunction with theFruitclass, having it exist independently of the class leaves us to infer how they are connected.",
+    "hint": "Read more about Nested types (member types) at LearnCpp."
+  },
+  {
+    "index": 167,
+    "section": "more_on_classes",
+    "exercise": "introduction_to_destructors",
+    "title": "15.4 - Introduction to destructors",
+    "explanation": "The cleanup problem Let\u2019s say that you are writing a program that needs to send some data over a network.  However, establishing a connection to the server is expensive, so you want to collect a bunch of data and then send it all at once.  Such a class might be structured like this:",
+    "hint": "Read more about Introduction to destructors at LearnCpp."
+  },
+  {
+    "index": 168,
+    "section": "more_on_classes",
+    "exercise": "class_templates_with_member_functions",
+    "title": "15.5 - Class templates with member functions",
+    "explanation": "In lesson11.6 -- Function templates, we took a look at function templates: With a function template, we can define type template parameters (e.g.typename T) and then use them as the type of our function parameters (T x, T y).",
+    "hint": "Read more about Class templates with member functions at LearnCpp."
+  },
+  {
+    "index": 169,
+    "section": "more_on_classes",
+    "exercise": "static_member_variables",
+    "title": "15.6 - Static member variables",
+    "explanation": "In the lesson7.4 -- Introduction to global variables, we introduced global variables, and in lesson7.11 -- Static local variables, we introduced static local variables.  Both of these types of variables have static duration, meaning they are created at the start of the program, and destroyed at the end of the program.  Such variables keep their values even if they go out of scope. For example:",
+    "hint": "Read more about Static member variables at LearnCpp."
+  },
+  {
+    "index": 170,
+    "section": "more_on_classes",
+    "exercise": "static_member_functions",
+    "title": "15.7 - Static member functions",
+    "explanation": "In the previous lesson on15.6 -- Static member variables, you learned that static member variables are member variables that belong to the class rather than objects of the class.  If a static member variable is public, it can be accessed directly using the class name and the scope resolution operator: But what if a static member variable is private?  Consider the following example:",
+    "hint": "Read more about Static member functions at LearnCpp."
+  },
+  {
+    "index": 171,
+    "section": "more_on_classes",
+    "exercise": "friend_non-member_functions",
+    "title": "15.8 - Friend non-member functions",
+    "explanation": "For much of this chapter and last, we\u2019ve been preaching the virtues of access controls, which provide a mechanism for controlling who can access the various members of a class.  Private members can only be accessed by other members of the class and public members can be accessed by everyone.  In lesson14.6 -- Access functions, we discussed the benefits of keeping your data private, and creating a public interface for non-members to use. However, there are situations where this arrangement is either not sufficient or not ideal.",
+    "hint": "Read more about Friend non-member functions at LearnCpp."
+  },
+  {
+    "index": 172,
+    "section": "more_on_classes",
+    "exercise": "friend_classes_and_friend_member_functions",
+    "title": "15.9 - Friend classes and friend member functions",
+    "explanation": "Friend classes Afriend classis a class that can access the private and protected members of another class.",
+    "hint": "Read more about Friend classes and friend member functions at LearnCpp."
+  },
+  {
+    "index": 173,
+    "section": "more_on_classes",
+    "exercise": "ref_qualifiers",
+    "title": "15.10 - Ref qualifiers",
+    "explanation": "In lesson14.7 -- Member functions returning references to data members, we discussed how calling access functions that return references to data members can be dangerous when the implicit object is an rvalue.  Here\u2019s a quick recap: In case 2, the rvalue object returned fromcreateEmployee(\"Garbo\")is destroyed after initializingref, leavingrefreferencing a data member that was just destroyed.  Subsequent use ofrefexhibits undefined behavior.",
+    "hint": "Read more about Ref qualifiers at LearnCpp."
+  },
+  {
+    "index": 174,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "introduction_to_containers_and_arrays",
+    "title": "16.1 - Introduction to containers and arrays",
+    "explanation": "The variable scalability challenge Consider a scenario where we want to record the test scores for 30 students and calculate the average score for the class.  To do so, we\u2019ll need 30 variables.  We could define those like this:",
+    "hint": "Read more about Introduction to containers and arrays at LearnCpp."
+  },
+  {
+    "index": 175,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "introduction_to_std::vector_and_list_constructors",
+    "title": "16.2 - Introduction to std::vector and list constructors",
+    "explanation": "In the previous lesson16.1 -- Introduction to containers and arrays, we introduced both containers and arrays.  In this lesson, we\u2019ll introduce the array type that we\u2019ll be focused on for the rest of the chapter:std::vector.  We\u2019ll also solve one part of the scalability challenge we introduced last lesson. Introduction tostd::vector",
+    "hint": "Read more about Introduction to std::vector and list constructors at LearnCpp."
+  },
+  {
+    "index": 176,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "std::vector_and_the_unsigned_length_and_subscript_problem",
+    "title": "16.3 - std::vector and the unsigned length and subscript problem",
+    "explanation": "In the prior lesson16.2 -- Introduction to std::vector and list constructors, we introducedoperator[], which can be used to subscript an array to access an element. In this lesson, we\u2019ll look at other ways to access array elements, as well as a few different ways to get the length of an container class (the number of elements currently in the container class).",
+    "hint": "Read more about std::vector and the unsigned length and subscript problem at LearnCpp."
+  },
+  {
+    "index": 177,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "passing_std::vector",
+    "title": "16.4 - Passing std::vector",
+    "explanation": "An object of typestd::vectorcan be passed to a function just like any other object.  That means if we pass astd::vectorby value, an expensive copy will be made.  Therefore, we typically passstd::vectorby (const) reference to avoid such copies. With astd::vector, the element type is part of the type information of the object.  Therefore, when we use astd::vectoras a function parameter, we have to explicitly specify the element type:",
+    "hint": "Read more about Passing std::vector at LearnCpp."
+  },
+  {
+    "index": 178,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "returning_std::vector,_and_an_introduction_to_move_semantics",
+    "title": "16.5 - Returning std::vector, and an introduction to move semantics",
+    "explanation": "When we need to pass astd::vectorto a function, we pass it by (const) reference so that we do not make an expensive copy of the array data. Therefore, you will probably be surprised to find that it is okay to return astd::vectorby value.",
+    "hint": "Read more about Returning std::vector, and an introduction to move semantics at LearnCpp."
+  },
+  {
+    "index": 179,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "arrays_and_loops",
+    "title": "16.6 - Arrays and loops",
+    "explanation": "In the introductory lesson for this chapter (16.1 -- Introduction to containers and arrays), we introduced the scalability challenges that occur when we have many related individual variables.  In this lesson, we\u2019ll reintroduce the problem, and then discuss how arrays can help us elegantly solve problems such as these. The variable scalability challenge, revisited",
+    "hint": "Read more about Arrays and loops at LearnCpp."
+  },
+  {
+    "index": 180,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "arrays,_loops,_and_sign_challenge_solutions",
+    "title": "16.7 - Arrays, loops, and sign challenge solutions",
+    "explanation": "In lesson4.5 -- Unsigned integers, and why to avoid them, we noted how we generally prefer to use signed values to hold quantities, because unsigned values can act in surprising ways.  However, in lesson16.3 -- std::vector and the unsigned length and subscript problem, we discussed howstd::vector(and other container classes) uses unsigned integral typestd::size_tfor length and indices. This can lead to problems such as this one:",
+    "hint": "Read more about Arrays, loops, and sign challenge solutions at LearnCpp."
+  },
+  {
+    "index": 181,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "range-based_for_loops_(for-each)",
+    "title": "16.8 - Range-based for loops (for-each)",
+    "explanation": "In lesson16.6 -- Arrays and loops, we showed examples where we used a for-loop to iterate through each element of an array using a loop variable as an index.  Here\u2019s another example of such: Although for-loops provide a convenient and flexible way to iterate through an array, they are also easy to mess up, prone to off-by-one errors, and subject to array indexing sign problems (discussed in lesson16.7 -- Arrays, loops, and sign challenge solutions).",
+    "hint": "Read more about Range-based for loops (for-each) at LearnCpp."
+  },
+  {
+    "index": 182,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "array_indexing_and_length_using_enumerators",
+    "title": "16.9 - Array indexing and length using enumerators",
+    "explanation": "One of the bigger documentation problems with arrays is that integer indices do not provide any information to the programmer about the meaning of the index. Consider an array holding 5 test scores:",
+    "hint": "Read more about Array indexing and length using enumerators at LearnCpp."
+  },
+  {
+    "index": 183,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "std::vector_resizing_and_capacity",
+    "title": "16.10 - std::vector resizing and capacity",
+    "explanation": "In the previous lessons in this chapter, we introduced containers, arrays, andstd::vector.  We also discussed topics such as how to access array elements, get the length of an array, and how to traverse an array.  While we usedstd::vectorin our examples, the concepts that we have discussed are generally applicable to all of the array types. In the remaining lessons in this chapter, we\u2019re going to focus on the one thing that makesstd::vectorsignificantly different than most of the other array types: the ability to resize itself after it has been instantiated.",
+    "hint": "Read more about std::vector resizing and capacity at LearnCpp."
+  },
+  {
+    "index": 184,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "std::vector_and_stack_behavior",
+    "title": "16.11 - std::vector and stack behavior",
+    "explanation": "Consider the case where you are writing a program where the user will enter a list of values (such as a bunch of test scores).  In this case, the number of values that they will be entering is not known at compile time, and could vary every time they run the program.  You will be storing these values in astd::vectorfor display and/or processing. Based on what we\u2019ve discussed so far, there are a few ways in which you might approach this:",
+    "hint": "Read more about std::vector and stack behavior at LearnCpp."
+  },
+  {
+    "index": 185,
+    "section": "dynamic_arrays:_std::vector",
+    "exercise": "std::vector<bool>",
+    "title": "16.12 - std::vector<bool>",
+    "explanation": "In lessonO.1 -- Bit flags and bit manipulation via std::bitset, we discussed howstd::bitsethas the capability to compact 8 Boolean values into a byte.  Those bits can then be modified via the member functions ofstd::bitset. std::vectorhas an interesting trick up its sleeves.  There is a special implementation forstd::vector<bool>that may be more space efficient for Boolean values by similarly compacting 8 Boolean values into a byte.",
+    "hint": "Read more about std::vector<bool> at LearnCpp."
+  },
+  {
+    "index": 186,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "introduction_to_std::array",
+    "title": "17.1 - Introduction to std::array",
+    "explanation": "In lesson16.1 -- Introduction to containers and arrays, we introduced containers and arrays.  To summarize: In lesson16.10 -- std::vector resizing and capacity, we mentioned that arrays fall into two categories:",
+    "hint": "Read more about Introduction to std::array at LearnCpp."
+  },
+  {
+    "index": 187,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "std::array_length_and_indexing",
+    "title": "17.2 - std::array length and indexing",
+    "explanation": "In lesson16.3 -- std::vector and the unsigned length and subscript problem, we discussed the unfortunate decision to make the standard library container classes use unsigned values for lengths and indices.  Becausestd::arrayis a standard library container class, it is subject to the same issues. In this lesson, we\u2019ll recap ways to index and get the length of astd::array.  Becausestd::vectorandstd::arrayhave similar interfaces, this will parallel the what we covered forstd::vector.  But since onlystd::arrayhas full support for constexpr, we\u2019ll focus a little more on that.",
+    "hint": "Read more about std::array length and indexing at LearnCpp."
+  },
+  {
+    "index": 188,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "passing_and_returning_std::array",
+    "title": "17.3 - Passing and returning std::array",
+    "explanation": "An object of typestd::arraycan be passed to a function just like any other object.  That means if we pass astd::arrayby value, an expensive copy will be made.  Therefore, we typically passstd::arrayby (const) reference to avoid such copies. With astd::array, both the element type and array length are part of the type information of the object.  Therefore, when we use astd::arrayas a function parameter, we have to explicitly specify both the element type and array length:",
+    "hint": "Read more about Passing and returning std::array at LearnCpp."
+  },
+  {
+    "index": 189,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "std::array_of_class_types,_and_brace_elision",
+    "title": "17.4 - std::array of class types, and brace elision",
+    "explanation": "Astd::arrayisn\u2019t limited to elements of fundamental types.  Rather, the elements of astd::arraycan be any object type, including compound types.  This means you can create astd::arrayof pointers, or astd::arrayof structs (or classes) However, initializing astd::arrayof structs or classes tends to trip new programmers up, so we\u2019re going to spend a lesson explicitly covering this topic.",
+    "hint": "Read more about std::array of class types, and brace elision at LearnCpp."
+  },
+  {
+    "index": 190,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "arrays_of_references_via_std::reference_wrapper",
+    "title": "17.5 - Arrays of references via std::reference_wrapper",
+    "explanation": "In the prior lesson, we mentioned that arrays can have elements of any object type.  This includes objects with fundamental types (e.g. int) and objects with compound types (e.g. pointer to int). However, because references are not objects, you cannot make an array of references.  The elements of an array must also be assignable, and references can\u2019t be reseated.",
+    "hint": "Read more about Arrays of references via std::reference_wrapper at LearnCpp."
+  },
+  {
+    "index": 191,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "std::array_and_enumerations",
+    "title": "17.6 - std::array and enumerations",
+    "explanation": "In lesson16.9 -- Array indexing and length using enumerators, we discussed arrays and enumerations. Now that we haveconstexpr std::arrayin our toolkit, we\u2019re going to continue that discussion and show a few additional tricks.",
+    "hint": "Read more about std::array and enumerations at LearnCpp."
+  },
+  {
+    "index": 192,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "introduction_to_c-style_arrays",
+    "title": "17.7 - Introduction to C-style arrays",
+    "explanation": "Now that we\u2019ve coveredstd::vectorandstd::array, we\u2019ll complete our coverage of arrays by covering the last array type: C-style arrays. As mentioned in lesson16.1 -- Introduction to containers and arrays, C-style arrays were inherited from the C language, and are built-in to the core language of C++ (unlike the rest of the array types, which are standard library container classes).  This means we don\u2019t need to #include a header file to use them.",
+    "hint": "Read more about Introduction to C-style arrays at LearnCpp."
+  },
+  {
+    "index": 193,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "c-style_array_decay",
+    "title": "17.8 - C-style array decay",
+    "explanation": "The C-style array passing challenge The designers of the C language had a problem.  Consider the following simple program:",
+    "hint": "Read more about C-style array decay at LearnCpp."
+  },
+  {
+    "index": 194,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "pointer_arithmetic_and_subscripting",
+    "title": "17.9 - Pointer arithmetic and subscripting",
+    "explanation": "In lesson16.1 -- Introduction to containers and arrays, we mentioned that arrays are stored sequentially in memory.  In this lesson, we\u2019ll take a deeper look at how arrays indexing math works. Although we won\u2019t use the indexing math in future lessons, the topics covered in this lesson will give you insight into how range-based for loops actually work, and will come in handy again later when we cover iterators.",
+    "hint": "Read more about Pointer arithmetic and subscripting at LearnCpp."
+  },
+  {
+    "index": 195,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "c-style_strings",
+    "title": "17.10 - C-style strings",
+    "explanation": "In lesson17.7 -- Introduction to C-style arrays, we introduced C-style arrays, which allow us to define a sequential collection of elements: In lesson5.2 -- Literals, we defined a string as a collection of sequential characters (such as \u201cHello, world!\u201d), and introduced C-style string literals.  We also noted that the C-style string literal \u201cHello, world!\u201d has typeconst char[14](13 explicit characters plus 1 hidden null-terminator character).",
+    "hint": "Read more about C-style strings at LearnCpp."
+  },
+  {
+    "index": 196,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "c-style_string_symbolic_constants",
+    "title": "17.11 - C-style string symbolic constants",
+    "explanation": "In the previous lesson (17.10 -- C-style strings), we discussed how to create and initialize C-style string objects: C++ supports two different ways to create C-style string symbolic constants:",
+    "hint": "Read more about C-style string symbolic constants at LearnCpp."
+  },
+  {
+    "index": 197,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "multidimensional_c-style_arrays",
+    "title": "17.12 - Multidimensional C-style Arrays",
+    "explanation": "Consider a game likeTic-tac-toe.  The standard board for this game is a 3\u00d73 grid, with players taking turns placing \u2018X\u2019 and \u2018O\u2019 symbols.  The first to get three symbols in a row wins. While you could store the board data as 9 individual variables, we know that when you have multiple instances of an element, it\u2019s better to use an array:",
+    "hint": "Read more about Multidimensional C-style Arrays at LearnCpp."
+  },
+  {
+    "index": 198,
+    "section": "fixed-size_arrays:_std::array_and_c-style_arrays",
+    "exercise": "multidimensional_std::array",
+    "title": "17.13 - Multidimensional std::array",
+    "explanation": "In the prior lesson (17.12 -- Multidimensional C-style Arrays), we discussed C-style multidimensional arrays. But as you\u2019re aware, we generally want to avoid C-style arrays (unless they are being used to store global data).",
+    "hint": "Read more about Multidimensional std::array at LearnCpp."
+  },
+  {
+    "index": 199,
+    "section": "iterators_and_algorithms_(under_construction)",
+    "exercise": "sorting_an_array_using_selection_sort",
+    "title": "18.1 - Sorting an array using selection sort",
+    "explanation": "A case for sorting Sorting an array is the process of arranging all of the elements in the array in a particular order.  There are many different cases in which sorting an array can be useful.  For example, your email program generally displays emails in order of time received, because more recent emails are typically considered more relevant.  When you go to your contact list, the names are typically in alphabetical order, because it\u2019s easier to find the name you are looking for that way.  Both of these presentations involve sorting data before presentation.",
+    "hint": "Read more about Sorting an array using selection sort at LearnCpp."
+  },
+  {
+    "index": 200,
+    "section": "iterators_and_algorithms_(under_construction)",
+    "exercise": "introduction_to_iterators",
+    "title": "18.2 - Introduction to iterators",
+    "explanation": "Iterating through an array (or other structure) of data is quite a common thing to do in programming.  And so far, we\u2019ve covered many different ways to do so: with loops and an index (for-loopsandwhile loops), with pointers and pointer arithmetic, and withrange-based for-loops: Looping using indexes is more typing than needed if we only use the index to access elements.  It also only works if the container (e.g. the array) provides direct access to elements (which arrays do, but some other types of containers, such as lists, do not).",
+    "hint": "Read more about Introduction to iterators at LearnCpp."
+  },
+  {
+    "index": 201,
+    "section": "iterators_and_algorithms_(under_construction)",
+    "exercise": "introduction_to_standard_library_algorithms",
+    "title": "18.3 - Introduction to standard library algorithms",
+    "explanation": "New programmers typically spend a lot of time writing custom loops to perform relatively simple tasks, such as sorting or counting or searching arrays.  These loops can be problematic, both in terms of how easy it is to make an error, and in terms of overall maintainability, as loops can be hard to understand. Because searching, counting, and sorting are such common operations to do, the C++ standard library comes with a bunch of functions to do these things in just a few lines of code.  Additionally, these standard library functions come pre-tested, are efficient, work on a variety of different container types, and many support parallelization (the ability to devote multiple CPU threads to the same task in order to complete it faster).",
+    "hint": "Read more about Introduction to standard library algorithms at LearnCpp."
+  },
+  {
+    "index": 202,
+    "section": "iterators_and_algorithms_(under_construction)",
+    "exercise": "timing_your_code",
+    "title": "18.4 - Timing your code",
+    "explanation": "When writing your code, sometimes you\u2019ll run across cases where you\u2019re not sure whether one method or another will be more performant.  So how do you tell? One easy way is to time your code to see how long it takes to run.  C++11 comes with some functionality in the chrono library to do just that.  However, using the chrono library is a bit arcane.  The good news is that we can easily encapsulate all the timing functionality we need into a class that we can then use in our own programs.",
+    "hint": "Read more about Timing your code at LearnCpp."
+  },
+  {
+    "index": 203,
+    "section": "dynamic_allocation_(under_construction)",
+    "exercise": "dynamic_memory_allocation_with_new_and_delete",
+    "title": "19.1 - Dynamic memory allocation with new and delete",
+    "explanation": "The need for dynamic memory allocation C++ supports three basic types of memory allocation, of which you\u2019ve already seen two.",
+    "hint": "Read more about Dynamic memory allocation with new and delete at LearnCpp."
+  },
+  {
+    "index": 204,
+    "section": "dynamic_allocation_(under_construction)",
+    "exercise": "dynamically_allocating_arrays",
+    "title": "19.2 - Dynamically allocating arrays",
+    "explanation": "In addition to dynamically allocating single values, we can also dynamically allocate arrays of variables.  Unlike a fixed array, where the array size must be fixed at compile time, dynamically allocating an array allows us to choose an array length at runtime (meaning our length does not need to be constexpr). To allocate an array dynamically, we use the array form of new and delete (often called new[] and delete[]):",
+    "hint": "Read more about Dynamically allocating arrays at LearnCpp."
+  },
+  {
+    "index": 205,
+    "section": "dynamic_allocation_(under_construction)",
+    "exercise": "destructors",
+    "title": "19.3 - Destructors",
+    "explanation": "Adestructoris another special kind of class member function that is executed when an object of that class is destroyed.  Whereas constructors are designed to initialize a class, destructors are designed to help clean up. When an object goes out of scope normally, or a dynamically allocated object is explicitly deleted using the delete keyword, the class destructor is automatically called (if it exists) to do any necessary clean up before the object is removed from memory.  For simple classes (those that just initialize the values of normal member variables), a destructor is not needed because C++ will automatically clean up the memory for you.",
+    "hint": "Read more about Destructors at LearnCpp."
+  },
+  {
+    "index": 206,
+    "section": "dynamic_allocation_(under_construction)",
+    "exercise": "pointers_to_pointers_and_dynamic_multidimensional_arrays",
+    "title": "19.4 - Pointers to pointers and dynamic multidimensional arrays",
+    "explanation": "This lesson is optional, for advanced readers who want to learn more about C++.  No future lessons build on this lesson. A pointer to a pointer is exactly what you\u2019d expect: a pointer that holds the address of another pointer.",
+    "hint": "Read more about Pointers to pointers and dynamic multidimensional arrays at LearnCpp."
+  },
+  {
+    "index": 207,
+    "section": "dynamic_allocation_(under_construction)",
+    "exercise": "void_pointers",
+    "title": "19.5 - Void pointers",
+    "explanation": "Thevoid pointer, also known as the generic pointer, is a special type of pointer that can be pointed at objects of any data type!  A void pointer is declared like a normal pointer, using the void keyword as the pointer\u2019s type: A void pointer can point to objects of any data type:",
+    "hint": "Read more about Void pointers at LearnCpp."
+  },
+  {
+    "index": 208,
+    "section": "functions",
+    "exercise": "function_pointers",
+    "title": "20.1 - Function Pointers",
+    "explanation": "In lesson12.7 -- Introduction to pointers, you learned that a pointer is a variable that holds the address of another variable.  Function pointers are similar, except that instead of pointing to variables, they point to functions! Consider the following function:",
+    "hint": "Read more about Function Pointers at LearnCpp."
+  },
+  {
+    "index": 209,
+    "section": "functions",
+    "exercise": "the_stack_and_the_heap",
+    "title": "20.2 - The stack and the heap",
+    "explanation": "The memory that a program uses is typically divided into a few different areas, called segments: For this lesson, we\u2019ll focus primarily on the heap and the stack, as that is where most of the interesting stuff takes place.",
+    "hint": "Read more about The stack and the heap at LearnCpp."
+  },
+  {
+    "index": 210,
+    "section": "functions",
+    "exercise": "recursion",
+    "title": "20.3 - Recursion",
+    "explanation": "Arecursive functionin C++ is a function that calls itself.  Here is an example of a poorly-written recursive function: When countDown(5) is called, \u201cpush 5\u201d is printed, and countDown(4) is called.  countDown(4) prints \u201cpush 4\u201d and calls countDown(3).  countDown(3) prints \u201cpush 3\u201d and calls countDown(2).  The sequence of countDown(n) calling countDown(n-1) is repeated indefinitely, effectively forming the recursive equivalent of an infinite loop.",
+    "hint": "Read more about Recursion at LearnCpp."
+  },
+  {
+    "index": 211,
+    "section": "functions",
+    "exercise": "command_line_arguments",
+    "title": "20.4 - Command line arguments",
+    "explanation": "The need for command line arguments As you learned in lesson0.5 -- Introduction to the compiler, linker, and libraries, when you compile and link your program, the output is an executable file.  When a program is run, execution starts at the top of the function called main().  Up to this point, we\u2019ve declared main like this:",
+    "hint": "Read more about Command line arguments at LearnCpp."
+  },
+  {
+    "index": 212,
+    "section": "functions",
+    "exercise": "ellipsis_(and_why_to_avoid_them)",
+    "title": "20.5 - Ellipsis (and why to avoid them)",
+    "explanation": "In all of the functions we\u2019ve seen so far, the number of parameters a function will take must be known in advance (even if they have default values).  However, there are certain cases where it can be useful to be able to pass a variable number of parameters to a function.  C++ provides a special specifier known as ellipsis (aka \u201c\u2026\u201d) that allow us to do precisely this. Because ellipsis are rarely used, potentially dangerous, and we recommend avoiding their use, this section can be considered optional reading.",
+    "hint": "Read more about Ellipsis (and why to avoid them) at LearnCpp."
+  },
+  {
+    "index": 213,
+    "section": "functions",
+    "exercise": "introduction_to_lambdas_(anonymous_functions)",
+    "title": "20.6 - Introduction to lambdas (anonymous functions)",
+    "explanation": "Consider this snippet of code that we introduced in lesson18.3 -- Introduction to standard library algorithms: This code searches through an array of strings looking for the first element that contains the substring \u201cnut\u201d.  Thus, it produces the result:",
+    "hint": "Read more about Introduction to lambdas (anonymous functions) at LearnCpp."
+  },
+  {
+    "index": 214,
+    "section": "functions",
+    "exercise": "lambda_captures",
+    "title": "20.7 - Lambda captures",
+    "explanation": " Capture clauses and capture by value",
+    "hint": "Read more about Lambda captures at LearnCpp."
+  },
+  {
+    "index": 215,
+    "section": "operator_overloading",
+    "exercise": "introduction_to_operator_overloading",
+    "title": "21.1 - Introduction to operator overloading",
+    "explanation": "In lesson11.1 -- Introduction to function overloading, you learned about function overloading, which provides a mechanism to create and resolve function calls to multiple functions with the same name, so long as each function has a unique function prototype.  This allows you to create variations of a function to work with different data types, without having to think up a unique name for each variant. In C++, operators are implemented as functions.  By using function overloading on the operator functions, you can define your own versions of the operators that work with different data types (including classes that you\u2019ve written).  Using function overloading to overload operators is calledoperator overloading.",
+    "hint": "Read more about Introduction to operator overloading at LearnCpp."
+  },
+  {
+    "index": 216,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_arithmetic_operators_using_friend_functions",
+    "title": "21.2 - Overloading the arithmetic operators using friend functions",
+    "explanation": "Some of the most commonly used operators in C++ are the arithmetic operators -- that is, the plus operator (+), minus operator (-), multiplication operator (*), and division operator (/).  Note that all of the arithmetic operators are binary operators -- meaning they take two operands -- one on each side of the operator.  All four of these operators are overloaded in the exact same way. It turns out that there are three different ways to overload operators: the member function way, the friend function way, and the normal function way.  In this lesson, we\u2019ll cover the friend function way (because it\u2019s more intuitive for most binary operators).  Next lesson, we\u2019ll discuss the normal function way.  Finally, in a later lesson in this chapter, we\u2019ll cover the member function way.  And, of course, we\u2019ll also summarize when to use each in more detail.",
+    "hint": "Read more about Overloading the arithmetic operators using friend functions at LearnCpp."
+  },
+  {
+    "index": 217,
+    "section": "operator_overloading",
+    "exercise": "overloading_operators_using_normal_functions",
+    "title": "21.3 - Overloading operators using normal functions",
+    "explanation": "In the previous lesson, we overloaded operator+ as a friend function: Using a friend function to overload an operator is convenient because it gives you direct access to the internal members of the classes you\u2019re operating on.  In the initial Cents example above, our friend function version of operator+ accessed member variable m_cents directly.",
+    "hint": "Read more about Overloading operators using normal functions at LearnCpp."
+  },
+  {
+    "index": 218,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_i_o_operators",
+    "title": "21.4 - Overloading the I/O operators",
+    "explanation": "For classes that have multiple member variables, printing each of the individual variables on the screen can get tiresome fast.  For example, consider the following class: If you wanted to print an instance of this class to the screen, you\u2019d have to do something like this:",
+    "hint": "Read more about Overloading the I/O operators at LearnCpp."
+  },
+  {
+    "index": 219,
+    "section": "operator_overloading",
+    "exercise": "overloading_operators_using_member_functions",
+    "title": "21.5 - Overloading operators using member functions",
+    "explanation": "In lesson21.2 -- Overloading the arithmetic operators using friend functions, you learned how to overload the arithmetic operators using friend functions.  You also learned you can overload operators as normal functions.  Many operators can be overloaded in a different way: as a member function. Overloading operators using a member function is very similar to overloading operators using a friend function.  When overloading an operator using a member function:",
+    "hint": "Read more about Overloading operators using member functions at LearnCpp."
+  },
+  {
+    "index": 220,
+    "section": "operator_overloading",
+    "exercise": "overloading_unary_operators_+,_-,_and_!",
+    "title": "21.6 - Overloading unary operators +, -, and !",
+    "explanation": "Overloading unary operators Unlike the operators you\u2019ve seen so far, the positive (+), negative (-) and logical not (!) operators all are unary operators, which means they only operate on one operand.  Because they only operate on the object they are applied to, typically unary operator overloads are implemented as member functions.  All three operators are implemented in an identical manner.",
+    "hint": "Read more about Overloading unary operators +, -, and ! at LearnCpp."
+  },
+  {
+    "index": 221,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_comparison_operators",
+    "title": "21.7 - Overloading the comparison operators",
+    "explanation": "In lesson6.7 -- Relational operators and floating point comparisons, we discussed the six comparison operators.  Overloading these comparison operators is comparatively simple (see what I did there?), as they follow the same patterns as we\u2019ve seen in overloading other operators. Because the comparison operators are all binary operators that do not modify their left operands, we will make our overloaded comparison operators friend functions.",
+    "hint": "Read more about Overloading the comparison operators at LearnCpp."
+  },
+  {
+    "index": 222,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_increment_and_decrement_operators",
+    "title": "21.8 - Overloading the increment and decrement operators",
+    "explanation": "Overloading the increment (++) and decrement (--) operators is pretty straightforward, with one small exception.  There are actually two versions of the increment and decrement operators: a prefix increment and decrement (e.g.++x; --y;) and a postfix increment and decrement (e.g.x++; y--;). Because the increment and decrement operators are both unary operators and they modify their operands, they\u2019re best overloaded as member functions.  We\u2019ll tackle the prefix versions first because they\u2019re the most straightforward.",
+    "hint": "Read more about Overloading the increment and decrement operators at LearnCpp."
+  },
+  {
+    "index": 223,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_subscript_operator",
+    "title": "21.9 - Overloading the subscript operator",
+    "explanation": "When working with arrays, we typically use the subscript operator ([]) to index specific elements of an array: However, consider the followingIntListclass, which has a member variable that is an array:",
+    "hint": "Read more about Overloading the subscript operator at LearnCpp."
+  },
+  {
+    "index": 224,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_parenthesis_operator",
+    "title": "21.10 - Overloading the parenthesis operator",
+    "explanation": "All of the overloaded operators you have seen so far let you define the type of the operator\u2019s parameters, but not the number of parameters (which is fixed based on the type of the operator).  For example, operator== always takes two parameters, whereas operator! always takes one.  The parenthesis operator (operator()) is a particularly interesting operator in that it allows you to vary both the type AND number of parameters it takes. There are two things to keep in mind: first, the parenthesis operator must be implemented as a member function.  Second, in non-object-oriented C++, the () operator is used to call functions.  In the case of classes, operator() is just a normal operator that calls a function (named operator()) like any other overloaded operator.",
+    "hint": "Read more about Overloading the parenthesis operator at LearnCpp."
+  },
+  {
+    "index": 225,
+    "section": "operator_overloading",
+    "exercise": "overloading_typecasts",
+    "title": "21.11 - Overloading typecasts",
+    "explanation": "In lesson10.6 -- Explicit type conversion (casting) and static_cast, you learned that C++ allows you to convert one data type to another.  The following example shows an int being converted into a double: C++ already knows how to convert between the built-in data types.  However, by default, C++ doesn\u2019t know how to convert any of our program-defined classes.",
+    "hint": "Read more about Overloading typecasts at LearnCpp."
+  },
+  {
+    "index": 226,
+    "section": "operator_overloading",
+    "exercise": "overloading_the_assignment_operator",
+    "title": "21.12 - Overloading the assignment operator",
+    "explanation": "Thecopy assignment operator(operator=) is used to copy values from one object to anotheralready existing object. Copy assignment vs Copy constructor",
+    "hint": "Read more about Overloading the assignment operator at LearnCpp."
+  },
+  {
+    "index": 227,
+    "section": "operator_overloading",
+    "exercise": "shallow_vs._deep_copying",
+    "title": "21.13 - Shallow vs. deep copying",
+    "explanation": "Shallow copying Because C++ does not know much about your class, the default copy constructor and default assignment operators it provides use a copying method known as a memberwise copy (also known as ashallow copy).  This means that C++ copies each member of the class individually (using the assignment operator for overloaded operator=, and direct initialization for the copy constructor).  When classes are simple (e.g. do not contain any dynamically allocated memory), this works very well.",
+    "hint": "Read more about Shallow vs. deep copying at LearnCpp."
+  },
+  {
+    "index": 228,
+    "section": "operator_overloading",
+    "exercise": "overloading_operators_and_function_templates",
+    "title": "21.14 - Overloading operators and function templates",
+    "explanation": "In lesson11.7 -- Function template instantiation, we discussed how the compiler will use function templates to instantiate functions, which are then compiled.  We also noted that these functions may not compile, if the code in the function template tries to perform some operation that the actual type doesn\u2019t support (such as adding integer value1to astd::string). In this lesson, we\u2019ll take a look at a few examples where our instantiated functions won\u2019t compile because our actual class types don\u2019t support those operators, and show how we can define those operators so that the instantiated functions will then compile.",
+    "hint": "Read more about Overloading operators and function templates at LearnCpp."
+  },
+  {
+    "index": 229,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "introduction_to_smart_pointers_and_move_semantics",
+    "title": "22.1 - Introduction to smart pointers and move semantics",
+    "explanation": "Consider a function in which we dynamically allocate a value: Although the above code seems fairly straightforward, it\u2019s fairly easy to forget to deallocate ptr.  Even if you do remember to delete ptr at the end of the function, there are a myriad of ways that ptr may not be deleted if the function exits early.  This can happen via an early return:",
+    "hint": "Read more about Introduction to smart pointers and move semantics at LearnCpp."
+  },
+  {
+    "index": 230,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "r-value_references",
+    "title": "22.2 - R-value references",
+    "explanation": "In chapter 12, we introduced the concept of value categories (12.2 -- Value categories (lvalues and rvalues)), which is a property of expressions that helps determine whether an expression resolves to a value, function, or object.  We also introduced l-values and r-values so that we could discuss l-value references. If you\u2019re hazy on l-values and r-values, now would be a good time to refresh on that topic since we\u2019ll be talking a lot about them in this chapter.",
+    "hint": "Read more about R-value references at LearnCpp."
+  },
+  {
+    "index": 231,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "move_constructors_and_move_assignment",
+    "title": "22.3 - Move constructors and move assignment",
+    "explanation": "In lesson22.1 -- Introduction to smart pointers and move semantics, we took a look at std::auto_ptr, discussed the desire for move semantics, and took a look at some of the downsides that occur when functions designed for copy semantics (copy constructors and copy assignment operators) are redefined to implement move semantics. In this lesson, we\u2019ll take a deeper look at how C++11 resolves these problems via move constructors and move assignment.",
+    "hint": "Read more about Move constructors and move assignment at LearnCpp."
+  },
+  {
+    "index": 232,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "std::move",
+    "title": "22.4 - std::move",
+    "explanation": "Once you start using move semantics more regularly, you\u2019ll start to find cases where you want to invoke move semantics, but the objects you have to work with are l-values, not r-values. Consider the following swap function as an example: Passed in two objects of type T (in this case, std::string), this function swaps their values by making three copies.  Consequently, this program prints:",
+    "hint": "Read more about std::move at LearnCpp."
+  },
+  {
+    "index": 233,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "std::unique_ptr",
+    "title": "22.5 - std::unique_ptr",
+    "explanation": "At the beginning of the chapter, we discussed how the use of pointers can lead to bugs and memory leaks in some situations.  For example, this can happen when a function early returns, or throws an exception, and the pointer is not properly deleted. Now that we\u2019ve covered the fundamentals of move semantics, we can return to the topic of smart pointer classes.  Although smart pointers can offer other features, the defining characteristic of a smart pointer is that it manages a dynamically allocated resource provided by the user of the smart pointer, and ensures the dynamically allocated object is properly cleaned up at the appropriate time (usually when the smart pointer goes out of scope).",
+    "hint": "Read more about std::unique_ptr at LearnCpp."
+  },
+  {
+    "index": 234,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "std::shared_ptr",
+    "title": "22.6 - std::shared_ptr",
+    "explanation": "Unlike std::unique_ptr, which is designed to singly own and manage a resource, std::shared_ptr is meant to solve the case where you need multiple smart pointers co-owning a resource. This means that it is fine to have multiple std::shared_ptr pointing to the same resource.  Internally, std::shared_ptr keeps track of how many std::shared_ptr are sharing the resource.  As long as at least one std::shared_ptr is pointing to the resource, the resource will not be deallocated, even if individual std::shared_ptr are destroyed.  As soon as the last std::shared_ptr managing the resource goes out of scope (or is reassigned to point at something else), the resource will be deallocated.",
+    "hint": "Read more about std::shared_ptr at LearnCpp."
+  },
+  {
+    "index": 235,
+    "section": "move_semantics_and_smart_pointers",
+    "exercise": "circular_dependency_issues_with_std::shared_ptr,_and_std::weak_ptr",
+    "title": "22.7 - Circular dependency issues with std::shared_ptr, and std::weak_ptr",
+    "explanation": "In the previous lesson, we saw how std::shared_ptr allowed us to have multiple smart pointers co-owning the same resource.  However, in certain cases, this can become problematic.  Consider the following case, where the shared pointers in two separate objects each point at the other object: In the above example, we dynamically allocate two Persons, \u201cLucy\u201d and \u201cRicky\u201d using make_shared() (to ensure lucy and ricky are destroyed at the end of main()).  Then we partner them up.  This sets the std::shared_ptr inside \u201cLucy\u201d to point at \u201cRicky\u201d, and the std::shared_ptr inside \u201cRicky\u201d to point at \u201cLucy\u201d.  Shared pointers are meant to be shared, so it\u2019s fine that both the lucy shared pointer and Rick\u2019s m_partner shared pointer both point at \u201cLucy\u201d (and vice-versa).",
+    "hint": "Read more about Circular dependency issues with std::shared_ptr, and std::weak_ptr at LearnCpp."
+  },
+  {
+    "index": 236,
+    "section": "object_relationships",
+    "exercise": "object_relationships",
+    "title": "23.1 - Object relationships",
+    "explanation": "Life is full of recurring patterns, relationships, and hierarchies between objects.  By exploring and understanding these, we can gain insight into how real-life objects behave, enhancing our understanding of those objects. For example, let\u2019s say one day you\u2019re walking down the street, and you see a bright yellow object attached to a green shrubby object.  You\u2019d probably recognize that the bright yellow thing is a flower, and the green shrubby thing is a plant.  Even though you\u2019d never seen this particular type of plant before, you\u2019d know that the green things are leaves, collecting sunlight.  You\u2019d know that the flower helps the plant propagate itself.  You\u2019d also know that if you killed the plant, the flower would die too.",
+    "hint": "Read more about Object relationships at LearnCpp."
+  },
+  {
+    "index": 237,
+    "section": "object_relationships",
+    "exercise": "composition",
+    "title": "23.2 - Composition",
+    "explanation": "Object composition In real-life, complex objects are often built from smaller, simpler objects.  For example, a car is built using a metal frame, an engine, some tires, a transmission, a steering wheel, and a large number of other parts.  A personal computer is built from a CPU, a motherboard, some memory, etc\u2026  Even you are built from smaller parts: you have a head, a body, some legs, arms, and so on.  This process of building complex objects from simpler ones is calledobject composition.",
+    "hint": "Read more about Composition at LearnCpp."
+  },
+  {
+    "index": 238,
+    "section": "object_relationships",
+    "exercise": "aggregation",
+    "title": "23.3 - Aggregation",
+    "explanation": "In the previous lesson23.2 -- Composition, we noted that object composition is the process of creating complex objects from simpler ones.  We also talked about one type of object composition, called composition.  In a composition relationship, the whole object is responsible for the existence of the part. In this lesson, we\u2019ll take a look at the other subtype of object composition, called aggregation.",
+    "hint": "Read more about Aggregation at LearnCpp."
+  },
+  {
+    "index": 239,
+    "section": "object_relationships",
+    "exercise": "association",
+    "title": "23.4 - Association",
+    "explanation": "In the previous two lessons, we\u2019ve looked at two types of object composition, composition and aggregation.  Object composition is used to model relationships where a complex object is built from one or more simpler objects (parts). In this lesson, we\u2019ll take a look at a weaker type of relationship between two otherwise unrelated objects, called an association.  Unlike object composition relationships, in an association, there is no implied whole/part relationship.",
+    "hint": "Read more about Association at LearnCpp."
+  },
+  {
+    "index": 240,
+    "section": "object_relationships",
+    "exercise": "dependencies",
+    "title": "23.5 - Dependencies",
+    "explanation": "So far, we\u2019ve explored 3 types of relationships: composition, aggregation, and association.  We\u2019ve saved the simplest one for last: dependencies. In casual conversation, we use the term dependency to indicate that an object is reliant upon another object for a given task.  For example, if you break your foot, you are dependent on crutches to get around (but not otherwise).  Flowers are dependent upon bees to pollinate them, in order to grow fruit or propagate (but not otherwise).",
+    "hint": "Read more about Dependencies at LearnCpp."
+  },
+  {
+    "index": 241,
+    "section": "object_relationships",
+    "exercise": "container_classes",
+    "title": "23.6 - Container classes",
+    "explanation": "In real life, we use containers all the time.  Your breakfast cereal comes in a box, the pages in your book come inside a cover and binding, and you might store any number of items in containers in your garage.  Without containers, it would be extremely inconvenient to work with many of these objects.  Imagine trying to read a book that didn\u2019t have any sort of binding, or eat cereal that didn\u2019t come in a box without using a bowl.  It would be a mess.  The value the container provides is largely in its ability to help organize and store items that are put inside it. Similarly, acontainer classis a class designed to hold and organize multiple instances of another type (either another class, or a fundamental type).  There are many different kinds of container classes, each of which has various advantages, disadvantages, and restrictions in their use.  By far the most commonly used container in programming is the array, which you have already seen many examples of.  Although C++ has built-in array functionality, programmers will often use an array container class (std::array or std::vector) instead because of the additional benefits they provide.  Unlike built-in arrays, array container classes generally provide dynamic resizing (when elements are added or removed), remember their size when they are passed to functions, and do bounds-checking.  This not only makes array container classes more convenient than normal arrays, but safer too.",
+    "hint": "Read more about Container classes at LearnCpp."
+  },
+  {
+    "index": 242,
+    "section": "object_relationships",
+    "exercise": "std::initializer_list",
+    "title": "23.7 - std::initializer_list",
+    "explanation": "Consider a fixed array of integers in C++: If we want to initialize this array with values, we can do so directly via the initializer list syntax:",
+    "hint": "Read more about std::initializer_list at LearnCpp."
+  },
+  {
+    "index": 243,
+    "section": "inheritance",
+    "exercise": "introduction_to_inheritance",
+    "title": "24.1 - Introduction to inheritance",
+    "explanation": "In the last chapter, we discussed object composition, where complex classes are constructed from simpler classes and types.  Object composition is perfect for building new objects that have a \u201chas-a\u201d relationship with their parts.  However, object composition is just one of the two major ways that C++ lets you construct complex classes.  The second way is through inheritance, which models an \u201cis-a\u201d relationship between two objects. Unlike object composition, which involves creating new objects by combining and connecting other objects, inheritance involves creating new objects by directly acquiring the attributes and behaviors of other objects and then extending or specializing them. Like object composition, inheritance is everywhere in real life. When you were conceived, you inherited your parents genes, and acquired physical attributes from both of them -- but then you added your own personality on top. Technological products (computers, cell phones, etc\u2026) inherit features from their predecessors (often used for backwards compatibility).  For example, the Intel Pentium processor inherited many of the features defined by the Intel 486 processor, which itself inherited features from earlier processors.  C++ inherited many features from C, the language upon which it is based, and C inherited many of its features from the programming languages that came before it.",
+    "hint": "Read more about Introduction to inheritance at LearnCpp."
+  },
+  {
+    "index": 244,
+    "section": "inheritance",
+    "exercise": "basic_inheritance_in_c++",
+    "title": "24.2 - Basic inheritance in C++",
+    "explanation": "Now that we\u2019ve talked about what inheritance is in an abstract sense, let\u2019s talk about how it\u2019s used within C++. Inheritance in C++ takes place between classes.  In an inheritance (is-a) relationship, the class being inherited from is called theparent class,base class, orsuperclass, and the class doing the inheriting is called thechild class,derived class, orsubclass.",
+    "hint": "Read more about Basic inheritance in C++ at LearnCpp."
+  },
+  {
+    "index": 245,
+    "section": "inheritance",
+    "exercise": "order_of_construction_of_derived_classes",
+    "title": "24.3 - Order of construction of derived classes",
+    "explanation": "In the previous lesson onbasic inheritance in C++, you learned that classes can inherit members and functions from other classes.  In this lesson, we\u2019re going to take a closer look at the order of construction that happens when a derived class is instantiated. First, let\u2019s introduce some new classes that will help us illustrate some important points.",
+    "hint": "Read more about Order of construction of derived classes at LearnCpp."
+  },
+  {
+    "index": 246,
+    "section": "inheritance",
+    "exercise": "constructors_and_initialization_of_derived_classes",
+    "title": "24.4 - Constructors and initialization of derived classes",
+    "explanation": "In the past two lessons, we\u2019ve explored some basics around inheritance in C++ and the order that derived classes are initialized.  In this lesson, we\u2019ll take a closer look at the role of constructors in the initialization of derived classes.  To do so, we will continue to use the simple Base and Derived classes we developed in the previous lesson: With non-derived classes, constructors only have to worry about their own members.  For example, consider Base.  We can create a Base object like this:",
+    "hint": "Read more about Constructors and initialization of derived classes at LearnCpp."
+  },
+  {
+    "index": 247,
+    "section": "inheritance",
+    "exercise": "inheritance_and_access_specifiers",
+    "title": "24.5 - Inheritance and access specifiers",
+    "explanation": "In the previous lessons in this chapter, you\u2019ve learned a bit about how base inheritance works.  In all of our examples so far, we\u2019ve used public inheritance.  That is, our derived class publicly inherits the base class. In this lesson, we\u2019ll take a closer look at public inheritance, as well as the two other kinds of inheritance (private and protected).  We\u2019ll also explore how the different kinds of inheritance interact with access specifiers to allow or restrict access to members.",
+    "hint": "Read more about Inheritance and access specifiers at LearnCpp."
+  },
+  {
+    "index": 248,
+    "section": "inheritance",
+    "exercise": "adding_new_functionality_to_a_derived_class",
+    "title": "24.6 - Adding new functionality to a derived class",
+    "explanation": "In theintroduction to inheritancelesson, we mentioned that one of the biggest benefits of using derived classes is the ability to reuse already written code.  You can inherit the base class functionality and then add new functionality, modify existing functionality, or hide functionality you don\u2019t want.  In this and the next few lessons, we\u2019ll take a closer look at how each of these things is done. First, let\u2019s start with a simple base class:",
+    "hint": "Read more about Adding new functionality to a derived class at LearnCpp."
+  },
+  {
+    "index": 249,
+    "section": "inheritance",
+    "exercise": "calling_inherited_functions_and_overriding_behavior",
+    "title": "24.7 - Calling inherited functions and overriding behavior",
+    "explanation": "By default, derived classes inherit all of the behaviors defined in a base class.  In this lesson, we\u2019ll examine in more detail how member functions are selected, as well as how we can leverage this to change behaviors in a derived class. When a member function is called on a derived class object, the compiler first looks to see if any function with that name exists in the derived class.  If so, all overloaded functions with that name are considered, and the function overload resolution process is used to determine whether there is a best match.  If not, the compiler walks up the inheritance chain, checking each parent class in turn in the same way.",
+    "hint": "Read more about Calling inherited functions and overriding behavior at LearnCpp."
+  },
+  {
+    "index": 250,
+    "section": "inheritance",
+    "exercise": "hiding_inherited_functionality",
+    "title": "24.8 - Hiding inherited functionality",
+    "explanation": "Changing an inherited member\u2019s access level C++ gives us the ability to change an inherited member\u2019s access specifier in the derived class.  This is done by using ausing declarationto identify the (scoped) base class member that is having its access changed in the derived class, under the new access specifier.",
+    "hint": "Read more about Hiding inherited functionality at LearnCpp."
+  },
+  {
+    "index": 251,
+    "section": "inheritance",
+    "exercise": "multiple_inheritance",
+    "title": "24.9 - Multiple inheritance",
+    "explanation": "So far, all of the examples of inheritance we\u2019ve presented have been single inheritance -- that is, each inherited class has one and only one parent.  However, C++ provides the ability to do multiple inheritance.Multiple inheritanceenables a derived class to inherit members from more than one parent. Let\u2019s say we wanted to write a program to keep track of a bunch of teachers.  A teacher is a person.  However, a teacher is also an employee (they are their own employer if working for themselves).  Multiple inheritance can be used to create a Teacher class that inherits properties from both Person and Employee.  To use multiple inheritance, simply specify each base class (just like in single inheritance), separated by a comma.",
+    "hint": "Read more about Multiple inheritance at LearnCpp."
+  },
+  {
+    "index": 252,
+    "section": "virtual_functions",
+    "exercise": "pointers_and_references_to_the_base_class_of_derived_objects",
+    "title": "25.1 - Pointers and references to the base class of derived objects",
+    "explanation": "In the previous chapter, you learned all about how to use inheritance to derive new classes from existing classes.  In this chapter, we are going to focus on one of the most important and powerful aspects of inheritance -- virtual functions. But before we discuss what virtual functions are, let\u2019s first set the table for why we need them.",
+    "hint": "Read more about Pointers and references to the base class of derived objects at LearnCpp."
+  },
+  {
+    "index": 253,
+    "section": "virtual_functions",
+    "exercise": "virtual_functions_and_polymorphism",
+    "title": "25.2 - Virtual functions and polymorphism",
+    "explanation": "In the previous lesson onpointers and references to the base class of derived objects, we took a look at a number of examples where using pointers or references to a base class had the potential to simplify code.  However, in every case, we ran up against the problem that the base pointer or reference was only able to call the base version of a function, not a derived version. Here\u2019s a simple example of this behavior:",
+    "hint": "Read more about Virtual functions and polymorphism at LearnCpp."
+  },
+  {
+    "index": 254,
+    "section": "virtual_functions",
+    "exercise": "the_override_and_final_specifiers,_and_covariant_return_types",
+    "title": "25.3 - The override and final specifiers, and covariant return types",
+    "explanation": "To address some common challenges with inheritance, C++ has two inheritance-related identifiers:overrideandfinal.  Note that these identifiers are not keywords -- they are normal words that have special meaning only when used in certain contexts.  The C++ standard calls them \u201cidentifiers with special meaning\u201d, but they are often referred to as \u201cspecifiers\u201d. Although final isn\u2019t used very much, override is a fantastic addition that you should use regularly.  In this lesson, we\u2019ll take a look at both, as well as one exception to the rule that virtual function override return types must match.",
+    "hint": "Read more about The override and final specifiers, and covariant return types at LearnCpp."
+  },
+  {
+    "index": 255,
+    "section": "virtual_functions",
+    "exercise": "virtual_destructors,_virtual_assignment,_and_overriding_virtualization",
+    "title": "25.4 - Virtual destructors, virtual assignment, and overriding virtualization",
+    "explanation": "Virtual destructors Although C++ provides a default destructor for your classes if you do not provide one yourself, it is sometimes the case that you will want to provide your own destructor (particularly if the class needs to deallocate memory).  You shouldalwaysmake your destructors virtual if you\u2019re dealing with inheritance.  Consider the following example:",
+    "hint": "Read more about Virtual destructors, virtual assignment, and overriding virtualization at LearnCpp."
+  },
+  {
+    "index": 256,
+    "section": "virtual_functions",
+    "exercise": "early_binding_and_late_binding",
+    "title": "25.5 - Early binding and late binding",
+    "explanation": "In this lesson and the next, we are going to take a closer look at how virtual functions are implemented.  While this information is not strictly necessary to effectively use virtual functions, it is interesting.  Nevertheless, you can consider both sections optional reading. When a C++ program is executed, it executes sequentially, beginning at the top ofmain().  When a function call is encountered, the point of execution jumps to the beginning of the function being called.  How does the CPU know to do this?",
+    "hint": "Read more about Early binding and late binding at LearnCpp."
+  },
+  {
+    "index": 257,
+    "section": "virtual_functions",
+    "exercise": "the_virtual_table",
+    "title": "25.6 - The virtual table",
+    "explanation": "Consider the following program: First, let\u2019s look at the call tobase.getName().  Because this is a non-virtual function, the compiler can use the actual type ofbase(Base) to determine (at compile-time) that this should resolve toBase::getName().",
+    "hint": "Read more about The virtual table at LearnCpp."
+  },
+  {
+    "index": 258,
+    "section": "virtual_functions",
+    "exercise": "pure_virtual_functions,_abstract_base_classes,_and_interface_classes",
+    "title": "25.7 - Pure virtual functions, abstract base classes, and interface classes",
+    "explanation": "Pure virtual (abstract) functions and abstract base classes So far, all of the virtual functions we have written have a body (a definition).  However, C++ allows you to create a special kind of virtual function called apure virtual function(orabstract function) that has no body at all!  A pure virtual function simply acts as a placeholder that is meant to be redefined by derived classes.",
+    "hint": "Read more about Pure virtual functions, abstract base classes, and interface classes at LearnCpp."
+  },
+  {
+    "index": 259,
+    "section": "virtual_functions",
+    "exercise": "virtual_base_classes",
+    "title": "25.8 - Virtual base classes",
+    "explanation": "Last chapter, in lesson24.9 -- Multiple inheritance, we left off talking about the \u201cdiamond problem\u201d.  In this section, we will resume this discussion. Note: This section is an advanced topic and can be skipped or skimmed if desired.",
+    "hint": "Read more about Virtual base classes at LearnCpp."
+  },
+  {
+    "index": 260,
+    "section": "virtual_functions",
+    "exercise": "object_slicing",
+    "title": "25.9 - Object slicing",
+    "explanation": "Let\u2019s go back to an example we looked at previously: In the above example, ref references and ptr points to derived, which has a Base part, and a Derived part.  Because ref and ptr are of type Base, ref and ptr can only see the Base part of derived -- the Derived part of derived still exists, but simply can\u2019t be seen through ref or ptr.  However, through use of virtual functions, we can access the most-derived version of a function.  Consequently, the above program prints:",
+    "hint": "Read more about Object slicing at LearnCpp."
+  },
+  {
+    "index": 261,
+    "section": "virtual_functions",
+    "exercise": "dynamic_casting",
+    "title": "25.10 - Dynamic casting",
+    "explanation": "Way back in lesson10.6 -- Explicit type conversion (casting) and static_cast, we examined the concept of casting, and the use of static_cast to convert variables from one type to another. In this lesson, we\u2019ll continue by examining another type of cast: dynamic_cast.",
+    "hint": "Read more about Dynamic casting at LearnCpp."
+  },
+  {
+    "index": 262,
+    "section": "virtual_functions",
+    "exercise": "printing_inherited_classes_using_operator<<",
+    "title": "25.11 - Printing inherited classes using operator<<",
+    "explanation": "Consider the following program that makes use of a virtual function: By now, you should be comfortable with the fact that b.print() will call Derived::print() (because b is referencing a Derived class object, Base::print() is a virtual function, and Derived::print() is an override).",
+    "hint": "Read more about Printing inherited classes using operator<< at LearnCpp."
+  },
+  {
+    "index": 263,
+    "section": "templates_and_classes",
+    "exercise": "template_classes",
+    "title": "26.1 - Template classes",
+    "explanation": "In a previous chapter, we covered function templates (11.6 -- Function templates), which allow us to generalize functions to work with many different data types.  While this is a great start down the road to generalized programming, it doesn\u2019t solve all of our problems.  Let\u2019s take a look at an example of one such problem, and see what templates can further do for us. Templates and container classes",
+    "hint": "Read more about Template classes at LearnCpp."
+  },
+  {
+    "index": 264,
+    "section": "templates_and_classes",
+    "exercise": "template_non-type_parameters",
+    "title": "26.2 - Template non-type parameters",
+    "explanation": "In previous lessons, you\u2019ve learned how to use template type parameters to create functions and classes that are type independent.   A template type parameter is a placeholder type that is substituted for a type passed in as an argument. However, template type parameters are not the only type of template parameters available.  Template classes and functions can make use of another kind of template parameter known as a non-type parameter.",
+    "hint": "Read more about Template non-type parameters at LearnCpp."
+  },
+  {
+    "index": 265,
+    "section": "templates_and_classes",
+    "exercise": "function_template_specialization",
+    "title": "26.3 - Function template specialization",
+    "explanation": "When instantiating a function template for a given type, the compiler stencils out a copy of the templated function and replaces the template type parameters with the actual types used in the variable declaration.  This means a particular function will have the same implementation details for each instanced type (just using different types).  While most of the time this is exactly what you want, occasionally there are cases where it is useful to implement a templated function slightly differently for a specific data type. Using a non-template function",
+    "hint": "Read more about Function template specialization at LearnCpp."
+  },
+  {
+    "index": 266,
+    "section": "templates_and_classes",
+    "exercise": "class_template_specialization",
+    "title": "26.4 - Class template specialization",
+    "explanation": "In the previous lesson26.3 -- Function template specialization, we saw how it was possible to specialize functions in order to provide different functionality for specific data types.  As it turns out, it is not only possible to specialize functions, it is also possible to specialize classes! Consider the case where you want a class that stores 8 objects.  Here\u2019s a simplified class template to do so:",
+    "hint": "Read more about Class template specialization at LearnCpp."
+  },
+  {
+    "index": 267,
+    "section": "templates_and_classes",
+    "exercise": "partial_template_specialization",
+    "title": "26.5 - Partial template specialization",
+    "explanation": "This lesson and the next are optional reading for those desiring a deeper knowledge of C++ templates.  Partial template specialization is not used all that often (but can be useful in specific cases). In lesson26.2 -- Template non-type parameters, you learned how expression parameters could be used to parameterize template classes.",
+    "hint": "Read more about Partial template specialization at LearnCpp."
+  },
+  {
+    "index": 268,
+    "section": "templates_and_classes",
+    "exercise": "partial_template_specialization_for_pointers",
+    "title": "26.6 - Partial template specialization for pointers",
+    "explanation": "In previous lesson26.4 -- Class template specialization, we took a look at a simple templatedStorageclass, along with a specialization for typedouble: However, as simple as this class is, it has a hidden flaw: it compiles but malfunctions whenTis a pointer type.  For example:",
+    "hint": "Read more about Partial template specialization for pointers at LearnCpp."
+  },
+  {
+    "index": 269,
+    "section": "exceptions",
+    "exercise": "the_need_for_exceptions",
+    "title": "27.1 - The need for exceptions",
+    "explanation": "In the previous lesson onhandling errors, we talked about ways to use assert(), std::cerr, and exit() to handle errors.  However, we deferred one further topic that we will now cover: exceptions. When return codes fail",
+    "hint": "Read more about The need for exceptions at LearnCpp."
+  },
+  {
+    "index": 270,
+    "section": "exceptions",
+    "exercise": "basic_exception_handling",
+    "title": "27.2 - Basic exception handling",
+    "explanation": "In the previous lesson onthe need for exceptions, we talked about how using return codes causes your control flow and error flow to be intermingled, constraining both.  Exceptions in C++ are implemented using three keywords that work in conjunction with each other:throw,try, andcatch. Throwing exceptions",
+    "hint": "Read more about Basic exception handling at LearnCpp."
+  },
+  {
+    "index": 271,
+    "section": "exceptions",
+    "exercise": "exceptions,_functions,_and_stack_unwinding",
+    "title": "27.3 - Exceptions, functions, and stack unwinding",
+    "explanation": "In the previous lesson on27.2 -- Basic exception handling, we explained how throw, try, and catch work together to enable exception handling.  In this lesson, we\u2019ll talk about how exception handling interacts with functions. Throwing exceptions from a called function",
+    "hint": "Read more about Exceptions, functions, and stack unwinding at LearnCpp."
+  },
+  {
+    "index": 272,
+    "section": "exceptions",
+    "exercise": "uncaught_exceptions_and_catch-all_handlers",
+    "title": "27.4 - Uncaught exceptions and catch-all handlers",
+    "explanation": "By now, you should have a reasonable idea of how exceptions work.  In this lesson, we\u2019ll cover a few more interesting exception cases. Uncaught exceptions",
+    "hint": "Read more about Uncaught exceptions and catch-all handlers at LearnCpp."
+  },
+  {
+    "index": 273,
+    "section": "exceptions",
+    "exercise": "exceptions,_classes,_and_inheritance",
+    "title": "27.5 - Exceptions, classes, and inheritance",
+    "explanation": "Exceptions and member functions Up to this point in the tutorial, you\u2019ve only seen exceptions used in non-member functions.  However, exceptions are equally useful in member functions, and even more so in overloaded operators.  Consider the following overloaded [] operator as part of a simple integer array class:",
+    "hint": "Read more about Exceptions, classes, and inheritance at LearnCpp."
+  },
+  {
+    "index": 274,
+    "section": "exceptions",
+    "exercise": "rethrowing_exceptions",
+    "title": "27.6 - Rethrowing exceptions",
+    "explanation": "Occasionally you may run into a case where you want to catch an exception, but not want to (or have the ability to) fully handle it at the point where you catch it.  This is common when you want to log an error, but pass the issue along to the caller to actually handle. When a function can use a return code, this is simple.  Consider the following example:",
+    "hint": "Read more about Rethrowing exceptions at LearnCpp."
+  },
+  {
+    "index": 275,
+    "section": "exceptions",
+    "exercise": "function_try_blocks",
+    "title": "27.7 - Function try blocks",
+    "explanation": "Try and catch blocks work well enough in most cases, but there is one particular case in which they are not sufficient.  Consider the following example: In the above example, derived class B calls base class constructor A, which can throw an exception.  Because the creation of object b has been placed inside a try block (in function main()), if A throws an exception, main\u2019s try block will catch it.  Consequently, this program prints:",
+    "hint": "Read more about Function try blocks at LearnCpp."
+  },
+  {
+    "index": 276,
+    "section": "exceptions",
+    "exercise": "exception_dangers_and_downsides",
+    "title": "27.8 - Exception dangers and downsides",
+    "explanation": "As with almost everything that has benefits, there are some potential downsides to exceptions as well.  This article is not meant to be comprehensive, but just to point out some of the major issues that should be considered when using exceptions (or deciding whether to use them). Cleaning up resources",
+    "hint": "Read more about Exception dangers and downsides at LearnCpp."
+  },
+  {
+    "index": 277,
+    "section": "exceptions",
+    "exercise": "exception_specifications_and_noexcept",
+    "title": "27.9 - Exception specifications and noexcept",
+    "explanation": "(h/t to reader Koe for providing the first draft of this lesson!) Looking at a typical function declaration, it is not possible to determine whether a function might throw an exception or not:",
+    "hint": "Read more about Exception specifications and noexcept at LearnCpp."
+  },
+  {
+    "index": 278,
+    "section": "exceptions",
+    "exercise": "std::move_if_noexcept",
+    "title": "27.10 - std::move_if_noexcept",
+    "explanation": "(h/t to reader Koe for providing the first draft of this lesson!) In lesson22.4 -- std::move, we coveredstd::move, which casts its lvalue argument to an rvalue so that we can invoke move semantics.  And in lesson27.9 -- Exception specifications and noexcept, we covered thenoexceptexception specifier and operator.  This lesson builds on both concepts.",
+    "hint": "Read more about std::move_if_noexcept at LearnCpp."
+  },
+  {
+    "index": 279,
+    "section": "input_and_output_(i/o)",
+    "exercise": "input_and_output_(i_o)_streams",
+    "title": "28.1 - Input and output (I/O) streams",
+    "explanation": "Input and output functionality is not defined as part of the core C++ language, but rather is provided through the C++ standard library (and thus resides in the std namespace).  In previous lessons, you included the iostream library header and made use of the cin and cout objects to do simple I/O.  In this lesson, we\u2019ll take a look at the iostream library in more detail. The iostream library",
+    "hint": "Read more about Input and output (I/O) streams at LearnCpp."
+  },
+  {
+    "index": 280,
+    "section": "input_and_output_(i/o)",
+    "exercise": "input_with_istream",
+    "title": "28.2 - Input with istream",
+    "explanation": "The iostream library is fairly complex -- so we will not be able to cover it in its entirety in these tutorials.  However, we will show you the most commonly used functionality.  In this section, we will look at various aspects of the input class (istream). The extraction operator",
+    "hint": "Read more about Input with istream at LearnCpp."
+  },
+  {
+    "index": 281,
+    "section": "input_and_output_(i/o)",
+    "exercise": "output_with_ostream_and_ios",
+    "title": "28.3 - Output with ostream and ios",
+    "explanation": "In this section, we will look at various aspects of the iostream output class (ostream). The insertion operator",
+    "hint": "Read more about Output with ostream and ios at LearnCpp."
+  },
+  {
+    "index": 282,
+    "section": "input_and_output_(i/o)",
+    "exercise": "stream_classes_for_strings",
+    "title": "28.4 - Stream classes for strings",
+    "explanation": "So far, all of the I/O examples you have seen have been writing to cout or reading from cin.  However, there is another set of classes called the stream classes for strings that allow you to use the familiar insertions (<<) and extraction (>>) operators to work with strings.  Like istream and ostream, the string streams provide a buffer to hold data.  However, unlike cin and cout, these streams are not connected to an I/O channel (such as a keyboard, monitor, etc\u2026).  One of the primary uses of string streams is to buffer output for display at a later time, or to process input line-by-line. There are six stream classes for strings: istringstream (derived from istream), ostringstream (derived from ostream), and stringstream (derived from iostream) are used for reading and writing normal characters width strings.  wistringstream, wostringstream, and wstringstream are used for reading and writing wide character strings.  To use the stringstreams, you need to #include the sstream header.",
+    "hint": "Read more about Stream classes for strings at LearnCpp."
+  },
+  {
+    "index": 283,
+    "section": "input_and_output_(i/o)",
+    "exercise": "stream_states_and_input_validation",
+    "title": "28.5 - Stream states and input validation",
+    "explanation": "Stream states The ios_base class contains several state flags that are used to signal various conditions that may occur when using streams:",
+    "hint": "Read more about Stream states and input validation at LearnCpp."
+  },
+  {
+    "index": 284,
+    "section": "input_and_output_(i/o)",
+    "exercise": "basic_file_i_o",
+    "title": "28.6 - Basic file I/O",
+    "explanation": "File I/O in C++ works very similarly to normal I/O (with a few minor added complexities).  There are 3 basic file I/O classes in C++: ifstream (derived from istream), ofstream (derived from ostream), and fstream (derived from iostream).  These classes do file input, output, and input/output respectively.  To use the file I/O classes, you will need to include the fstream header. Unlike the cout, cin, cerr, and clog streams, which are already ready for use, file streams have to be explicitly set up by the programmer.  However, this is extremely simple: to open a file for reading and/or writing, simply instantiate an object of the appropriate file I/O class, with the name of the file as a parameter.  Then use the insertion (<<) or extraction (>>) operator to write to or read data from the file.  Once you are done, there are several ways to close a file: explicitly call the close() function, or just let the file I/O variable go out of scope (the file I/O class destructor will close the file for you).",
+    "hint": "Read more about Basic file I/O at LearnCpp."
+  },
+  {
+    "index": 285,
+    "section": "input_and_output_(i/o)",
+    "exercise": "random_file_i_o",
+    "title": "28.7 - Random file I/O",
+    "explanation": "The file pointer Each file stream class contains a file pointer that is used to keep track of the current read/write position within the file.  When something is read from or written to a file, the reading/writing happens at the file pointer\u2019s current location.  By default, when opening a file for reading or writing, the file pointer is set to the beginning of the file.  However, if a file is opened in append mode, the file pointer is moved to the end of the file, so that writing does not overwrite any of the current contents of the file.",
+    "hint": "Read more about Random file I/O at LearnCpp."
+  }
+]

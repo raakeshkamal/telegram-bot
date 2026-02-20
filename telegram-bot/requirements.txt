@@ -1,0 +1,27 @@
+# Core dependencies
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langchain-community>=0.3.0
+langchain-mcp-adapters>=0.2.0
+
+# Bot & UI
+python-telegram-bot[job-queue]
+nest_asyncio
+gradio
+aiohttp
+telegramify-markdown
+
+# Data & Viz
+plotly
+kaleido
+pandas
+
+# Utils
+python-dotenv
+fastmcp
+
+# Observability (Local LangSmith alternative)
+arize-phoenix
+openinference-instrumentation-langchain
+opentelemetry-sdk
+opentelemetry-exporter-otlp

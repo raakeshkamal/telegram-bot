@@ -1,0 +1,5 @@
+fastmcp
+pydantic
+beautifulsoup4
+requests
+pymongo

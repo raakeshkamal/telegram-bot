@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build: ./mcp-server
+    container_name: mcp_server
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/bot_db
+    depends_on:
+      - mongodb
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27117:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    restart: always
+
+  telegram-bot:
+    build: ./telegram-bot
+    container_name: telegram_bot
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-google/gemini-2.0-flash-lite-preview-02-05:free}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - MCP_SERVER_URL=http://mcp-server:8000/mcp
+      - PHOENIX_COLLECTOR_ENDPOINT=http://phoenix:4317
+    depends_on:
+      - mcp-server
+      - phoenix
+    restart: always
+
+  web-ui:
+    build: ./telegram-bot
+    container_name: web_ui
+    command: python gradio_ui.py
+    ports:
+      - "7860:7860"
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-google/gemini-2.0-flash-lite-preview-02-05:free}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - MCP_SERVER_URL=http://mcp-server:8000/mcp
+      - PHOENIX_COLLECTOR_ENDPOINT=http://phoenix:4317
+    depends_on:
+      - mcp-server
+      - phoenix
+    restart: always
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: phoenix
+    volumes:
+      - ./phoenix_data:/root/.phoenix
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    restart: always
+

@@ -1,0 +1,874 @@
+[
+  {
+    "index": 0,
+    "section": "appetite",
+    "exercise": "appetite",
+    "title": "Whetting Your Appetite",
+    "explanation": "If you do much work on computers, eventually you find that there’s some task you’d like to automate. For example, you may wish to perform a search-and-replace over a large number of text files, or rename and rearrange a bunch of photo files in a complicated way. Perhaps you’d like to write a small custom database, or a specialized GUI application, or a simple game. If you’re a professional software developer, you may have to work with several C/C++/Java libraries but find the usual write/compile/test/re-compile cycle is too slow. Perhaps you’re writing a test suite for such a library and find writing the testing code a tedious task. Or maybe you’ve written a program that could use an extension language, and you don’t want to design and implement a whole new language for your application.",
+    "hint": "Refer to the Python tutorial on Whetting Your Appetite for more details."
+  },
+  {
+    "index": 1,
+    "section": "interpreter",
+    "exercise": "interpreter_argument_passing",
+    "title": "Argument Passing",
+    "explanation": "When known to the interpreter, the script name and additional arguments thereafter are turned into a list of strings and assigned to the argv variable in the sys module. You can access this list by executing import sys. The length of the list is at least one; when no script and no arguments are given, sys.argv[0] is an empty string. When the script name is given as '-' (meaning standard input), sys.argv[0] is set to '-'. When -c command is used, sys.argv[0] is set to '-c'. When -m module is used, sys.argv[0] is set to the full name of the located module. Options found after -c command or -m module are not consumed by the Python interpreter’s option processing but left in sys.argv for the command or module to handle.",
+    "hint": "Refer to the Python tutorial on Argument Passing for more details."
+  },
+  {
+    "index": 2,
+    "section": "interpreter",
+    "exercise": "interpreter_interactive_mode",
+    "title": "Interactive Mode",
+    "explanation": "When commands are read from a tty, the interpreter is said to be in interactive mode. In this mode it prompts for the next command with the primary prompt, usually three greater-than signs (>>>); for continuation lines it prompts with the secondary prompt, by default three dots (...). The interpreter prints a welcome message stating its version number and a copyright notice before printing the first prompt: Continuation lines are needed when entering a multi-line construct. As an example, take a look at this if statement:",
+    "hint": "Refer to the Python tutorial on Interactive Mode for more details."
+  },
+  {
+    "index": 3,
+    "section": "interpreter",
+    "exercise": "interpreter_source_code_encoding",
+    "title": "Source Code Encoding",
+    "explanation": "By default, Python source files are treated as encoded in UTF-8. In that encoding, characters of most languages in the world can be used simultaneously in string literals, identifiers and comments — although the standard library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that supports all the characters in the file. To declare an encoding other than the default one, a special comment line should be added as the first line of the file. The syntax is as follows:",
+    "hint": "Refer to the Python tutorial on Source Code Encoding for more details."
+  },
+  {
+    "index": 4,
+    "section": "introduction",
+    "exercise": "introduction_numbers",
+    "title": "Numbers",
+    "explanation": "The interpreter acts as a simple calculator: you can type an expression into it and it will write the value. Expression syntax is straightforward: the operators +, -, * and / can be used to perform arithmetic; parentheses (()) can be used for grouping. For example: The integer numbers (e.g. 2, 4, 20) have type int, the ones with a fractional part (e.g. 5.0, 1.6) have type float. We will see more about numeric types later in the tutorial.",
+    "hint": "Refer to the Python tutorial on Numbers for more details."
+  },
+  {
+    "index": 5,
+    "section": "introduction",
+    "exercise": "introduction_text",
+    "title": "Text",
+    "explanation": "Python can manipulate text (represented by type str, so-called “strings”) as well as numbers. This includes characters “!”, words “rabbit”, names “Paris”, sentences “Got your back.”, etc. “Yay! :)”. They can be enclosed in single quotes ('...') or double quotes (\"...\") with the same result [2]. To quote a quote, we need to “escape” it, by preceding it with \\. Alternatively, we can use the other type of quotation marks:",
+    "hint": "Refer to the Python tutorial on Text for more details."
+  },
+  {
+    "index": 6,
+    "section": "introduction",
+    "exercise": "introduction_lists",
+    "title": "Lists",
+    "explanation": "Python knows a number of compound data types, used to group together other values. The most versatile is the list, which can be written as a list of comma-separated values (items) between square brackets. Lists might contain items of different types, but usually the items all have the same type. Like strings (and all other built-in sequence types), lists can be indexed and sliced:",
+    "hint": "Refer to the Python tutorial on Lists for more details."
+  },
+  {
+    "index": 7,
+    "section": "introduction",
+    "exercise": "introduction_first_steps_towards_programming",
+    "title": "First Steps Towards Programming",
+    "explanation": "Of course, we can use Python for more complicated tasks than adding two and two together. For instance, we can write an initial sub-sequence of the Fibonacci series as follows: This example introduces several new features.",
+    "hint": "Refer to the Python tutorial on First Steps Towards Programming for more details."
+  },
+  {
+    "index": 8,
+    "section": "controlflow",
+    "exercise": "controlflow_if_statements",
+    "title": "if Statements",
+    "explanation": "Perhaps the most well-known statement type is the if statement. For example: There can be zero or more elif parts, and the else part is optional. The keyword ‘elif’ is short for ‘else if’, and is useful to avoid excessive indentation. An if … elif … elif … sequence is a substitute for the switch or case statements found in other languages.",
+    "hint": "Refer to the Python tutorial on if Statements for more details."
+  },
+  {
+    "index": 9,
+    "section": "controlflow",
+    "exercise": "controlflow_for_statements",
+    "title": "for Statements",
+    "explanation": "The for statement in Python differs a bit from what you may be used to in C or Pascal. Rather than always iterating over an arithmetic progression of numbers (like in Pascal), or giving the user the ability to define both the iteration step and halting condition (as C), Python’s for statement iterates over the items of any sequence (a list or a string), in the order that they appear in the sequence. For example (no pun intended): Code that modifies a collection while iterating over that same collection can be tricky to get right. Instead, it is usually more straight-forward to loop over a copy of the collection or to create a new collection:",
+    "hint": "Refer to the Python tutorial on for Statements for more details."
+  },
+  {
+    "index": 10,
+    "section": "controlflow",
+    "exercise": "controlflow_the_range_function",
+    "title": "The range() Function",
+    "explanation": "If you do need to iterate over a sequence of numbers, the built-in function range() comes in handy. It generates arithmetic progressions: The given end point is never part of the generated sequence; range(10) generates 10 values, the legal indices for items of a sequence of length 10. It is possible to let the range start at another number, or to specify a different increment (even negative; sometimes this is called the ‘step’):",
+    "hint": "Refer to the Python tutorial on The range() Function for more details."
+  },
+  {
+    "index": 11,
+    "section": "controlflow",
+    "exercise": "controlflow_break_and_continue_statements",
+    "title": "break and continue Statements",
+    "explanation": "The break statement breaks out of the innermost enclosing for or while loop: The continue statement continues with the next iteration of the loop:",
+    "hint": "Refer to the Python tutorial on break and continue Statements for more details."
+  },
+  {
+    "index": 12,
+    "section": "controlflow",
+    "exercise": "controlflow_else_clauses_on_loops",
+    "title": "else Clauses on Loops",
+    "explanation": "In a for or while loop the break statement may be paired with an else clause. If the loop finishes without executing the break, the else clause executes. In a for loop, the else clause is executed after the loop finishes its final iteration, that is, if no break occurred.",
+    "hint": "Refer to the Python tutorial on else Clauses on Loops for more details."
+  },
+  {
+    "index": 13,
+    "section": "controlflow",
+    "exercise": "controlflow_pass_statements",
+    "title": "pass Statements",
+    "explanation": "The pass statement does nothing. It can be used when a statement is required syntactically but the program requires no action. For example: This is commonly used for creating minimal classes:",
+    "hint": "Refer to the Python tutorial on pass Statements for more details."
+  },
+  {
+    "index": 14,
+    "section": "controlflow",
+    "exercise": "controlflow_match_statements",
+    "title": "match Statements",
+    "explanation": "A match statement takes an expression and compares its value to successive patterns given as one or more case blocks. This is superficially similar to a switch statement in C, Java or JavaScript (and many other languages), but it’s more similar to pattern matching in languages like Rust or Haskell. Only the first pattern that matches gets executed and it can also extract components (sequence elements or object attributes) from the value into variables. If no case matches, none of the branches is executed. The simplest form compares a subject value against one or more literals:",
+    "hint": "Refer to the Python tutorial on match Statements for more details."
+  },
+  {
+    "index": 15,
+    "section": "controlflow",
+    "exercise": "controlflow_defining_functions",
+    "title": "Defining Functions",
+    "explanation": "We can create a function that writes the Fibonacci series to an arbitrary boundary: The keyword def introduces a function definition. It must be followed by the function name and the parenthesized list of formal parameters. The statements that form the body of the function start at the next line, and must be indented.",
+    "hint": "Refer to the Python tutorial on Defining Functions for more details."
+  },
+  {
+    "index": 16,
+    "section": "controlflow",
+    "exercise": "controlflow_default_argument_values",
+    "title": "Default Argument Values",
+    "explanation": "The most useful form is to specify a default value for one or more arguments. This creates a function that can be called with fewer arguments than it is defined to allow. For example: This function can be called in several ways:",
+    "hint": "Refer to the Python tutorial on Default Argument Values for more details."
+  },
+  {
+    "index": 17,
+    "section": "controlflow",
+    "exercise": "controlflow_keyword_arguments",
+    "title": "Keyword Arguments",
+    "explanation": "Functions can also be called using keyword arguments of the form kwarg=value. For instance, the following function: accepts one required argument (voltage) and three optional arguments (state, action, and type). This function can be called in any of the following ways:",
+    "hint": "Refer to the Python tutorial on Keyword Arguments for more details."
+  },
+  {
+    "index": 18,
+    "section": "controlflow",
+    "exercise": "controlflow_positional_or_keyword_arguments",
+    "title": "Positional-or-Keyword Arguments",
+    "explanation": "If / and * are not present in the function definition, arguments may be passed to a function by position or by keyword.",
+    "hint": "Refer to the Python tutorial on Positional-or-Keyword Arguments for more details."
+  },
+  {
+    "index": 19,
+    "section": "controlflow",
+    "exercise": "controlflow_positional_only_parameters",
+    "title": "Positional-Only Parameters",
+    "explanation": "Looking at this in a bit more detail, it is possible to mark certain parameters as positional-only. If positional-only, the parameters’ order matters, and the parameters cannot be passed by keyword. Positional-only parameters are placed before a / (forward-slash). The / is used to logically separate the positional-only parameters from the rest of the parameters. If there is no / in the function definition, there are no positional-only parameters. Parameters following the / may be positional-or-keyword or keyword-only.",
+    "hint": "Refer to the Python tutorial on Positional-Only Parameters for more details."
+  },
+  {
+    "index": 20,
+    "section": "controlflow",
+    "exercise": "controlflow_keyword_only_arguments",
+    "title": "Keyword-Only Arguments",
+    "explanation": "To mark parameters as keyword-only, indicating the parameters must be passed by keyword argument, place an * in the arguments list just before the first keyword-only parameter.",
+    "hint": "Refer to the Python tutorial on Keyword-Only Arguments for more details."
+  },
+  {
+    "index": 21,
+    "section": "controlflow",
+    "exercise": "controlflow_function_examples",
+    "title": "Function Examples",
+    "explanation": "Consider the following example function definitions paying close attention to the markers / and *: The first function definition, standard_arg, the most familiar form, places no restrictions on the calling convention and arguments may be passed by position or keyword:",
+    "hint": "Refer to the Python tutorial on Function Examples for more details."
+  },
+  {
+    "index": 22,
+    "section": "controlflow",
+    "exercise": "controlflow_recap",
+    "title": "Recap",
+    "explanation": "The use case will determine which parameters to use in the function definition:",
+    "hint": "Refer to the Python tutorial on Recap for more details."
+  },
+  {
+    "index": 23,
+    "section": "controlflow",
+    "exercise": "controlflow_arbitrary_argument_lists",
+    "title": "Arbitrary Argument Lists",
+    "explanation": "Finally, the least frequently used option is to specify that a function can be called with an arbitrary number of arguments. These arguments will be wrapped up in a tuple (see Tuples and Sequences). Before the variable number of arguments, zero or more normal arguments may occur. Normally, these variadic arguments will be last in the list of formal parameters, because they scoop up all remaining input arguments that are passed to the function. Any formal parameters which occur after the *args parameter are ‘keyword-only’ arguments, meaning that they can only be used as keywords rather than positional arguments.",
+    "hint": "Refer to the Python tutorial on Arbitrary Argument Lists for more details."
+  },
+  {
+    "index": 24,
+    "section": "controlflow",
+    "exercise": "controlflow_unpacking_argument_lists",
+    "title": "Unpacking Argument Lists",
+    "explanation": "The reverse situation occurs when the arguments are already in a list or tuple but need to be unpacked for a function call requiring separate positional arguments. For instance, the built-in range() function expects separate start and stop arguments. If they are not available separately, write the function call with the *-operator to unpack the arguments out of a list or tuple: In the same fashion, dictionaries can deliver keyword arguments with the **-operator:",
+    "hint": "Refer to the Python tutorial on Unpacking Argument Lists for more details."
+  },
+  {
+    "index": 25,
+    "section": "controlflow",
+    "exercise": "controlflow_lambda_expressions",
+    "title": "Lambda Expressions",
+    "explanation": "Small anonymous functions can be created with the lambda keyword. This function returns the sum of its two arguments: lambda a, b: a+b. Lambda functions can be used wherever function objects are required. They are syntactically restricted to a single expression. Semantically, they are just syntactic sugar for a normal function definition. Like nested function definitions, lambda functions can reference variables from the containing scope: The above example uses a lambda expression to return a function. Another use is to pass a small function as an argument. For instance, list.sort() takes a sorting key function key which can be a lambda function:",
+    "hint": "Refer to the Python tutorial on Lambda Expressions for more details."
+  },
+  {
+    "index": 26,
+    "section": "controlflow",
+    "exercise": "controlflow_documentation_strings",
+    "title": "Documentation Strings",
+    "explanation": "Here are some conventions about the content and formatting of documentation strings. The first line should always be a short, concise summary of the object’s purpose. For brevity, it should not explicitly state the object’s name or type, since these are available by other means (except if the name happens to be a verb describing a function’s operation). This line should begin with a capital letter and end with a period.",
+    "hint": "Refer to the Python tutorial on Documentation Strings for more details."
+  },
+  {
+    "index": 27,
+    "section": "controlflow",
+    "exercise": "controlflow_function_annotations",
+    "title": "Function Annotations",
+    "explanation": "Function annotations are completely optional metadata information about the types used by user-defined functions (see PEP 3107 and PEP 484 for more information). Annotations are stored in the __annotations__ attribute of the function as a dictionary and have no effect on any other part of the function. Parameter annotations are defined by a colon after the parameter name, followed by an expression evaluating to the value of the annotation. Return annotations are defined by a literal ->, followed by an expression, between the parameter list and the colon denoting the end of the def statement. The following example has a required argument, an optional argument, and the return value annotated:",
+    "hint": "Refer to the Python tutorial on Function Annotations for more details."
+  },
+  {
+    "index": 28,
+    "section": "controlflow",
+    "exercise": "controlflow_intermezzo_coding_style",
+    "title": "Intermezzo: Coding Style",
+    "explanation": "Now that you are about to write longer, more complex pieces of Python, it is a good time to talk about coding style. Most languages can be written (or more concise, formatted) in different styles; some are more readable than others. Making it easy for others to read your code is always a good idea, and adopting a nice coding style helps tremendously for that. For Python, PEP 8 has emerged as the style guide that most projects adhere to; it promotes a very readable and eye-pleasing coding style. Every Python developer should read it at some point; here are the most important points extracted for you:",
+    "hint": "Refer to the Python tutorial on Intermezzo: Coding Style for more details."
+  },
+  {
+    "index": 29,
+    "section": "datastructures",
+    "exercise": "datastructures_using_lists_as_stacks",
+    "title": "Using Lists as Stacks",
+    "explanation": "The list methods make it very easy to use a list as a stack, where the last element added is the first element retrieved (“last-in, first-out”). To add an item to the top of the stack, use append(). To retrieve an item from the top of the stack, use pop() without an explicit index. For example:",
+    "hint": "Refer to the Python tutorial on Using Lists as Stacks for more details."
+  },
+  {
+    "index": 30,
+    "section": "datastructures",
+    "exercise": "datastructures_using_lists_as_queues",
+    "title": "Using Lists as Queues",
+    "explanation": "It is also possible to use a list as a queue, where the first element added is the first element retrieved (“first-in, first-out”); however, lists are not efficient for this purpose. While appends and pops from the end of list are fast, doing inserts or pops from the beginning of a list is slow (because all of the other elements have to be shifted by one). To implement a queue, use collections.deque which was designed to have fast appends and pops from both ends. For example:",
+    "hint": "Refer to the Python tutorial on Using Lists as Queues for more details."
+  },
+  {
+    "index": 31,
+    "section": "datastructures",
+    "exercise": "datastructures_list_comprehensions",
+    "title": "List Comprehensions",
+    "explanation": "List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition. For example, assume we want to create a list of squares, like:",
+    "hint": "Refer to the Python tutorial on List Comprehensions for more details."
+  },
+  {
+    "index": 32,
+    "section": "datastructures",
+    "exercise": "datastructures_nested_list_comprehensions",
+    "title": "Nested List Comprehensions",
+    "explanation": "The initial expression in a list comprehension can be any arbitrary expression, including another list comprehension. Consider the following example of a 3x4 matrix implemented as a list of 3 lists of length 4:",
+    "hint": "Refer to the Python tutorial on Nested List Comprehensions for more details."
+  },
+  {
+    "index": 33,
+    "section": "datastructures",
+    "exercise": "datastructures_the_del_statement",
+    "title": "The del statement",
+    "explanation": "There is a way to remove an item from a list given its index instead of its value: the del statement. This differs from the pop() method which returns a value. The del statement can also be used to remove slices from a list or clear the entire list (which we did earlier by assignment of an empty list to the slice). For example: del can also be used to delete entire variables:",
+    "hint": "Refer to the Python tutorial on The del statement for more details."
+  },
+  {
+    "index": 34,
+    "section": "datastructures",
+    "exercise": "datastructures_tuples_and_sequences",
+    "title": "Tuples and Sequences",
+    "explanation": "We saw that lists and strings have many common properties, such as indexing and slicing operations. They are two examples of sequence data types (see Sequence Types — list, tuple, range). Since Python is an evolving language, other sequence data types may be added. There is also another standard sequence data type: the tuple. A tuple consists of a number of values separated by commas, for instance:",
+    "hint": "Refer to the Python tutorial on Tuples and Sequences for more details."
+  },
+  {
+    "index": 35,
+    "section": "datastructures",
+    "exercise": "datastructures_sets",
+    "title": "Sets",
+    "explanation": "Python also includes a data type for sets. A set is an unordered collection with no duplicate elements. Basic uses include membership testing and eliminating duplicate entries. Set objects also support mathematical operations like union, intersection, difference, and symmetric difference. Curly braces or the set() function can be used to create sets. Note: to create an empty set you have to use set(), not {}; the latter creates an empty dictionary, a data structure that we discuss in the next section.",
+    "hint": "Refer to the Python tutorial on Sets for more details."
+  },
+  {
+    "index": 36,
+    "section": "datastructures",
+    "exercise": "datastructures_dictionaries",
+    "title": "Dictionaries",
+    "explanation": "Another useful data type built into Python is the dictionary (see Mapping Types — dict). Dictionaries are sometimes found in other languages as “associative memories” or “associative arrays”. Unlike sequences, which are indexed by a range of numbers, dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be keys. Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple contains any mutable object either directly or indirectly, it cannot be used as a key. You can’t use lists as keys, since lists can be modified in place using index assignments, slice assignments, or methods like append() and extend(). It is best to think of a dictionary as a set of key: value pairs, with the requirement that the keys are unique (within one dictionary). A pair of braces creates an empty dictionary: {}. Placing a comma-separated list of key:value pairs within the braces adds initial key:value pairs to the dictionary; this is also the way dictionaries are written on output.",
+    "hint": "Refer to the Python tutorial on Dictionaries for more details."
+  },
+  {
+    "index": 37,
+    "section": "datastructures",
+    "exercise": "datastructures_looping_techniques",
+    "title": "Looping Techniques",
+    "explanation": "When looping through dictionaries, the key and corresponding value can be retrieved at the same time using the items() method. When looping through a sequence, the position index and corresponding value can be retrieved at the same time using the enumerate() function.",
+    "hint": "Refer to the Python tutorial on Looping Techniques for more details."
+  },
+  {
+    "index": 38,
+    "section": "datastructures",
+    "exercise": "datastructures_more_on_conditions",
+    "title": "More on Conditions",
+    "explanation": "The conditions used in while and if statements can contain any operators, not just comparisons. The comparison operators in and not in are membership tests that determine whether a value is in (or not in) a container. The operators is and is not compare whether two objects are really the same object. All comparison operators have the same priority, which is lower than that of all numerical operators.",
+    "hint": "Refer to the Python tutorial on More on Conditions for more details."
+  },
+  {
+    "index": 39,
+    "section": "datastructures",
+    "exercise": "datastructures_comparing_sequences_and_other_types",
+    "title": "Comparing Sequences and Other Types",
+    "explanation": "Sequence objects typically may be compared to other objects with the same sequence type. The comparison uses lexicographical ordering: first the first two items are compared, and if they differ this determines the outcome of the comparison; if they are equal, the next two items are compared, and so on, until either sequence is exhausted. If two items to be compared are themselves sequences of the same type, the lexicographical comparison is carried out recursively. If all items of two sequences compare equal, the sequences are considered equal. If one sequence is an initial sub-sequence of the other, the shorter sequence is the smaller (lesser) one. Lexicographical ordering for strings uses the Unicode code point number to order individual characters. Some examples of comparisons between sequences of the same type: Note that comparing objects of different types with < or > is legal provided that the objects have appropriate comparison methods. For example, mixed numeric types are compared according to their numeric value, so 0 equals 0.0, etc. Otherwise, rather than providing an arbitrary ordering, the interpreter will raise a TypeError exception.",
+    "hint": "Refer to the Python tutorial on Comparing Sequences and Other Types for more details."
+  },
+  {
+    "index": 40,
+    "section": "modules",
+    "exercise": "modules_executing_modules_as_scripts",
+    "title": "Executing modules as scripts",
+    "explanation": "When you run a Python module with the code in the module will be executed, just as if you imported it, but with the __name__ set to \"__main__\". That means that by adding this code at the end of your module:",
+    "hint": "Refer to the Python tutorial on Executing modules as scripts for more details."
+  },
+  {
+    "index": 41,
+    "section": "modules",
+    "exercise": "modules_the_module_search_path",
+    "title": "The Module Search Path",
+    "explanation": "When a module named spam is imported, the interpreter first searches for a built-in module with that name. These module names are listed in sys.builtin_module_names. If not found, it then searches for a file named spam.py in a list of directories given by the variable sys.path. sys.path is initialized from these locations: More details are at The initialization of the sys.path module search path.",
+    "hint": "Refer to the Python tutorial on The Module Search Path for more details."
+  },
+  {
+    "index": 42,
+    "section": "modules",
+    "exercise": "modules_compiled_python_files",
+    "title": "“Compiled” Python files",
+    "explanation": "To speed up loading modules, Python caches the compiled version of each module in the __pycache__ directory under the name module.version.pyc, where the version encodes the format of the compiled file; it generally contains the Python version number. For example, in CPython release 3.3 the compiled version of spam.py would be cached as __pycache__/spam.cpython-33.pyc. This naming convention allows compiled modules from different releases and different versions of Python to coexist. Python checks the modification date of the source against the compiled version to see if it’s out of date and needs to be recompiled. This is a completely automatic process. Also, the compiled modules are platform-independent, so the same library can be shared among systems with different architectures.",
+    "hint": "Refer to the Python tutorial on “Compiled” Python files for more details."
+  },
+  {
+    "index": 43,
+    "section": "modules",
+    "exercise": "modules_standard_modules",
+    "title": "Standard Modules",
+    "explanation": "Python comes with a library of standard modules, described in a separate document, the Python Library Reference (“Library Reference” hereafter). Some modules are built into the interpreter; these provide access to operations that are not part of the core of the language but are nevertheless built in, either for efficiency or to provide access to operating system primitives such as system calls. The set of such modules is a configuration option which also depends on the underlying platform. For example, the winreg module is only provided on Windows systems. One particular module deserves some attention: sys, which is built into every Python interpreter. The variables sys.ps1 and sys.ps2 define the strings used as primary and secondary prompts: These two variables are only defined if the interpreter is in interactive mode.",
+    "hint": "Refer to the Python tutorial on Standard Modules for more details."
+  },
+  {
+    "index": 44,
+    "section": "modules",
+    "exercise": "modules_the_dir_function",
+    "title": "The dir() Function",
+    "explanation": "The built-in function dir() is used to find out which names a module defines. It returns a sorted list of strings: Without arguments, dir() lists the names you have defined currently:",
+    "hint": "Refer to the Python tutorial on The dir() Function for more details."
+  },
+  {
+    "index": 45,
+    "section": "modules",
+    "exercise": "modules_importing_from_a_package",
+    "title": "Importing * From a Package",
+    "explanation": "Now what happens when the user writes from sound.effects import *? Ideally, one would hope that this somehow goes out to the filesystem, finds which submodules are present in the package, and imports them all. This could take a long time and importing sub-modules might have unwanted side-effects that should only happen when the sub-module is explicitly imported. The only solution is for the package author to provide an explicit index of the package. The import statement uses the following convention: if a package’s __init__.py code defines a list named __all__, it is taken to be the list of module names that should be imported when from package import * is encountered. It is up to the package author to keep this list up-to-date when a new version of the package is released. Package authors may also decide not to support it, if they don’t see a use for importing * from their package. For example, the file sound/effects/__init__.py could contain the following code:",
+    "hint": "Refer to the Python tutorial on Importing * From a Package for more details."
+  },
+  {
+    "index": 46,
+    "section": "modules",
+    "exercise": "modules_intra_package_references",
+    "title": "Intra-package References",
+    "explanation": "When packages are structured into subpackages (as with the sound package in the example), you can use absolute imports to refer to submodules of siblings packages. For example, if the module sound.filters.vocoder needs to use the echo module in the sound.effects package, it can use from sound.effects import echo. You can also write relative imports, with the from module import name form of import statement. These imports use leading dots to indicate the current and parent packages involved in the relative import. From the surround module for example, you might use:",
+    "hint": "Refer to the Python tutorial on Intra-package References for more details."
+  },
+  {
+    "index": 47,
+    "section": "modules",
+    "exercise": "modules_packages_in_multiple_directories",
+    "title": "Packages in Multiple Directories",
+    "explanation": "Packages support one more special attribute, __path__. This is initialized to be a sequence of strings containing the name of the directory holding the package’s __init__.py before the code in that file is executed. This variable can be modified; doing so affects future searches for modules and subpackages contained in the package. While this feature is not often needed, it can be used to extend the set of modules found in a package.",
+    "hint": "Refer to the Python tutorial on Packages in Multiple Directories for more details."
+  },
+  {
+    "index": 48,
+    "section": "inputoutput",
+    "exercise": "inputoutput_formatted_string_literals",
+    "title": "Formatted String Literals",
+    "explanation": "Formatted string literals (also called f-strings for short) let you include the value of Python expressions inside a string by prefixing the string with f or F and writing expressions as {expression}. An optional format specifier can follow the expression. This allows greater control over how the value is formatted. The following example rounds pi to three places after the decimal:",
+    "hint": "Refer to the Python tutorial on Formatted String Literals for more details."
+  },
+  {
+    "index": 49,
+    "section": "inputoutput",
+    "exercise": "inputoutput_the_string_format_method",
+    "title": "The String format() Method",
+    "explanation": "Basic usage of the str.format() method looks like this: The brackets and characters within them (called format fields) are replaced with the objects passed into the str.format() method. A number in the brackets can be used to refer to the position of the object passed into the str.format() method.",
+    "hint": "Refer to the Python tutorial on The String format() Method for more details."
+  },
+  {
+    "index": 50,
+    "section": "inputoutput",
+    "exercise": "inputoutput_manual_string_formatting",
+    "title": "Manual String Formatting",
+    "explanation": "Here’s the same table of squares and cubes, formatted manually: (Note that the one space between each column was added by the way print() works: it always adds spaces between its arguments.)",
+    "hint": "Refer to the Python tutorial on Manual String Formatting for more details."
+  },
+  {
+    "index": 51,
+    "section": "inputoutput",
+    "exercise": "inputoutput_old_string_formatting",
+    "title": "Old string formatting",
+    "explanation": "The % operator (modulo) can also be used for string formatting. Given format % values (where format is a string), % conversion specifications in format are replaced with zero or more elements of values. This operation is commonly known as string interpolation. For example: More information can be found in the printf-style String Formatting section.",
+    "hint": "Refer to the Python tutorial on Old string formatting for more details."
+  },
+  {
+    "index": 52,
+    "section": "inputoutput",
+    "exercise": "inputoutput_methods_of_file_objects",
+    "title": "Methods of File Objects",
+    "explanation": "The rest of the examples in this section will assume that a file object called f has already been created. To read a file’s contents, call f.read(size), which reads some quantity of data and returns it as a string (in text mode) or bytes object (in binary mode). size is an optional numeric argument. When size is omitted or negative, the entire contents of the file will be read and returned; it’s your problem if the file is twice as large as your machine’s memory. Otherwise, at most size characters (in text mode) or size bytes (in binary mode) are read and returned. If the end of the file has been reached, f.read() will return an empty string ('').",
+    "hint": "Refer to the Python tutorial on Methods of File Objects for more details."
+  },
+  {
+    "index": 53,
+    "section": "inputoutput",
+    "exercise": "inputoutput_saving_structured_data_with_json",
+    "title": "Saving structured data with json",
+    "explanation": "Strings can easily be written to and read from a file. Numbers take a bit more effort, since the read() method only returns strings, which will have to be passed to a function like int(), which takes a string like '123' and returns its numeric value 123. When you want to save more complex data types like nested lists and dictionaries, parsing and serializing by hand becomes complicated. Rather than having users constantly writing and debugging code to save complicated data types to files, Python allows you to use the popular data interchange format called JSON (JavaScript Object Notation). The standard module called json can take Python data hierarchies, and convert them to string representations; this process is called serializing. Reconstructing the data from the string representation is called deserializing. Between serializing and deserializing, the string representing the object may have been stored in a file or data, or sent over a network connection to some distant machine.",
+    "hint": "Refer to the Python tutorial on Saving structured data with json for more details."
+  },
+  {
+    "index": 54,
+    "section": "errors",
+    "exercise": "errors_syntax_errors",
+    "title": "Syntax Errors",
+    "explanation": "Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Python: The parser repeats the offending line and displays little arrows pointing at the place where the error was detected. Note that this is not always the place that needs to be fixed. In the example, the error is detected at the function print(), since a colon (':') is missing just before it.",
+    "hint": "Refer to the Python tutorial on Syntax Errors for more details."
+  },
+  {
+    "index": 55,
+    "section": "errors",
+    "exercise": "errors_exceptions",
+    "title": "Exceptions",
+    "explanation": "Even if a statement or expression is syntactically correct, it may cause an error when an attempt is made to execute it. Errors detected during execution are called exceptions and are not unconditionally fatal: you will soon learn how to handle them in Python programs. Most exceptions are not handled by programs, however, and result in error messages as shown here: The last line of the error message indicates what happened. Exceptions come in different types, and the type is printed as part of the message: the types in the example are ZeroDivisionError, NameError and TypeError. The string printed as the exception type is the name of the built-in exception that occurred. This is true for all built-in exceptions, but need not be true for user-defined exceptions (although it is a useful convention). Standard exception names are built-in identifiers (not reserved keywords).",
+    "hint": "Refer to the Python tutorial on Exceptions for more details."
+  },
+  {
+    "index": 56,
+    "section": "errors",
+    "exercise": "errors_handling_exceptions",
+    "title": "Handling Exceptions",
+    "explanation": "It is possible to write programs that handle selected exceptions. Look at the following example, which asks the user for input until a valid integer has been entered, but allows the user to interrupt the program (using Control-C or whatever the operating system supports); note that a user-generated interruption is signalled by raising the KeyboardInterrupt exception. The try statement works as follows.",
+    "hint": "Refer to the Python tutorial on Handling Exceptions for more details."
+  },
+  {
+    "index": 57,
+    "section": "errors",
+    "exercise": "errors_raising_exceptions",
+    "title": "Raising Exceptions",
+    "explanation": "The raise statement allows the programmer to force a specified exception to occur. For example: The sole argument to raise indicates the exception to be raised. This must be either an exception instance or an exception class (a class that derives from BaseException, such as Exception or one of its subclasses). If an exception class is passed, it will be implicitly instantiated by calling its constructor with no arguments:",
+    "hint": "Refer to the Python tutorial on Raising Exceptions for more details."
+  },
+  {
+    "index": 58,
+    "section": "errors",
+    "exercise": "errors_exception_chaining",
+    "title": "Exception Chaining",
+    "explanation": "If an unhandled exception occurs inside an except section, it will have the exception being handled attached to it and included in the error message: To indicate that an exception is a direct consequence of another, the raise statement allows an optional from clause:",
+    "hint": "Refer to the Python tutorial on Exception Chaining for more details."
+  },
+  {
+    "index": 59,
+    "section": "errors",
+    "exercise": "errors_user_defined_exceptions",
+    "title": "User-defined Exceptions",
+    "explanation": "Programs may name their own exceptions by creating a new exception class (see Classes for more about Python classes). Exceptions should typically be derived from the Exception class, either directly or indirectly. Exception classes can be defined which do anything any other class can do, but are usually kept simple, often only offering a number of attributes that allow information about the error to be extracted by handlers for the exception.",
+    "hint": "Refer to the Python tutorial on User-defined Exceptions for more details."
+  },
+  {
+    "index": 60,
+    "section": "errors",
+    "exercise": "errors_defining_clean_up_actions",
+    "title": "Defining Clean-up Actions",
+    "explanation": "The try statement has another optional clause which is intended to define clean-up actions that must be executed under all circumstances. For example: If a finally clause is present, the finally clause will execute as the last task before the try statement completes. The finally clause runs whether or not the try statement produces an exception. The following points discuss more complex cases when an exception occurs:",
+    "hint": "Refer to the Python tutorial on Defining Clean-up Actions for more details."
+  },
+  {
+    "index": 61,
+    "section": "errors",
+    "exercise": "errors_predefined_clean_up_actions",
+    "title": "Predefined Clean-up Actions",
+    "explanation": "Some objects define standard clean-up actions to be undertaken when the object is no longer needed, regardless of whether or not the operation using the object succeeded or failed. Look at the following example, which tries to open a file and print its contents to the screen. The problem with this code is that it leaves the file open for an indeterminate amount of time after this part of the code has finished executing. This is not an issue in simple scripts, but can be a problem for larger applications. The with statement allows objects like files to be used in a way that ensures they are always cleaned up promptly and correctly.",
+    "hint": "Refer to the Python tutorial on Predefined Clean-up Actions for more details."
+  },
+  {
+    "index": 62,
+    "section": "errors",
+    "exercise": "errors_raising_and_handling_multiple_unrelated_exceptions",
+    "title": "Raising and Handling Multiple Unrelated Exceptions",
+    "explanation": "There are situations where it is necessary to report several exceptions that have occurred. This is often the case in concurrency frameworks, when several tasks may have failed in parallel, but there are also other use cases where it is desirable to continue execution and collect multiple errors rather than raise the first exception. The builtin ExceptionGroup wraps a list of exception instances so that they can be raised together. It is an exception itself, so it can be caught like any other exception.",
+    "hint": "Refer to the Python tutorial on Raising and Handling Multiple Unrelated Exceptions for more details."
+  },
+  {
+    "index": 63,
+    "section": "errors",
+    "exercise": "errors_enriching_exceptions_with_notes",
+    "title": "Enriching Exceptions with Notes",
+    "explanation": "When an exception is created in order to be raised, it is usually initialized with information that describes the error that has occurred. There are cases where it is useful to add information after the exception was caught. For this purpose, exceptions have a method add_note(note) that accepts a string and adds it to the exception’s notes list. The standard traceback rendering includes all notes, in the order they were added, after the exception. For example, when collecting exceptions into an exception group, we may want to add context information for the individual errors. In the following each exception in the group has a note indicating when this error has occurred.",
+    "hint": "Refer to the Python tutorial on Enriching Exceptions with Notes for more details."
+  },
+  {
+    "index": 64,
+    "section": "classes",
+    "exercise": "classes_a_word_about_names_and_objects",
+    "title": "A Word About Names and Objects",
+    "explanation": "Objects have individuality, and multiple names (in multiple scopes) can be bound to the same object. This is known as aliasing in other languages. This is usually not appreciated on a first glance at Python, and can be safely ignored when dealing with immutable basic types (numbers, strings, tuples). However, aliasing has a possibly surprising effect on the semantics of Python code involving mutable objects such as lists, dictionaries, and most other types. This is usually used to the benefit of the program, since aliases behave like pointers in some respects. For example, passing an object is cheap since only a pointer is passed by the implementation; and if a function modifies an object passed as an argument, the caller will see the change — this eliminates the need for two different argument passing mechanisms as in Pascal.",
+    "hint": "Refer to the Python tutorial on A Word About Names and Objects for more details."
+  },
+  {
+    "index": 65,
+    "section": "classes",
+    "exercise": "classes_scopes_and_namespaces_example",
+    "title": "Scopes and Namespaces Example",
+    "explanation": "This is an example demonstrating how to reference the different scopes and namespaces, and how global and nonlocal affect variable binding: The output of the example code is:",
+    "hint": "Refer to the Python tutorial on Scopes and Namespaces Example for more details."
+  },
+  {
+    "index": 66,
+    "section": "classes",
+    "exercise": "classes_class_definition_syntax",
+    "title": "Class Definition Syntax",
+    "explanation": "The simplest form of class definition looks like this: Class definitions, like function definitions (def statements) must be executed before they have any effect. (You could conceivably place a class definition in a branch of an if statement, or inside a function.)",
+    "hint": "Refer to the Python tutorial on Class Definition Syntax for more details."
+  },
+  {
+    "index": 67,
+    "section": "classes",
+    "exercise": "classes_class_objects",
+    "title": "Class Objects",
+    "explanation": "Class objects support two kinds of operations: attribute references and instantiation. Attribute references use the standard syntax used for all attribute references in Python: obj.name. Valid attribute names are all the names that were in the class’s namespace when the class object was created. So, if the class definition looked like this:",
+    "hint": "Refer to the Python tutorial on Class Objects for more details."
+  },
+  {
+    "index": 68,
+    "section": "classes",
+    "exercise": "classes_instance_objects",
+    "title": "Instance Objects",
+    "explanation": "Now what can we do with instance objects? The only operations understood by instance objects are attribute references. There are two kinds of valid attribute names: data attributes and methods. Data attributes correspond to “instance variables” in Smalltalk, and to “data members” in C++. Data attributes need not be declared; like local variables, they spring into existence when they are first assigned to. For example, if x is the instance of MyClass created above, the following piece of code will print the value 16, without leaving a trace:",
+    "hint": "Refer to the Python tutorial on Instance Objects for more details."
+  },
+  {
+    "index": 69,
+    "section": "classes",
+    "exercise": "classes_method_objects",
+    "title": "Method Objects",
+    "explanation": "Usually, a method is called right after it is bound: If x = MyClass(), as above, this will return the string 'hello world'. However, it is not necessary to call a method right away: x.f is a method object, and can be stored away and called at a later time. For example:",
+    "hint": "Refer to the Python tutorial on Method Objects for more details."
+  },
+  {
+    "index": 70,
+    "section": "classes",
+    "exercise": "classes_class_and_instance_variables",
+    "title": "Class and Instance Variables",
+    "explanation": "Generally speaking, instance variables are for data unique to each instance and class variables are for attributes and methods shared by all instances of the class: As discussed in A Word About Names and Objects, shared data can have possibly surprising effects with involving mutable objects such as lists and dictionaries. For example, the tricks list in the following code should not be used as a class variable because just a single list would be shared by all Dog instances:",
+    "hint": "Refer to the Python tutorial on Class and Instance Variables for more details."
+  },
+  {
+    "index": 71,
+    "section": "classes",
+    "exercise": "classes_random_remarks",
+    "title": "Random Remarks",
+    "explanation": "If the same attribute name occurs in both an instance and in a class, then attribute lookup prioritizes the instance: Data attributes may be referenced by methods as well as by ordinary users (“clients”) of an object. In other words, classes are not usable to implement pure abstract data types. In fact, nothing in Python makes it possible to enforce data hiding — it is all based upon convention. (On the other hand, the Python implementation, written in C, can completely hide implementation details and control access to an object if necessary; this can be used by extensions to Python written in C.)",
+    "hint": "Refer to the Python tutorial on Random Remarks for more details."
+  },
+  {
+    "index": 72,
+    "section": "classes",
+    "exercise": "classes_multiple_inheritance",
+    "title": "Multiple Inheritance",
+    "explanation": "Python supports a form of multiple inheritance as well. A class definition with multiple base classes looks like this: For most purposes, in the simplest cases, you can think of the search for attributes inherited from a parent class as depth-first, left-to-right, not searching twice in the same class where there is an overlap in the hierarchy. Thus, if an attribute is not found in DerivedClassName, it is searched for in Base1, then (recursively) in the base classes of Base1, and if it was not found there, it was searched for in Base2, and so on.",
+    "hint": "Refer to the Python tutorial on Multiple Inheritance for more details."
+  },
+  {
+    "index": 73,
+    "section": "classes",
+    "exercise": "classes_private_variables",
+    "title": "Private Variables",
+    "explanation": "“Private” instance variables that cannot be accessed except from inside an object don’t exist in Python. However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member). It should be considered an implementation detail and subject to change without notice. Since there is a valid use-case for class-private members (namely to avoid name clashes of names with names defined by subclasses), there is limited support for such a mechanism, called name mangling. Any identifier of the form __spam (at least two leading underscores, at most one trailing underscore) is textually replaced with _classname__spam, where classname is the current class name with leading underscore(s) stripped. This mangling is done without regard to the syntactic position of the identifier, as long as it occurs within the definition of a class.",
+    "hint": "Refer to the Python tutorial on Private Variables for more details."
+  },
+  {
+    "index": 74,
+    "section": "classes",
+    "exercise": "classes_odds_and_ends",
+    "title": "Odds and Ends",
+    "explanation": "Sometimes it is useful to have a data type similar to the Pascal “record” or C “struct”, bundling together a few named data items. The idiomatic approach is to use dataclasses for this purpose: A piece of Python code that expects a particular abstract data type can often be passed a class that emulates the methods of that data type instead. For instance, if you have a function that formats some data from a file object, you can define a class with methods read() and readline() that get the data from a string buffer instead, and pass it as an argument.",
+    "hint": "Refer to the Python tutorial on Odds and Ends for more details."
+  },
+  {
+    "index": 75,
+    "section": "classes",
+    "exercise": "classes_iterators",
+    "title": "Iterators",
+    "explanation": "By now you have probably noticed that most container objects can be looped over using a for statement: This style of access is clear, concise, and convenient. The use of iterators pervades and unifies Python. Behind the scenes, the for statement calls iter() on the container object. The function returns an iterator object that defines the method __next__() which accesses elements in the container one at a time. When there are no more elements, __next__() raises a StopIteration exception which tells the for loop to terminate. You can call the __next__() method using the next() built-in function; this example shows how it all works:",
+    "hint": "Refer to the Python tutorial on Iterators for more details."
+  },
+  {
+    "index": 76,
+    "section": "classes",
+    "exercise": "classes_generators",
+    "title": "Generators",
+    "explanation": "Generators are a simple and powerful tool for creating iterators. They are written like regular functions but use the yield statement whenever they want to return data. Each time next() is called on it, the generator resumes where it left off (it remembers all the data values and which statement was last executed). An example shows that generators can be trivially easy to create: Anything that can be done with generators can also be done with class-based iterators as described in the previous section. What makes generators so compact is that the __iter__() and __next__() methods are created automatically.",
+    "hint": "Refer to the Python tutorial on Generators for more details."
+  },
+  {
+    "index": 77,
+    "section": "classes",
+    "exercise": "classes_generator_expressions",
+    "title": "Generator Expressions",
+    "explanation": "Some simple generators can be coded succinctly as expressions using a syntax similar to list comprehensions but with parentheses instead of square brackets. These expressions are designed for situations where the generator is used right away by an enclosing function. Generator expressions are more compact but less versatile than full generator definitions and tend to be more memory friendly than equivalent list comprehensions.",
+    "hint": "Refer to the Python tutorial on Generator Expressions for more details."
+  },
+  {
+    "index": 78,
+    "section": "stdlib",
+    "exercise": "stdlib_operating_system_interface",
+    "title": "Operating System Interface",
+    "explanation": "The os module provides dozens of functions for interacting with the operating system: Be sure to use the import os style instead of from os import *. This will keep os.open() from shadowing the built-in open() function which operates much differently.",
+    "hint": "Refer to the Python tutorial on Operating System Interface for more details."
+  },
+  {
+    "index": 79,
+    "section": "stdlib",
+    "exercise": "stdlib_file_wildcards",
+    "title": "File Wildcards",
+    "explanation": "The glob module provides a function for making file lists from directory wildcard searches:",
+    "hint": "Refer to the Python tutorial on File Wildcards for more details."
+  },
+  {
+    "index": 80,
+    "section": "stdlib",
+    "exercise": "stdlib_command_line_arguments",
+    "title": "Command Line Arguments",
+    "explanation": "Common utility scripts often need to process command line arguments. These arguments are stored in the sys module’s argv attribute as a list. For instance, let’s take the following demo.py file: Here is the output from running python demo.py one two three at the command line:",
+    "hint": "Refer to the Python tutorial on Command Line Arguments for more details."
+  },
+  {
+    "index": 81,
+    "section": "stdlib",
+    "exercise": "stdlib_error_output_redirection_and_program_termination",
+    "title": "Error Output Redirection and Program Termination",
+    "explanation": "The sys module also has attributes for stdin, stdout, and stderr. The latter is useful for emitting warnings and error messages to make them visible even when stdout has been redirected: The most direct way to terminate a script is to use sys.exit().",
+    "hint": "Refer to the Python tutorial on Error Output Redirection and Program Termination for more details."
+  },
+  {
+    "index": 82,
+    "section": "stdlib",
+    "exercise": "stdlib_string_pattern_matching",
+    "title": "String Pattern Matching",
+    "explanation": "The re module provides regular expression tools for advanced string processing. For complex matching and manipulation, regular expressions offer succinct, optimized solutions: When only simple capabilities are needed, string methods are preferred because they are easier to read and debug:",
+    "hint": "Refer to the Python tutorial on String Pattern Matching for more details."
+  },
+  {
+    "index": 83,
+    "section": "stdlib",
+    "exercise": "stdlib_mathematics",
+    "title": "Mathematics",
+    "explanation": "The math module gives access to the underlying C library functions for floating-point math: The random module provides tools for making random selections:",
+    "hint": "Refer to the Python tutorial on Mathematics for more details."
+  },
+  {
+    "index": 84,
+    "section": "stdlib",
+    "exercise": "stdlib_internet_access",
+    "title": "Internet Access",
+    "explanation": "There are a number of modules for accessing the internet and processing internet protocols. Two of the simplest are urllib.request for retrieving data from URLs and smtplib for sending mail: (Note that the second example needs a mailserver running on localhost.)",
+    "hint": "Refer to the Python tutorial on Internet Access for more details."
+  },
+  {
+    "index": 85,
+    "section": "stdlib",
+    "exercise": "stdlib_dates_and_times",
+    "title": "Dates and Times",
+    "explanation": "The datetime module supplies classes for manipulating dates and times in both simple and complex ways. While date and time arithmetic is supported, the focus of the implementation is on efficient member extraction for output formatting and manipulation. The module also supports objects that are timezone aware.",
+    "hint": "Refer to the Python tutorial on Dates and Times for more details."
+  },
+  {
+    "index": 86,
+    "section": "stdlib",
+    "exercise": "stdlib_data_compression",
+    "title": "Data Compression",
+    "explanation": "Common data archiving and compression formats are directly supported by modules including: zlib, gzip, bz2, lzma, zipfile and tarfile.",
+    "hint": "Refer to the Python tutorial on Data Compression for more details."
+  },
+  {
+    "index": 87,
+    "section": "stdlib",
+    "exercise": "stdlib_performance_measurement",
+    "title": "Performance Measurement",
+    "explanation": "Some Python users develop a deep interest in knowing the relative performance of different approaches to the same problem. Python provides a measurement tool that answers those questions immediately. For example, it may be tempting to use the tuple packing and unpacking feature instead of the traditional approach to swapping arguments. The timeit module quickly demonstrates a modest performance advantage:",
+    "hint": "Refer to the Python tutorial on Performance Measurement for more details."
+  },
+  {
+    "index": 88,
+    "section": "stdlib",
+    "exercise": "stdlib_quality_control",
+    "title": "Quality Control",
+    "explanation": "One approach for developing high quality software is to write tests for each function as it is developed and to run those tests frequently during the development process. The doctest module provides a tool for scanning a module and validating tests embedded in a program’s docstrings. Test construction is as simple as cutting-and-pasting a typical call along with its results into the docstring. This improves the documentation by providing the user with an example and it allows the doctest module to make sure the code remains true to the documentation:",
+    "hint": "Refer to the Python tutorial on Quality Control for more details."
+  },
+  {
+    "index": 89,
+    "section": "stdlib",
+    "exercise": "stdlib_batteries_included",
+    "title": "Batteries Included",
+    "explanation": "Python has a “batteries included” philosophy. This is best seen through the sophisticated and robust capabilities of its larger packages. For example:",
+    "hint": "Refer to the Python tutorial on Batteries Included for more details."
+  },
+  {
+    "index": 90,
+    "section": "stdlib2",
+    "exercise": "stdlib2_output_formatting",
+    "title": "Output Formatting",
+    "explanation": "The reprlib module provides a version of repr() customized for abbreviated displays of large or deeply nested containers: The pprint module offers more sophisticated control over printing both built-in and user defined objects in a way that is readable by the interpreter. When the result is longer than one line, the “pretty printer” adds line breaks and indentation to more clearly reveal data structure:",
+    "hint": "Refer to the Python tutorial on Output Formatting for more details."
+  },
+  {
+    "index": 91,
+    "section": "stdlib2",
+    "exercise": "stdlib2_templating",
+    "title": "Templating",
+    "explanation": "The string module includes a versatile Template class with a simplified syntax suitable for editing by end-users. This allows users to customize their applications without having to alter the application. The format uses placeholder names formed by $ with valid Python identifiers (alphanumeric characters and underscores). Surrounding the placeholder with braces allows it to be followed by more alphanumeric letters with no intervening spaces. Writing $$ creates a single escaped $:",
+    "hint": "Refer to the Python tutorial on Templating for more details."
+  },
+  {
+    "index": 92,
+    "section": "stdlib2",
+    "exercise": "stdlib2_working_with_binary_data_record_layouts",
+    "title": "Working with Binary Data Record Layouts",
+    "explanation": "The struct module provides pack() and unpack() functions for working with variable length binary record formats. The following example shows how to loop through header information in a ZIP file without using the zipfile module. Pack codes \"H\" and \"I\" represent two and four byte unsigned numbers respectively. The \"<\" indicates that they are standard size and in little-endian byte order:",
+    "hint": "Refer to the Python tutorial on Working with Binary Data Record Layouts for more details."
+  },
+  {
+    "index": 93,
+    "section": "stdlib2",
+    "exercise": "stdlib2_multi_threading",
+    "title": "Multi-threading",
+    "explanation": "Threading is a technique for decoupling tasks which are not sequentially dependent. Threads can be used to improve the responsiveness of applications that accept user input while other tasks run in the background. A related use case is running I/O in parallel with computations in another thread. The following code shows how the high level threading module can run tasks in background while the main program continues to run:",
+    "hint": "Refer to the Python tutorial on Multi-threading for more details."
+  },
+  {
+    "index": 94,
+    "section": "stdlib2",
+    "exercise": "stdlib2_logging",
+    "title": "Logging",
+    "explanation": "The logging module offers a full featured and flexible logging system. At its simplest, log messages are sent to a file or to sys.stderr: This produces the following output:",
+    "hint": "Refer to the Python tutorial on Logging for more details."
+  },
+  {
+    "index": 95,
+    "section": "stdlib2",
+    "exercise": "stdlib2_weak_references",
+    "title": "Weak References",
+    "explanation": "Python does automatic memory management (reference counting for most objects and garbage collection to eliminate cycles). The memory is freed shortly after the last reference to it has been eliminated. This approach works fine for most applications but occasionally there is a need to track objects only as long as they are being used by something else. Unfortunately, just tracking them creates a reference that makes them permanent. The weakref module provides tools for tracking objects without creating a reference. When the object is no longer needed, it is automatically removed from a weakref table and a callback is triggered for weakref objects. Typical applications include caching objects that are expensive to create:",
+    "hint": "Refer to the Python tutorial on Weak References for more details."
+  },
+  {
+    "index": 96,
+    "section": "stdlib2",
+    "exercise": "stdlib2_tools_for_working_with_lists",
+    "title": "Tools for Working with Lists",
+    "explanation": "Many data structure needs can be met with the built-in list type. However, sometimes there is a need for alternative implementations with different performance trade-offs. The array module provides an array object that is like a list that stores only homogeneous data and stores it more compactly. The following example shows an array of numbers stored as two byte unsigned binary numbers (typecode \"H\") rather than the usual 16 bytes per entry for regular lists of Python int objects:",
+    "hint": "Refer to the Python tutorial on Tools for Working with Lists for more details."
+  },
+  {
+    "index": 97,
+    "section": "stdlib2",
+    "exercise": "stdlib2_decimal_floating_point_arithmetic",
+    "title": "Decimal Floating-Point Arithmetic",
+    "explanation": "The decimal module offers a Decimal datatype for decimal floating-point arithmetic. Compared to the built-in float implementation of binary floating point, the class is especially helpful for For example, calculating a 5% tax on a 70 cent phone charge gives different results in decimal floating point and binary floating point. The difference becomes significant if the results are rounded to the nearest cent:",
+    "hint": "Refer to the Python tutorial on Decimal Floating-Point Arithmetic for more details."
+  },
+  {
+    "index": 98,
+    "section": "venv",
+    "exercise": "venv_introduction",
+    "title": "Introduction",
+    "explanation": "Python applications will often use packages and modules that don’t come as part of the standard library. Applications will sometimes need a specific version of a library, because the application may require that a particular bug has been fixed or the application may be written using an obsolete version of the library’s interface. This means it may not be possible for one Python installation to meet the requirements of every application. If application A needs version 1.0 of a particular module but application B needs version 2.0, then the requirements are in conflict and installing either version 1.0 or 2.0 will leave one application unable to run.",
+    "hint": "Refer to the Python tutorial on Introduction for more details."
+  },
+  {
+    "index": 99,
+    "section": "venv",
+    "exercise": "venv_creating_virtual_environments",
+    "title": "Creating Virtual Environments",
+    "explanation": "The module used to create and manage virtual environments is called venv. venv will install the Python version from which the command was run (as reported by the --version option). For instance, executing the command with python3.12 will install version 3.12. To create a virtual environment, decide upon a directory where you want to place it, and run the venv module as a script with the directory path:",
+    "hint": "Refer to the Python tutorial on Creating Virtual Environments for more details."
+  },
+  {
+    "index": 100,
+    "section": "venv",
+    "exercise": "venv_managing_packages_with_pip",
+    "title": "Managing Packages with pip",
+    "explanation": "You can install, upgrade, and remove packages using a program called pip. By default pip will install packages from the Python Package Index. You can browse the Python Package Index by going to it in your web browser. pip has a number of subcommands: “install”, “uninstall”, “freeze”, etc. (Consult the Installing Python Modules guide for complete documentation for pip.)",
+    "hint": "Refer to the Python tutorial on Managing Packages with pip for more details."
+  },
+  {
+    "index": 101,
+    "section": "whatnow",
+    "exercise": "whatnow",
+    "title": "What Now?",
+    "explanation": "Reading this tutorial has probably reinforced your interest in using Python — you should be eager to apply Python to solving your real-world problems. Where should you go to learn more? This tutorial is part of Python’s documentation set. Some other documents in the set are:",
+    "hint": "Refer to the Python tutorial on What Now? for more details."
+  },
+  {
+    "index": 102,
+    "section": "interactive",
+    "exercise": "interactive_tab_completion_and_history_editing",
+    "title": "Tab Completion and History Editing",
+    "explanation": "Completion of variable and module names is automatically enabled at interpreter startup so that the Tab key invokes the completion function; it looks at Python statement names, the current local variables, and the available module names. For dotted expressions such as string.a, it will evaluate the expression up to the final '.' and then suggest completions from the attributes of the resulting object. Note that this may execute application-defined code if an object with a __getattr__() method is part of the expression. The default configuration also saves your history into a file named .python_history in your user directory. The history will be available again during the next interactive interpreter session.",
+    "hint": "Refer to the Python tutorial on Tab Completion and History Editing for more details."
+  },
+  {
+    "index": 103,
+    "section": "interactive",
+    "exercise": "interactive_alternatives_to_the_interactive_interpreter",
+    "title": "Alternatives to the Interactive Interpreter",
+    "explanation": "This facility is an enormous step forward compared to earlier versions of the interpreter; however, some wishes are left: It would be nice if the proper indentation were suggested on continuation lines (the parser knows if an INDENT token is required next). The completion mechanism might use the interpreter’s symbol table. A command to check (or even suggest) matching parentheses, quotes, etc., would also be useful. One alternative enhanced interactive interpreter that has been around for quite some time is IPython, which features tab completion, object exploration and advanced history management. It can also be thoroughly customized and embedded into other applications. Another similar enhanced interactive environment is bpython.",
+    "hint": "Refer to the Python tutorial on Alternatives to the Interactive Interpreter for more details."
+  },
+  {
+    "index": 104,
+    "section": "floatingpoint",
+    "exercise": "floatingpoint_representation_error",
+    "title": "Representation Error",
+    "explanation": "This section explains the “0.1” example in detail, and shows how you can perform an exact analysis of cases like this yourself. Basic familiarity with binary floating-point representation is assumed. Representation error refers to the fact that some (most, actually) decimal fractions cannot be represented exactly as binary (base 2) fractions. This is the chief reason why Python (or Perl, C, C++, Java, Fortran, and many others) often won’t display the exact decimal number you expect.",
+    "hint": "Refer to the Python tutorial on Representation Error for more details."
+  },
+  {
+    "index": 105,
+    "section": "appendix",
+    "exercise": "appendix_error_handling",
+    "title": "Error Handling",
+    "explanation": "When an error occurs, the interpreter prints an error message and a stack trace. In interactive mode, it then returns to the primary prompt; when input came from a file, it exits with a nonzero exit status after printing the stack trace. (Exceptions handled by an except clause in a try statement are not errors in this context.) Some errors are unconditionally fatal and cause an exit with a nonzero exit status; this applies to internal inconsistencies and some cases of running out of memory. All error messages are written to the standard error stream; normal output from executed commands is written to standard output. Typing the interrupt character (usually Control-C or Delete) to the primary or secondary prompt cancels the input and returns to the primary prompt. [1] Typing an interrupt while a command is executing raises the KeyboardInterrupt exception, which may be handled by a try statement.",
+    "hint": "Refer to the Python tutorial on Error Handling for more details."
+  },
+  {
+    "index": 106,
+    "section": "appendix",
+    "exercise": "appendix_executable_python_scripts",
+    "title": "Executable Python Scripts",
+    "explanation": "On BSD’ish Unix systems, Python scripts can be made directly executable, like shell scripts, by putting the line (assuming that the interpreter is on the user’s PATH) at the beginning of the script and giving the file an executable mode. The #! must be the first two characters of the file. On some platforms, this first line must end with a Unix-style line ending ('\\n'), not a Windows ('\\r\\n') line ending. Note that the hash, or pound, character, '#', is used to start a comment in Python.",
+    "hint": "Refer to the Python tutorial on Executable Python Scripts for more details."
+  },
+  {
+    "index": 107,
+    "section": "appendix",
+    "exercise": "appendix_the_interactive_startup_file",
+    "title": "The Interactive Startup File",
+    "explanation": "When you use Python interactively, it is frequently handy to have some standard commands executed every time the interpreter is started. You can do this by setting an environment variable named PYTHONSTARTUP to the name of a file containing your start-up commands. This is similar to the .profile feature of the Unix shells. This file is only read in interactive sessions, not when Python reads commands from a script, and not when /dev/tty is given as the explicit source of commands (which otherwise behaves like an interactive session). It is executed in the same namespace where interactive commands are executed, so that objects that it defines or imports can be used without qualification in the interactive session. You can also change the prompts sys.ps1 and sys.ps2 in this file.",
+    "hint": "Refer to the Python tutorial on The Interactive Startup File for more details."
+  },
+  {
+    "index": 108,
+    "section": "appendix",
+    "exercise": "appendix_the_customization_modules",
+    "title": "The Customization Modules",
+    "explanation": "Python provides two hooks to let you customize it: sitecustomize and usercustomize. To see how it works, you need first to find the location of your user site-packages directory. Start Python and run this code: Now you can create a file named usercustomize.py in that directory and put anything you want in it. It will affect every invocation of Python, unless it is started with the -s option to disable the automatic import.",
+    "hint": "Refer to the Python tutorial on The Customization Modules for more details."
+  }
+]

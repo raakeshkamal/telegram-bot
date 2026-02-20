@@ -3,3 +3,4 @@ pydantic
 beautifulsoup4
 requests
 pymongo
+curl_cffi

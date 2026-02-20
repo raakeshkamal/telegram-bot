@@ -43,12 +43,12 @@ MCP_SERVER_URL = os.environ.get("MCP_SERVER_URL", "http://mcp-server:8000/mcp")
 # --- Local Tool Definitions ---
 
 
-async def get_london_weather():
-    """Fetch current weather for London from Open-Meteo API."""
+async def get_cambridge_weather():
+    """Fetch current weather for Cambridge, UK from Open-Meteo API."""
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": 51.5072,
-        "longitude": -0.1276,
+        "latitude": 52.1951,
+        "longitude": 0.1313,
         "current_weather": "true",
     }
     async with aiohttp.ClientSession() as session:
@@ -64,9 +64,9 @@ async def get_london_weather():
 
 
 @tool
-async def get_current_weather_london():
-    """Get the current weather in London."""
-    return await get_london_weather()
+async def get_current_weather_cambridge():
+    """Get the current weather in Cambridge, UK."""
+    return await get_cambridge_weather()
 
 
 # --- Persona Definition ---
@@ -146,7 +146,7 @@ async def initialize_personas():
     todo_mcp = [t for t in mcp_tools if "todo" in t.name]
 
     # Define Tool Sets
-    general_tools = [get_current_weather_london] + history_mcp
+    general_tools = [get_current_weather_cambridge] + history_mcp
     weight_tools = weight_mcp
     rust_tools = rust_mcp
     cpp_tools = cpp_mcp

@@ -1,6 +1,7 @@
 services:
   mcp-server:
     build: ./mcp-server
+    platform: linux/amd64
     image: ${DOCKER_HUB_USERNAME}/mcp-server:latest
     container_name: mcp_server
     # ...
@@ -23,6 +24,7 @@ services:
 
   telegram-bot:
     build: ./telegram-bot
+    platform: linux/amd64
     image: ${DOCKER_HUB_USERNAME}/telegram-bot:latest
     container_name: telegram_bot
     environment:
@@ -39,6 +41,7 @@ services:
 
   web-ui:
     build: ./telegram-bot
+    platform: linux/amd64
     image: ${DOCKER_HUB_USERNAME}/web-ui:latest
     container_name: web_ui
     command: python gradio_ui.py

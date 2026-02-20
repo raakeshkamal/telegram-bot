@@ -21,7 +21,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import pandas as pd
 
-from agent_logic import personas, initialize_personas, get_london_weather, logger
+from agent_logic import personas, initialize_personas, get_cambridge_weather, logger
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -457,14 +457,14 @@ async def daily_check_job(application: Application):
 
     if CHAT_ID:
         try:
-            weather = await get_london_weather()
+            weather = await get_cambridge_weather()
             if weather:
                 temp = weather.get("temperature", "N/A")
                 code = weather.get("weathercode", 0)
                 condition = WEATHER_CODES.get(code, "unknown conditions")
                 is_day = weather.get("is_day", 1)
                 sun_emoji = "🌞" if is_day else "🌙"
-                weather_msg = f"{sun_emoji} It's {temp}°C and {condition} in London."
+                weather_msg = f"{sun_emoji} It's {temp}°C and {condition} in Cambridge."
             else:
                 logger.warning("Failed to fetch weather data.")
                 weather_msg = "Good morning!"

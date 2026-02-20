@@ -6,6 +6,7 @@ COPY requirements.txt .
 RUN pip install uv && uv pip install --system --no-cache -r requirements.txt
 
 COPY server.py .
+COPY playwright_session.py .
 # Create data directory and copy all curricula
 RUN mkdir -p data
 COPY data/*.json data/

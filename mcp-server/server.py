@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import logging
+from playwright_session import fetch_html_sync
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -279,12 +280,8 @@ def get_history_britannica() -> str:
     url = f"https://www.britannica.com/on-this-day/{month_name}-{day}"
 
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-        response = requests.get(url, timeout=10, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
+        html = fetch_html_sync(url, timeout=15)
+        soup = BeautifulSoup(html, "html.parser")
 
         facts = ["--- BRITANNICA EVENTS ---"]
 
@@ -331,17 +328,14 @@ def get_history_today() -> str:
     url = "https://en.wikipedia.org/wiki/Wikipedia:On_this_day/Today"
 
     try:
-        headers = {"User-Agent": "TelegramBot/1.0"}
-        response = requests.get(url, timeout=10, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
+        html = fetch_html_sync(url, timeout=15)
+        soup = BeautifulSoup(html, "html.parser")
         facts = ["--- WIKIPEDIA EVENTS ---"]
 
         content = soup.find("div", class_="mw-parser-output")
         if not content:
             return "No Wikipedia facts found."
 
-        # Get the first <ul> for main events
         events_ul = None
         for ul in content.find_all("ul", recursive=False):
             if ul.find("li"):
@@ -352,7 +346,6 @@ def get_history_today() -> str:
             for item in events_ul.find_all("li", limit=8):
                 facts.append(item.get_text().strip())
 
-        # Extract births/deaths from hlist sections
         hlist_divs = content.find_all("div", class_="hlist")
         for hlist_div in hlist_divs:
             for li in hlist_div.find_all("li", limit=5):
@@ -374,22 +367,15 @@ def get_history_on_this_day() -> str:
     url = "https://www.onthisday.com/"
 
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-        response = requests.get(url, timeout=10, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
+        html = fetch_html_sync(url, timeout=15)
+        soup = BeautifulSoup(html, "html.parser")
         facts = ["--- ONTHISDAY.COM EVENTS ---"]
 
-        # Events
         event_list = soup.find("ul", class_="event-list")
         if event_list:
             for li in event_list.find_all("li", class_="event", limit=8):
                 facts.append(li.get_text().strip())
 
-        # Birthdays
-        # Usually in a photo-list or similar on the home page
         birthdays = soup.find("ul", class_="photo-list")
         if birthdays:
             for li in birthdays.find_all("li", limit=5):

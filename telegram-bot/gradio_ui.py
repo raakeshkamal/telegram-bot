@@ -49,7 +49,7 @@ with gr.Blocks(title="Telegram Bot Test Interface") as demo:
         fn=predict,
         additional_inputs=[persona_selector],
         examples=[
-            ["What is the weather in London?", "general"],
+            ["What is the weather in Cambridge?", "general"],
             ["I weigh 75 kg", "weight"],
             ["Tell me about Rust", "rust"],
             ["Teach me some C++", "cpp"],

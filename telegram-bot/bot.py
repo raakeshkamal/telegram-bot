@@ -335,6 +335,54 @@ async def rust_restart_confirm(update: Update, context: ContextTypes.DEFAULT_TYP
     return ConversationHandler.END
 
 
+async def todo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Switch to todo mode and show current todos."""
+    user_id = update.effective_user.id
+
+    if not context.args:
+        user_modes[user_id] = "todo"
+        try:
+            executor = personas["todo"].executor
+            response = await executor.ainvoke({"input": "Show me all my todos"})
+            output = response.get("output", "")
+            if output:
+                await update.message.reply_text(
+                    telegramify_markdown.markdownify(output),
+                    parse_mode=ParseMode.MARKDOWN_V2,
+                )
+            else:
+                await update.message.reply_text(
+                    "📝 Todo mode activated! Use natural language to:\n"
+                    "• Add todos: 'Add todo buy milk'\n"
+                    "• List todos: 'Show my todos'\n"
+                    "• Remove todos: 'Remove todo <id>'"
+                )
+        except Exception as e:
+            logger.error(f"Todo error: {e}")
+            await update.message.reply_text(
+                "📝 Todo mode activated! Use natural language to:\n"
+                "• Add todos: 'Add todo buy milk'\n"
+                "• List todos: 'Show my todos'\n"
+                "• Remove todos: 'Remove todo <id>'"
+            )
+    else:
+        title = " ".join(context.args)
+        user_modes[user_id] = "todo"
+        try:
+            executor = personas["todo"].executor
+            response = await executor.ainvoke({"input": f"Add todo: {title}"})
+            output = response.get("output", "")
+            await update.message.reply_text(
+                telegramify_markdown.markdownify(output)
+                if output
+                else f"✅ Added: {title}",
+                parse_mode=ParseMode.MARKDOWN_V2,
+            )
+        except Exception as e:
+            logger.error(f"Todo add error: {e}")
+            await update.message.reply_text(f"✅ Added: {title}")
+
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle regular messages through the agent."""
     if update.message is None:
@@ -453,6 +501,7 @@ async def main():
     application.add_handler(CommandHandler("plot", plot_command))
     application.add_handler(CommandHandler("rust", rust_command))
     application.add_handler(CommandHandler("rust_progress", rust_progress_command))
+    application.add_handler(CommandHandler("todo", todo_command))
 
     conv_reset = ConversationHandler(
         entry_points=[CommandHandler("reset", reset_command)],
@@ -489,6 +538,8 @@ async def main():
     await application.initialize()
     await application.start()
     await application.updater.start_polling()
+
+    await daily_check_job(application)
 
     await asyncio.Event().wait()
 

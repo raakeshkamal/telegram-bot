@@ -18,7 +18,9 @@ try:
     LangChainInstrumentor().instrument(tracer_provider=tracer_provider)
     logging.getLogger(__name__).info("Arize Phoenix instrumentation initialized.")
 except ImportError:
-    logging.getLogger(__name__).warning("Arize Phoenix libraries not found. Tracing disabled.")
+    logging.getLogger(__name__).warning(
+        "Arize Phoenix libraries not found. Tracing disabled."
+    )
 except Exception as e:
     logging.getLogger(__name__).warning(f"Failed to initialize Arize Phoenix: {e}")
 
@@ -28,7 +30,9 @@ logger = logging.getLogger(__name__)
 # Environment variables
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 if not OPENROUTER_API_KEY:
-    logger.warning("OPENROUTER_API_KEY is not set. The agent will not be able to process requests.")
+    logger.warning(
+        "OPENROUTER_API_KEY is not set. The agent will not be able to process requests."
+    )
     OPENROUTER_API_KEY = "sk-placeholder-key-set-your-own"
 
 OPENROUTER_MODEL = os.environ.get(
@@ -37,6 +41,7 @@ OPENROUTER_MODEL = os.environ.get(
 MCP_SERVER_URL = os.environ.get("MCP_SERVER_URL", "http://mcp-server:8000/mcp")
 
 # --- Local Tool Definitions ---
+
 
 async def get_london_weather():
     """Fetch current weather for London from Open-Meteo API."""
@@ -57,19 +62,22 @@ async def get_london_weather():
             logger.error(f"Failed to fetch weather: {e}")
             return None
 
+
 @tool
 async def get_current_weather_london():
     """Get the current weather in London."""
     return await get_london_weather()
 
+
 # --- Persona Definition ---
+
 
 class Persona:
     def __init__(self, name, description, system_instructions, tools, llm_model):
         self.name = name
         self.description = description
         self.tools = tools
-        
+
         self.prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", system_instructions),
@@ -79,6 +87,7 @@ class Persona:
         )
         self.agent = create_tool_calling_agent(llm_model, tools, self.prompt)
         self.executor = AgentExecutor(agent=self.agent, tools=tools, verbose=True)
+
 
 # --- Agent & Tool Setup ---
 
@@ -92,46 +101,49 @@ llm = ChatOpenAI(
 # Global personas dictionary
 personas = {}
 
+
 async def initialize_personas():
     """Initialize personas by loading MCP tools and local tools."""
     global personas
-    
+
     mcp_tools = []
     max_retries = 5
     retry_delay = 5
-    
+
     logger.info(f"Connecting to MCP server at {MCP_SERVER_URL}...")
-    
+
     for attempt in range(max_retries):
         try:
             # MultiServerMCPClient handles discovery of sub-paths automatically
             # We point it directly to the SSE endpoint which is standard for FastMCP
             client = MultiServerMCPClient(
-                {
-                    "main": {
-                        "url": MCP_SERVER_URL,
-                        "transport": "http"
-                    }
-                }
+                {"main": {"url": MCP_SERVER_URL, "transport": "http"}}
             )
             # Automatically discover all tools from the MCP server
             mcp_tools = await client.get_tools()
             if mcp_tools:
-                logger.info(f"Successfully loaded {len(mcp_tools)} tools from MCP server.")
+                logger.info(
+                    f"Successfully loaded {len(mcp_tools)} tools from MCP server."
+                )
                 break
         except Exception as e:
-            logger.warning(f"Attempt {attempt + 1}/{max_retries} failed to load MCP tools: {e}")
+            logger.warning(
+                f"Attempt {attempt + 1}/{max_retries} failed to load MCP tools: {e}"
+            )
             if attempt < max_retries - 1:
                 await asyncio.sleep(retry_delay)
             else:
                 logger.error("All attempts to load MCP tools failed.")
 
     # Filter tools for specific personas
-    weight_mcp = [t for t in mcp_tools if any(word in t.name for word in ["weight", "data"])]
+    weight_mcp = [
+        t for t in mcp_tools if any(word in t.name for word in ["weight", "data"])
+    ]
     rust_mcp = [t for t in mcp_tools if "rust" in t.name]
     cpp_mcp = [t for t in mcp_tools if "cpp" in t.name]
     python_mcp = [t for t in mcp_tools if "python" in t.name]
     history_mcp = [t for t in mcp_tools if "history" in t.name]
+    todo_mcp = [t for t in mcp_tools if "todo" in t.name]
 
     # Define Tool Sets
     general_tools = [get_current_weather_london] + history_mcp
@@ -139,6 +151,7 @@ async def initialize_personas():
     rust_tools = rust_mcp
     cpp_tools = cpp_mcp
     python_tools = python_mcp
+    todo_tools = todo_mcp
 
     # Create Personas
     personas["general"] = Persona(
@@ -158,9 +171,9 @@ async def initialize_personas():
             "Return ONLY the final formatted summary with emojis. No meta-talk."
         ),
         tools=general_tools,
-        llm_model=llm
+        llm_model=llm,
     )
-    
+
     personas["weight"] = Persona(
         name="Weight Tracker",
         description="Focused on tracking and visualizing weight loss progress.",
@@ -169,9 +182,9 @@ async def initialize_personas():
             "If the user discusses unrelated topics, suggest switching to general mode."
         ),
         tools=weight_tools,
-        llm_model=llm
+        llm_model=llm,
     )
-    
+
     personas["rust"] = Persona(
         name="Rust Tutor",
         description="An interactive Rust programming language tutor.",
@@ -181,7 +194,7 @@ async def initialize_personas():
             "If the user asks about other topics, suggest switching to general mode."
         ),
         tools=rust_tools,
-        llm_model=llm
+        llm_model=llm,
     )
 
     personas["cpp"] = Persona(
@@ -193,7 +206,7 @@ async def initialize_personas():
             "If the user asks about other topics, suggest switching to general mode."
         ),
         tools=cpp_tools,
-        llm_model=llm
+        llm_model=llm,
     )
 
     personas["python"] = Persona(
@@ -205,10 +218,29 @@ async def initialize_personas():
             "If the user asks about other topics, suggest switching to general mode."
         ),
         tools=python_tools,
-        llm_model=llm
+        llm_model=llm,
     )
-    
+
+    personas["todo"] = Persona(
+        name="Todo Tracker",
+        description="Manage your todo list with add, list, and remove capabilities.",
+        system_instructions=(
+            "You are a Todo List Manager. Help the user manage their tasks. "
+            "Available actions:\n"
+            "- Add a todo: Use add_todo tool with title and optional description\n"
+            "- List todos: Use list_todos tool to see all todos (numbered 1, 2, 3...)\n"
+            "- Remove a todo: Use remove_todo tool with the todo NUMBER (single)\n"
+            "- Remove multiple: Use remove_todos tool with comma-separated numbers or ranges (e.g., '1,3,4' or '1-5')\n"
+            "When listing todos, always show numbers (1, 2, 3...) so users can reference them. "
+            "Users remove todos by saying 'remove todo 1' or 'delete todo 3' or 'remove todo 1,3,4'. "
+            "If the user asks about other topics, suggest switching to general mode."
+        ),
+        tools=todo_tools,
+        llm_model=llm,
+    )
+
     logger.info("Personas initialized successfully.")
 
-# Since the bot and Gradio need to wait for initialization, 
+
+# Since the bot and Gradio need to wait for initialization,
 # we'll trigger this in their respective startup logic.

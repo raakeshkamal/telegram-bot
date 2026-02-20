@@ -23,6 +23,7 @@ client = MongoClient(MONGO_URI)
 db = client.get_database()
 weights_col = db["weights"]
 learning_progress_col = db["learning_progress"]
+todos_col = db["todos"]
 
 
 def init_db():
@@ -39,6 +40,18 @@ def init_db():
                         "updated_at": datetime.utcnow(),
                     }
                 )
+
+        # Migrate existing todos without todo_number
+        existing_todos = list(
+            todos_col.find({"todo_number": {"$exists": False}}).sort("created_at", 1)
+        )
+        if existing_todos:
+            for idx, todo in enumerate(existing_todos, start=1):
+                todos_col.update_one(
+                    {"_id": todo["_id"]}, {"$set": {"todo_number": idx}}
+                )
+            logger.info(f"Migrated {len(existing_todos)} existing todos with numbers.")
+
         logger.info("MongoDB collections initialized.")
     except Exception as e:
         logger.error(f"Failed to initialize MongoDB: {e}")
@@ -386,6 +399,106 @@ def get_history_on_this_day() -> str:
     except Exception as e:
         logger.error(f"OnThisDay error: {e}")
         return f"Error fetching OnThisDay: {e}"
+
+
+# --- Todo Tools ---
+@mcp.tool
+def add_todo(title: str, description: str = "") -> str:
+    """Add a new todo item to your list.
+
+    Args:
+        title: The todo title (required)
+        description: Optional description/details for the todo
+
+    Returns:
+        Confirmation message with the todo number
+    """
+    todo_count = todos_col.count_documents({})
+    todo_number = todo_count + 1
+    entry = {
+        "todo_number": todo_number,
+        "title": title,
+        "description": description,
+        "created_at": datetime.utcnow(),
+        "completed": False,
+    }
+    todos_col.insert_one(entry)
+    return f'✅ Added todo #{todo_number}: "{title}"'
+
+
+@mcp.tool
+def list_todos() -> List[Dict[str, Any]]:
+    """Get all todos ordered by creation time (newest last - oldest first).
+
+    Returns:
+        List of todo items with number, title, description, and timestamp
+    """
+    cursor = todos_col.find({}, {"_id": 0}).sort("created_at", 1)
+    results = list(cursor)
+    for r in results:
+        if isinstance(r.get("created_at"), datetime):
+            r["created_at"] = r["created_at"].isoformat()
+    return results
+
+
+@mcp.tool
+def remove_todo(todo_number: str) -> str:
+    """Remove a todo item by its number.
+
+    Args:
+        todo_number: The todo number to remove (1, 2, 3, ...)
+
+    Returns:
+        Confirmation message
+    """
+    try:
+        num = int(todo_number)
+    except (ValueError, TypeError):
+        return f"❌ Invalid todo number: {todo_number}"
+
+    result = todos_col.delete_one({"todo_number": num})
+    if result.deleted_count > 0:
+        return f"✅ Todo #{num} removed."
+    return f"❌ Todo #{num} not found."
+
+
+@mcp.tool
+def remove_todos(todo_numbers: str) -> str:
+    """Remove multiple todo items by their numbers.
+
+    Args:
+        todo_numbers: Comma-separated numbers or ranges (e.g., "1,3,4" or "1-5")
+
+    Returns:
+        Confirmation message with list of removed todos
+    """
+    numbers = []
+    parts = todo_numbers.replace(",", " ").split()
+    for part in parts:
+        if "-" in part:
+            try:
+                start, end = map(int, part.split("-"))
+                numbers.extend(range(start, end + 1))
+            except ValueError:
+                pass
+        else:
+            try:
+                numbers.append(int(part))
+            except ValueError:
+                pass
+
+    if not numbers:
+        return "❌ Invalid format. Use: 1,3,4 or 1-5"
+
+    removed = []
+    for num in numbers:
+        result = todos_col.delete_one({"todo_number": num})
+        if result.deleted_count > 0:
+            removed.append(num)
+
+    if removed:
+        return f"✅ Removed todo(s): {', '.join(f'#{n}' for n in removed)}"
+    return "❌ No todos found to remove."
 
 
 if __name__ == "__main__":

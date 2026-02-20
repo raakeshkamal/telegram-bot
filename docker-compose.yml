@@ -1,9 +1,9 @@
-version: '3.8'
-
 services:
   mcp-server:
     build: ./mcp-server
+    image: ${DOCKER_HUB_USERNAME}/mcp-server:latest
     container_name: mcp_server
+    # ...
     ports:
       - "8000:8000"
     environment:
@@ -23,6 +23,7 @@ services:
 
   telegram-bot:
     build: ./telegram-bot
+    image: ${DOCKER_HUB_USERNAME}/telegram-bot:latest
     container_name: telegram_bot
     environment:
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN:-}
@@ -38,6 +39,7 @@ services:
 
   web-ui:
     build: ./telegram-bot
+    image: ${DOCKER_HUB_USERNAME}/web-ui:latest
     container_name: web_ui
     command: python gradio_ui.py
     ports:

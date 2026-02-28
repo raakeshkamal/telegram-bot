@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 import logging
+import pandas as pd
 from playwright_session import fetch_html_sync
 
 # Configure logging
@@ -17,6 +18,8 @@ mcp = FastMCP("Weight Tracker MCP Server")
 
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb://mongodb:27017/bot_db")
 CURRICULUM_PATH = os.environ.get("CURRICULUM_PATH", "data/rust_curriculum.json")
+AA_API_KEY = "aa_iebTMsqZPzykexkOGcoJnHDsqnNoPJQL"
+AA_API_URL = "https://artificialanalysis.ai/api/v2/data/llms/models"
 
 # Initialize MongoDB client
 # We use a lazy initialization or a global client
@@ -485,6 +488,57 @@ def remove_todos(todo_numbers: str) -> str:
     if removed:
         return f"✅ Removed todo(s): {', '.join(f'#{n}' for n in removed)}"
     return "❌ No todos found to remove."
+
+
+@mcp.tool
+def get_top_efficient_models(limit: int = 10) -> Dict[str, Any]:
+    """Fetch AI model data and return top price-efficient models across indices.
+    
+    Returns:
+        A dictionary with top N models for intelligence, coding, and tau2 values per dollar.
+    """
+    headers = {"x-api-key": AA_API_KEY}
+    try:
+        response = requests.get(AA_API_URL, headers=headers)
+        response.raise_for_status()
+        json_data = response.json()
+    except Exception as e:
+        logger.error(f"Error fetching data from Artificial Analysis: {e}")
+        return {"error": str(e)}
+
+    if 'data' not in json_data:
+        return {"error": "'data' key not found in API response"}
+
+    models = json_data['data']
+    processed_data = []
+    for m in models:
+        evals = m.get('evaluations', {})
+        pricing = m.get('pricing', {})
+        processed_data.append({
+            'name': m.get('name'),
+            'intelligence_index': evals.get('artificial_analysis_intelligence_index'),
+            'coding_index': evals.get('artificial_analysis_coding_index'),
+            'tau2': evals.get('tau2'),
+            'price_blended': pricing.get('price_1m_blended_3_to_1')
+        })
+
+    df = pd.DataFrame(processed_data)
+    df = df[df['price_blended'] > 0].copy()
+    
+    # Calculate Value Indices (Per Dollar)
+    df['intel_value'] = df['intelligence_index'] / df['price_blended']
+    df['coding_value'] = df['coding_index'] / df['price_blended']
+    df['tau2_value'] = df['tau2'] / df['price_blended']
+    
+    def get_top(df_in, col, value_col, lim):
+        return df_in.dropna(subset=[value_col]).sort_values(by=value_col, ascending=False).head(lim)[['name', col, 'price_blended', value_col]].to_dict(orient='records')
+
+    limit_val = int(limit)
+    return {
+        "top_intelligence": get_top(df, 'intelligence_index', 'intel_value', limit_val),
+        "top_coding": get_top(df, 'coding_index', 'coding_value', limit_val),
+        "top_tau2": get_top(df, 'tau2', 'tau2_value', limit_val)
+    }
 
 
 if __name__ == "__main__":

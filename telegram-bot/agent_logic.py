@@ -144,16 +144,43 @@ async def initialize_personas():
     python_mcp = [t for t in mcp_tools if "python" in t.name]
     history_mcp = [t for t in mcp_tools if "history" in t.name]
     todo_mcp = [t for t in mcp_tools if "todo" in t.name]
+    models_mcp = [t for t in mcp_tools if "models" in t.name]
 
     # Define Tool Sets
-    general_tools = [get_current_weather_cambridge] + history_mcp
+    general_tools = [get_current_weather_cambridge] + history_mcp + models_mcp
     weight_tools = weight_mcp
     rust_tools = rust_mcp
     cpp_tools = cpp_mcp
     python_tools = python_mcp
     todo_tools = todo_mcp
+    daily_report_tools = [get_current_weather_cambridge] + todo_mcp + models_mcp
 
     # Create Personas
+    personas["daily_report"] = Persona(
+        name="Daily Reporter",
+        description="Generates a consolidated daily morning report with weather, todos, and AI rankings.",
+        system_instructions=(
+            "You are a helpful Daily Briefing Assistant. Your goal is to generate a friendly daily morning report for a user in Cambridge, UK. "
+            "You MUST call these tools to gather information: \n"
+            "1. 'get_current_weather_cambridge' for the current weather.\n"
+            "2. 'list_todos' to get the user's pending tasks.\n"
+            "3. 'get_top_efficient_models' to get the latest AI model rankings.\n\n"
+            "After gathering the data, create a consolidated report with the following sections:\n"
+            "1. Start with a friendly morning greeting and a relevant emoji.\n"
+            "2. '🌤 Weather': Describe current conditions in Cambridge.\n"
+            "3. '📝 Pending TODOs': List all todos clearly.\n"
+            "4. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
+            "   - DO NOT USE MARKDOWN TABLES. Use a clear vertical list.\n"
+            "   - Format: '1. **Model Name** - Value: Score/$$ (Score: XX, Price: $YY)'\n"
+            "   - Highlight the top model in each category with a special emoji.\n"
+            "5. Use Markdown for headings and emphasis. Keep the tone conversational, professional, and friendly.\n"
+            "6. Keep it concise (under 600 words).\n"
+            "Return ONLY the markdown formatted report. No internal monologues or commentary."
+        ),
+        tools=daily_report_tools,
+        llm_model=llm,
+    )
+
     personas["general"] = Persona(
         name="General",
         description="A helpful assistant for general queries, weather, and history.",
@@ -161,12 +188,15 @@ async def initialize_personas():
             "You are a helpful AI assistant. When a user asks about historical events for today, you MUST: "
             "1. Call these THREE tools: 'get_history_today', 'get_history_britannica', AND 'get_history_on_this_day'. "
             "Do NOT skip any of them. Each provides unique events. "
-            "2. Combine and cross-reference the information from all 3 sources. "
-            "3. Provide ONLY the final summarized response organized into these sections: "
+            "When a user asks about AI model efficiency rankings, use the 'get_top_efficient_models' tool "
+            "and summarize the top models across intelligence, coding, and tau2 per dollar. "
+            "Combine and cross-reference the information from all sources. "
+            "Provide ONLY the final summarized response organized into these sections: "
             "   - 🌟 Featured Events "
             "   - 📅 Other Notable Events "
             "   - 👶 Notable Births "
             "   - 🕯️ Notable Deaths "
+            "   - 🤖 AI Efficiency Rankings (if requested) "
             "CRITICAL: Do not output your thinking process, internal monologues, or 'Wait, let me check' style commentary. "
             "Return ONLY the final formatted summary with emojis. No meta-talk."
         ),

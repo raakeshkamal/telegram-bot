@@ -4,3 +4,4 @@ beautifulsoup4
 requests
 pymongo
 curl_cffi
+pandas

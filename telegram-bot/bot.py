@@ -451,71 +451,49 @@ async def send_long_message(message, content: str, max_length: int = 4096):
         await message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN_V2)
 
 
-async def daily_check_job(application: Application):
-    """Send daily check-in message."""
+async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
+    """Send daily check-in message with weather and todos."""
     logger.info(f"Executing daily_check. CHAT_ID: {CHAT_ID}")
+    
+    application = context.application
+    job_chat_id = CHAT_ID
 
-    if CHAT_ID:
+    if job_chat_id:
         try:
-            # Convert CHAT_ID to int if it looks like one (especially for group chats)
+            # Convert job_chat_id to int if it looks like one
             try:
-                chat_id_int = int(CHAT_ID)
+                chat_id_int = int(job_chat_id)
             except (ValueError, TypeError):
-                chat_id_int = CHAT_ID
+                chat_id_int = job_chat_id
 
-            weather_data = await get_cambridge_weather()
-            weather_msg = ""
+            # Use the consolidated Daily Report persona
+            logger.info("Generating consolidated daily report...")
+            report_msg = "Error generating daily report."
             
-            if weather_data:
-                logger.info("Weather data fetched successfully. Attempting LLM generation.")
-                # Try to use LLM for a descriptive message
-                try:
-                    from agent_logic import llm
-                    prompt = (
-                        f"Generate a friendly morning greeting for a user in Cambridge, UK. "
-                        f"Include all relevant information from this weather data: {json.dumps(weather_data)}. "
-                        "Make it conversational, professional, yet friendly. "
-                        "Start with a relevant emoji. Use markdown for emphasis if needed. "
-                        "Keep it concise (under 200 words)."
-                    )
-                    # Use LLM directly to avoid agent tool-calling overhead
-                    response = await llm.ainvoke(prompt)
-                    weather_msg = response.content
-                    logger.info("LLM generated weather message successfully.")
-                except Exception as llm_e:
-                    logger.error(f"LLM failed to generate weather message: {llm_e}")
-                
-                # Fallback if LLM failed
-                if not weather_msg:
-                    logger.info("Using fallback weather message.")
-                    current = weather_data.get("current_weather", {})
-                    temp = current.get("temperature", "N/A")
-                    code = current.get("weathercode", 0)
-                    condition = WEATHER_CODES.get(code, "unknown conditions")
-                    is_day = current.get("is_day", 1)
-                    sun_emoji = "🌞" if is_day else "🌙"
-                    weather_msg = f"{sun_emoji} It's {temp}°C and {condition} in Cambridge."
-            else:
-                logger.warning("Failed to fetch weather data.")
-                weather_msg = "Good morning!"
-
-            # Final response formatting
-            final_msg = f"{weather_msg}\n\nFeel free to ask me for help with anything today!"
+            try:
+                if "daily_report" in personas:
+                    daily_executor = personas["daily_report"].executor
+                    response = await daily_executor.ainvoke({"input": "Generate today's daily morning report for Cambridge, UK."})
+                    report_msg = response.get("output", "No report generated.")
+                else:
+                    logger.error("Daily report persona not found.")
+                    report_msg = "Daily report configuration error."
+            except Exception as e:
+                logger.error(f"Consolidated report generation failed: {e}")
+                report_msg = f"Failed to generate report: {e}"
             
             # Use telegramify_markdown to ensure safe output
-            logger.info("Markdownifying the final message.")
-            safe_msg = telegramify_markdown.markdownify(final_msg)
+            safe_msg = telegramify_markdown.markdownify(report_msg)
             
-            logger.info(f"Sending message to {chat_id_int}")
-
+            logger.info(f"Sending daily report to {chat_id_int}")
             await application.bot.send_message(
                 chat_id=chat_id_int, 
                 text=safe_msg, 
                 parse_mode=ParseMode.MARKDOWN_V2
             )
-            logger.info(f"Successfully sent daily check to {chat_id_int}")
+            logger.info(f"Successfully sent daily report to {chat_id_int}")
         except Exception as e:
-            logger.error(f"Failed to send daily message: {e}", exc_info=True)
+            logger.error(f"Failed to send daily report: {e}", exc_info=True)
     else:
         logger.warning("CHAT_ID is not set. Skipping daily check-in.")
 
@@ -566,16 +544,18 @@ async def main():
 
     from datetime import time
 
+    # Schedule the daily job
     application.job_queue.run_daily(
         daily_check_job, time(hour=8, minute=0), chat_id=CHAT_ID
     )
 
     await application.initialize()
     await application.start()
+    
+    # Run once on startup to verify and provide immediate feedback
+    application.job_queue.run_once(daily_check_job, 1)
+
     await application.updater.start_polling()
-
-    await daily_check_job(application)
-
     await asyncio.Event().wait()
 
 

@@ -57,7 +57,7 @@ async def get_cambridge_weather():
                 if response.status != 200:
                     return None
                 data = await response.json()
-                return data.get("current_weather")
+                return data
         except Exception as e:
             logger.error(f"Failed to fetch weather: {e}")
             return None

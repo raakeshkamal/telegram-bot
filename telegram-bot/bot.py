@@ -457,32 +457,67 @@ async def daily_check_job(application: Application):
 
     if CHAT_ID:
         try:
-            weather = await get_cambridge_weather()
-            if weather:
-                temp = weather.get("temperature", "N/A")
-                code = weather.get("weathercode", 0)
-                condition = WEATHER_CODES.get(code, "unknown conditions")
-                is_day = weather.get("is_day", 1)
-                sun_emoji = "🌞" if is_day else "🌙"
-                weather_msg = f"{sun_emoji} It's {temp}°C and {condition} in Cambridge."
+            # Convert CHAT_ID to int if it looks like one (especially for group chats)
+            try:
+                chat_id_int = int(CHAT_ID)
+            except (ValueError, TypeError):
+                chat_id_int = CHAT_ID
+
+            weather_data = await get_cambridge_weather()
+            weather_msg = ""
+            
+            if weather_data:
+                logger.info("Weather data fetched successfully. Attempting LLM generation.")
+                # Try to use LLM for a descriptive message
+                try:
+                    from agent_logic import llm
+                    prompt = (
+                        f"Generate a friendly morning greeting for a user in Cambridge, UK. "
+                        f"Include all relevant information from this weather data: {json.dumps(weather_data)}. "
+                        "Make it conversational, professional, yet friendly. "
+                        "Start with a relevant emoji. Use markdown for emphasis if needed. "
+                        "Keep it concise (under 200 words)."
+                    )
+                    # Use LLM directly to avoid agent tool-calling overhead
+                    response = await llm.ainvoke(prompt)
+                    weather_msg = response.content
+                    logger.info("LLM generated weather message successfully.")
+                except Exception as llm_e:
+                    logger.error(f"LLM failed to generate weather message: {llm_e}")
+                
+                # Fallback if LLM failed
+                if not weather_msg:
+                    logger.info("Using fallback weather message.")
+                    current = weather_data.get("current_weather", {})
+                    temp = current.get("temperature", "N/A")
+                    code = current.get("weathercode", 0)
+                    condition = WEATHER_CODES.get(code, "unknown conditions")
+                    is_day = current.get("is_day", 1)
+                    sun_emoji = "🌞" if is_day else "🌙"
+                    weather_msg = f"{sun_emoji} It's {temp}°C and {condition} in Cambridge."
             else:
                 logger.warning("Failed to fetch weather data.")
                 weather_msg = "Good morning!"
 
-            log_msg = f"{weather_msg} Feel free to ask me for help with anything today!"
-            logger.info(f"Sending message: {log_msg}")
+            # Final response formatting
+            final_msg = f"{weather_msg}\n\nFeel free to ask me for help with anything today!"
+            
+            # Use telegramify_markdown to ensure safe output
+            logger.info("Markdownifying the final message.")
+            safe_msg = telegramify_markdown.markdownify(final_msg)
+            
+            logger.info(f"Sending message to {chat_id_int}")
 
-            await application.bot.send_message(chat_id=CHAT_ID, text=log_msg)
-            logger.info(f"Successfully sent daily check to {CHAT_ID}")
+            await application.bot.send_message(
+                chat_id=chat_id_int, 
+                text=safe_msg, 
+                parse_mode=ParseMode.MARKDOWN_V2
+            )
+            logger.info(f"Successfully sent daily check to {chat_id_int}")
         except Exception as e:
-            logger.error(f"Failed to send daily message: {e}")
+            logger.error(f"Failed to send daily message: {e}", exc_info=True)
     else:
         logger.warning("CHAT_ID is not set. Skipping daily check-in.")
-
-
-import nest_asyncio
-
-nest_asyncio.apply()
 
 
 async def main():

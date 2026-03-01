@@ -1,5 +1,4 @@
 import os
-import io
 import json
 import logging
 import base64
@@ -18,11 +17,9 @@ from telegram.ext import (
 )
 from telegram.constants import ParseMode
 import telegramify_markdown
-import plotly.graph_objects as go
-import plotly.io as pio
-import pandas as pd
 
-from agent_logic import personas, initialize_personas, get_cambridge_weather, logger
+from agent_logic import personas, initialize_personas, logger, SYSTEM_INSTRUCTIONS
+from graph import app, BotState, load_user_state, save_user_state
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -33,37 +30,6 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free")
 TRANSCRIPTION_MODEL = "google/gemini-3-flash-preview"
 
-WEATHER_CODES = {
-    0: "clear sky",
-    1: "mainly clear",
-    2: "partly cloudy",
-    3: "overcast",
-    45: "foggy",
-    48: "depositing rime fog",
-    51: "light drizzle",
-    53: "moderate drizzle",
-    55: "dense drizzle",
-    56: "light freezing drizzle",
-    57: "dense freezing drizzle",
-    61: "slight rain",
-    63: "moderate rain",
-    65: "heavy rain",
-    66: "light freezing rain",
-    67: "heavy freezing rain",
-    71: "slight snow",
-    73: "moderate snow",
-    75: "heavy snow",
-    77: "snow grains",
-    80: "slight rain showers",
-    81: "moderate rain showers",
-    82: "violent rain showers",
-    85: "slight snow showers",
-    86: "heavy snow showers",
-    95: "thunderstorm",
-    96: "thunderstorm with slight hail",
-    99: "thunderstorm with heavy hail",
-}
-
 user_modes = {}
 DEFAULT_PERSONA = "general"
 
@@ -71,15 +37,23 @@ CONFIRM_RESET = range(1)
 CONFIRM_RUST_RESTART = range(1)
 
 
-async def call_mcp_tool(tool_name: str, args: dict = None):
-    """Call MCP tool via the persona's executor."""
-    return None
-
-
 async def initialize():
     """Initialize personas on startup."""
     await initialize_personas()
+    # Generate graph diagram for documentation/debugging
+    visualize_graph()
 
+
+from observability import get_user_state_info, visualize_graph
+
+async def graph_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show current graph state for debugging."""
+    user_id = str(update.effective_user.id)
+    info = await get_user_state_info(user_id)
+    await update.message.reply_text(
+        telegramify_markdown.markdownify(info),
+        parse_mode=ParseMode.MARKDOWN_V2
+    )
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Welcome message."""
@@ -115,17 +89,6 @@ async def mode_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"Unknown mode '{persona_name}'. Available modes: {', '.join(personas.keys())}"
         )
         return
-
-    persona_name = context.args[0].lower()
-    if persona_name in personas:
-        user_modes[user_id] = persona_name
-        await update.message.reply_text(
-            f"Switched to {personas[persona_name].name} mode. {personas[persona_name].description}"
-        )
-    else:
-        await update.message.reply_text(
-            f"Unknown mode '{persona_name}'. Available modes: {', '.join(personas.keys())}"
-        )
 
 
 async def modes_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -255,7 +218,7 @@ async def reset_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 
-async def cancel_conversation(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def cancel_conversation(update: Update, _context: ContextTypes.DEFAULT_TYPE):
     """Cancel a conversation."""
     await update.message.reply_text("Cancelled.")
     return ConversationHandler.END
@@ -472,7 +435,7 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await processing_msg.edit_text(safe_transcription, parse_mode=ParseMode.MARKDOWN_V2)
             
             # Now call handle_message logic
-            await _process_agent_message(update, context, transcription)
+            await _process_graph_message(update, context, transcription, transcription)
         else:
             await processing_msg.edit_text("Sorry, I couldn't transcribe that voice message.")
             
@@ -481,28 +444,41 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await processing_msg.edit_text("An error occurred while processing your voice message.")
 
 
-async def _process_agent_message(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
-    """Refactored logic to handle agent processing for both text and voice."""
-    user_id = update.effective_user.id
+async def _process_graph_message(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str, transcription: str = None):
+    """Process message using LangGraph state machine."""
+    user_id = str(update.effective_user.id)
     
-    user_persona_name = user_modes.get(user_id, DEFAULT_PERSONA)
-    if user_persona_name not in personas:
-        user_persona_name = DEFAULT_PERSONA
-
-    user_agent_executor = personas[user_persona_name].executor
+    # Load user state from MongoDB
+    initial_state = await load_user_state(user_id)
+    
+    # Update with current input
+    initial_state["current_input"] = text
+    initial_state["transcription"] = transcription
+    initial_state["last_interaction"] = datetime.now()
+    initial_state["input_type"] = "voice" if transcription else "text"
 
     # Show typing action while the agent is "thinking"
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=telegram.constants.ChatAction.TYPING)
 
     try:
-        response = await user_agent_executor.ainvoke({"input": text})
-        output = response.get("output")
-        if output:
+        # Invoke the graph
+        result = await app.ainvoke(initial_state)
+
+        # Save state to MongoDB
+        await save_user_state(result)
+
+        # Get the response
+        response = result["current_response"]
+        
+        if response:
             await send_long_message(
-                update.message, telegramify_markdown.markdownify(output)
+                update.message, response
             )
+        else:
+            await update.message.reply_text("I'm sorry, I couldn't generate a response.")
+
     except Exception as e:
-        logger.error(f"Agent error for persona {user_persona_name}: {e}")
+        logger.error(f"Graph execution error for user {user_id}: {e}")
         await update.message.reply_text(
             "I'm having a bit of trouble thinking right now. Please try again."
         )
@@ -516,7 +492,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     logger.info(f"Received message: {text} from {update.effective_user}")
     
-    await _process_agent_message(update, context, text)
+    await _process_graph_message(update, context, text)
 
 
 async def send_long_message(message, content: str, max_length: int = 4096):
@@ -577,12 +553,25 @@ async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
             report_msg = "Error generating daily report."
             
             try:
-                if "daily_report" in personas:
-                    daily_executor = personas["daily_report"].executor
-                    response = await daily_executor.ainvoke({"input": "Generate today's daily morning report for Cambridge, UK."})
-                    report_msg = response.get("output", "No report generated.")
+                if "daily_report" in SYSTEM_INSTRUCTIONS:
+                    # Use the graph for daily report
+                    initial_state: BotState = {
+                        "messages": [],
+                        "current_input": "Generate today's daily morning report for Cambridge, UK.",
+                        "current_response": "",
+                        "active_persona": "daily_report",
+                        "persona_confidence": 1.0,
+                        "input_type": "command",
+                        "transcription": None,
+                        "user_id": "system",
+                        "last_interaction": datetime.now(),
+                        "tool_calls": [],
+                        "tool_results": []
+                    }
+                    result = await app.ainvoke(initial_state)
+                    report_msg = result.get("current_response", "No report generated.")
                 else:
-                    logger.error("Daily report persona not found.")
+                    logger.error("Daily report system instructions not found.")
                     report_msg = "Daily report configuration error."
             except Exception as e:
                 logger.error(f"Consolidated report generation failed: {e}")
@@ -614,6 +603,7 @@ async def main():
 
     application.add_handler(CommandHandler("start", start_command))
     application.add_handler(CommandHandler("mode", mode_command))
+    application.add_handler(CommandHandler("graph", graph_command))
     application.add_handler(CommandHandler("modes", modes_command))
     application.add_handler(CommandHandler("weight", weight_command))
     application.add_handler(CommandHandler("last", last_command))

@@ -1,0 +1,52 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	input_classifier(input_classifier)
+	voice_handler(voice_handler)
+	persona_router(persona_router)
+	persona_switch(persona_switch)
+	persona_general(persona_general)
+	persona_weight(persona_weight)
+	persona_rust(persona_rust)
+	persona_cpp(persona_cpp)
+	persona_python(persona_python)
+	persona_todo(persona_todo)
+	persona_daily_report(persona_daily_report)
+	response_formatter(response_formatter)
+	output_handler(output_handler)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> input_classifier;
+	input_classifier -.-> persona_router;
+	input_classifier -.-> voice_handler;
+	persona_cpp --> response_formatter;
+	persona_daily_report --> response_formatter;
+	persona_general --> response_formatter;
+	persona_python --> response_formatter;
+	persona_router -. &nbsp;cpp&nbsp; .-> persona_cpp;
+	persona_router -. &nbsp;daily_report&nbsp; .-> persona_daily_report;
+	persona_router -. &nbsp;general&nbsp; .-> persona_general;
+	persona_router -. &nbsp;python&nbsp; .-> persona_python;
+	persona_router -. &nbsp;rust&nbsp; .-> persona_rust;
+	persona_router -.-> persona_switch;
+	persona_router -. &nbsp;todo&nbsp; .-> persona_todo;
+	persona_router -. &nbsp;weight&nbsp; .-> persona_weight;
+	persona_rust --> response_formatter;
+	persona_switch -. &nbsp;cpp&nbsp; .-> persona_cpp;
+	persona_switch -. &nbsp;daily_report&nbsp; .-> persona_daily_report;
+	persona_switch -. &nbsp;general&nbsp; .-> persona_general;
+	persona_switch -. &nbsp;python&nbsp; .-> persona_python;
+	persona_switch -. &nbsp;rust&nbsp; .-> persona_rust;
+	persona_switch -. &nbsp;todo&nbsp; .-> persona_todo;
+	persona_switch -. &nbsp;weight&nbsp; .-> persona_weight;
+	persona_todo --> response_formatter;
+	persona_weight --> response_formatter;
+	response_formatter --> output_handler;
+	voice_handler --> persona_router;
+	output_handler --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

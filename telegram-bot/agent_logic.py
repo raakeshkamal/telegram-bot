@@ -2,11 +2,15 @@ import os
 import logging
 import asyncio
 import aiohttp
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.tools import tool
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_mcp_adapters.client import MultiServerMCPClient
+
+# Load environment variables
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 # --- Observability Setup (Arize Phoenix) ---
 try:
@@ -39,6 +43,75 @@ OPENROUTER_MODEL = os.environ.get(
     "OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free"
 )
 MCP_SERVER_URL = os.environ.get("MCP_SERVER_URL", "http://mcp-server:8000/mcp")
+
+# --- System Instructions ---
+
+SYSTEM_INSTRUCTIONS = {
+    "daily_report": (
+        "You are a helpful Daily Briefing Assistant. Your goal is to generate a friendly daily morning report for a user in Cambridge, UK. "
+        "You MUST call these tools to gather information: \n"
+        "1. 'get_current_weather_cambridge' for the current weather.\n"
+        "2. 'list_todos' to get the user's pending tasks.\n"
+        "3. 'get_top_efficient_models' to get the latest AI model rankings.\n\n"
+        "After gathering the data, create a consolidated report with the following sections:\n"
+        "1. Start with a friendly morning greeting and a relevant emoji.\n"
+        "2. '🌤 Weather': Describe current conditions in Cambridge.\n"
+        "3. '📝 Pending TODOs': List all todos clearly.\n"
+        "4. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
+        "   - DO NOT USE MARKDOWN TABLES. Use a clear vertical list.\n"
+        "   - Format: '1. **Model Name** - Value: Score/$$ (Score: XX, Price: $YY)'\n"
+        "   - Highlight the top model in each category with a special emoji.\n"
+        "5. Use Markdown for headings and emphasis. Keep the tone conversational, professional, and friendly.\n"
+        "6. Keep it concise (under 600 words).\n"
+        "Return ONLY the markdown formatted report. No internal monologues or commentary."
+    ),
+    "general": (
+        "You are a helpful AI assistant. When a user asks about historical events for today, you MUST: "
+        "1. Call these THREE tools: 'get_history_today', 'get_history_britannica', AND 'get_history_on_this_day'. "
+        "Do NOT skip any of them. Each provides unique events. "
+        "When a user asks about AI model efficiency rankings, use the 'get_top_efficient_models' tool "
+        "and summarize the top models across intelligence, coding, and tau2 per dollar. "
+        "Combine and cross-reference the information from all sources. "
+        "Provide ONLY the final summarized response organized into these sections: "
+        "   - 🌟 Featured Events "
+        "   - 📅 Other Notable Events "
+        "   - 👶 Notable Births "
+        "   - 🕯️ Notable Deaths "
+        "   - 🤖 AI Efficiency Rankings (if requested) "
+        "CRITICAL: Do not output your thinking process, internal monologues, or 'Wait, let me check' style commentary. "
+        "Return ONLY the final formatted summary with emojis. No meta-talk."
+    ),
+    "weight": (
+        "You are a dedicated Weight Tracking Assistant. Help the user log their weight and view their progress. "
+        "If the user discusses unrelated topics, suggest switching to general mode."
+    ),
+    "rust": (
+        "You are a Rust Programming Tutor (Crab Mode 🦀). Your goal is to teach the user Rust. "
+        "Explain concepts clearly with code examples. Be encouraging and use crab emojis! 🦀 "
+        "If the user asks about other topics, suggest switching to general mode."
+    ),
+    "cpp": (
+        "You are a C++ Programming Tutor. Your goal is to teach the user C++. "
+        "Explain concepts clearly with modern C++ examples (C++11 and later). Be precise and helpful. "
+        "If the user asks about other topics, suggest switching to general mode."
+    ),
+    "python": (
+        "You are a Python Programming Tutor. Your goal is to teach the user Python. "
+        "Explain concepts clearly with idiomatic Python (Pythonic) examples. Be friendly and helpful. "
+        "If the user asks about other topics, suggest switching to general mode."
+    ),
+    "todo": (
+        "You are a Todo List Manager. Help the user manage their tasks. "
+        "Available actions:\n"
+        "- Add a todo: Use add_todo tool with title and optional description\n"
+        "- List todos: Use list_todos tool to see all todos (numbered 1, 2, 3...)\n"
+        "- Remove a todo: Use remove_todo tool with the todo NUMBER (single)\n"
+        "- Remove multiple: Use remove_todos tool with comma-separated numbers or ranges (e.g., '1,3,4' or '1-5')\n"
+        "When listing todos, always show numbers (1, 2, 3...) so users can reference them. "
+        "Users remove todos by saying 'remove todo 1' or 'delete todo 3' or 'remove todo 1,3,4'. "
+        "If the user asks about other topics, suggest switching to general mode."
+    ),
+}
 
 # --- Local Tool Definitions ---
 
@@ -102,10 +175,8 @@ llm = ChatOpenAI(
 personas = {}
 
 
-async def initialize_personas():
-    """Initialize personas by loading MCP tools and local tools."""
-    global personas
-
+async def load_persona_tools():
+    """Load MCP tools and organize by persona."""
     mcp_tools = []
     max_retries = 5
     retry_delay = 5
@@ -115,7 +186,6 @@ async def initialize_personas():
     for attempt in range(max_retries):
         try:
             # MultiServerMCPClient handles discovery of sub-paths automatically
-            # We point it directly to the SSE endpoint which is standard for FastMCP
             client = MultiServerMCPClient(
                 {"main": {"url": MCP_SERVER_URL, "transport": "http"}}
             )
@@ -146,126 +216,77 @@ async def initialize_personas():
     todo_mcp = [t for t in mcp_tools if "todo" in t.name]
     models_mcp = [t for t in mcp_tools if "models" in t.name]
 
-    # Define Tool Sets
-    general_tools = [get_current_weather_cambridge] + history_mcp + models_mcp
-    weight_tools = weight_mcp
-    rust_tools = rust_mcp
-    cpp_tools = cpp_mcp
-    python_tools = python_mcp
-    todo_tools = todo_mcp
-    daily_report_tools = [get_current_weather_cambridge] + todo_mcp + models_mcp
+    return {
+        "general": [get_current_weather_cambridge] + history_mcp + models_mcp,
+        "weight": weight_mcp,
+        "rust": rust_mcp,
+        "cpp": cpp_mcp,
+        "python": python_mcp,
+        "todo": todo_mcp,
+        "daily_report": [get_current_weather_cambridge] + todo_mcp + models_mcp,
+    }
+
+
+async def initialize_personas():
+    """Initialize personas by loading MCP tools and local tools."""
+    global personas
+
+    persona_tools_map = await load_persona_tools()
 
     # Create Personas
     personas["daily_report"] = Persona(
         name="Daily Reporter",
         description="Generates a consolidated daily morning report with weather, todos, and AI rankings.",
-        system_instructions=(
-            "You are a helpful Daily Briefing Assistant. Your goal is to generate a friendly daily morning report for a user in Cambridge, UK. "
-            "You MUST call these tools to gather information: \n"
-            "1. 'get_current_weather_cambridge' for the current weather.\n"
-            "2. 'list_todos' to get the user's pending tasks.\n"
-            "3. 'get_top_efficient_models' to get the latest AI model rankings.\n\n"
-            "After gathering the data, create a consolidated report with the following sections:\n"
-            "1. Start with a friendly morning greeting and a relevant emoji.\n"
-            "2. '🌤 Weather': Describe current conditions in Cambridge.\n"
-            "3. '📝 Pending TODOs': List all todos clearly.\n"
-            "4. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
-            "   - DO NOT USE MARKDOWN TABLES. Use a clear vertical list.\n"
-            "   - Format: '1. **Model Name** - Value: Score/$$ (Score: XX, Price: $YY)'\n"
-            "   - Highlight the top model in each category with a special emoji.\n"
-            "5. Use Markdown for headings and emphasis. Keep the tone conversational, professional, and friendly.\n"
-            "6. Keep it concise (under 600 words).\n"
-            "Return ONLY the markdown formatted report. No internal monologues or commentary."
-        ),
-        tools=daily_report_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["daily_report"],
+        tools=persona_tools_map["daily_report"],
         llm_model=llm,
     )
 
     personas["general"] = Persona(
         name="General",
         description="A helpful assistant for general queries, weather, and history.",
-        system_instructions=(
-            "You are a helpful AI assistant. When a user asks about historical events for today, you MUST: "
-            "1. Call these THREE tools: 'get_history_today', 'get_history_britannica', AND 'get_history_on_this_day'. "
-            "Do NOT skip any of them. Each provides unique events. "
-            "When a user asks about AI model efficiency rankings, use the 'get_top_efficient_models' tool "
-            "and summarize the top models across intelligence, coding, and tau2 per dollar. "
-            "Combine and cross-reference the information from all sources. "
-            "Provide ONLY the final summarized response organized into these sections: "
-            "   - 🌟 Featured Events "
-            "   - 📅 Other Notable Events "
-            "   - 👶 Notable Births "
-            "   - 🕯️ Notable Deaths "
-            "   - 🤖 AI Efficiency Rankings (if requested) "
-            "CRITICAL: Do not output your thinking process, internal monologues, or 'Wait, let me check' style commentary. "
-            "Return ONLY the final formatted summary with emojis. No meta-talk."
-        ),
-        tools=general_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["general"],
+        tools=persona_tools_map["general"],
         llm_model=llm,
     )
 
     personas["weight"] = Persona(
         name="Weight Tracker",
         description="Focused on tracking and visualizing weight loss progress.",
-        system_instructions=(
-            "You are a dedicated Weight Tracking Assistant. Help the user log their weight and view their progress. "
-            "If the user discusses unrelated topics, suggest switching to general mode."
-        ),
-        tools=weight_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["weight"],
+        tools=persona_tools_map["weight"],
         llm_model=llm,
     )
 
     personas["rust"] = Persona(
         name="Rust Tutor",
         description="An interactive Rust programming language tutor.",
-        system_instructions=(
-            "You are a Rust Programming Tutor (Crab Mode 🦀). Your goal is to teach the user Rust. "
-            "Explain concepts clearly with code examples. Be encouraging and use crab emojis! 🦀 "
-            "If the user asks about other topics, suggest switching to general mode."
-        ),
-        tools=rust_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["rust"],
+        tools=persona_tools_map["rust"],
         llm_model=llm,
     )
 
     personas["cpp"] = Persona(
         name="C++ Tutor",
         description="An interactive C++ programming language tutor.",
-        system_instructions=(
-            "You are a C++ Programming Tutor. Your goal is to teach the user C++. "
-            "Explain concepts clearly with modern C++ examples (C++11 and later). Be precise and helpful. "
-            "If the user asks about other topics, suggest switching to general mode."
-        ),
-        tools=cpp_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["cpp"],
+        tools=persona_tools_map["cpp"],
         llm_model=llm,
     )
 
     personas["python"] = Persona(
         name="Python Tutor",
         description="An interactive Python programming language tutor.",
-        system_instructions=(
-            "You are a Python Programming Tutor. Your goal is to teach the user Python. "
-            "Explain concepts clearly with idiomatic Python (Pythonic) examples. Be friendly and helpful. "
-            "If the user asks about other topics, suggest switching to general mode."
-        ),
-        tools=python_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["python"],
+        tools=persona_tools_map["python"],
         llm_model=llm,
     )
 
     personas["todo"] = Persona(
         name="Todo Tracker",
         description="Manage your todo list with add, list, and remove capabilities.",
-        system_instructions=(
-            "You are a Todo List Manager. Help the user manage their tasks. "
-            "Available actions:\n"
-            "- Add a todo: Use add_todo tool with title and optional description\n"
-            "- List todos: Use list_todos tool to see all todos (numbered 1, 2, 3...)\n"
-            "- Remove a todo: Use remove_todo tool with the todo NUMBER (single)\n"
-            "- Remove multiple: Use remove_todos tool with comma-separated numbers or ranges (e.g., '1,3,4' or '1-5')\n"
-            "When listing todos, always show numbers (1, 2, 3...) so users can reference them. "
-            "Users remove todos by saying 'remove todo 1' or 'delete todo 3' or 'remove todo 1,3,4'. "
-            "If the user asks about other topics, suggest switching to general mode."
-        ),
-        tools=todo_tools,
+        system_instructions=SYSTEM_INSTRUCTIONS["todo"],
+        tools=persona_tools_map["todo"],
         llm_model=llm,
     )
 

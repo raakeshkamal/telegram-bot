@@ -1,5 +1,6 @@
 from fastmcp import FastMCP
 import os
+from dotenv import load_dotenv
 import json
 from datetime import datetime
 from typing import List, Dict, Any, Optional
@@ -10,6 +11,8 @@ import logging
 import pandas as pd
 from playwright_session import fetch_html_sync
 
+load_dotenv()
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,7 +21,7 @@ mcp = FastMCP("Weight Tracker MCP Server")
 
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb://mongodb:27017/bot_db")
 CURRICULUM_PATH = os.environ.get("CURRICULUM_PATH", "data/rust_curriculum.json")
-AA_API_KEY = "aa_iebTMsqZPzykexkOGcoJnHDsqnNoPJQL"
+AA_API_KEY = os.environ.get("AA_API_KEY")
 AA_API_URL = "https://artificialanalysis.ai/api/v2/data/llms/models"
 
 # Initialize MongoDB client

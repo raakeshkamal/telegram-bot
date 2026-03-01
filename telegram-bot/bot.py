@@ -2,6 +2,8 @@ import os
 import io
 import json
 import logging
+import base64
+import aiohttp
 from datetime import datetime
 
 import telegram
@@ -16,7 +18,6 @@ from telegram.ext import (
 )
 from telegram.constants import ParseMode
 import telegramify_markdown
-import aiohttp
 import plotly.graph_objects as go
 import plotly.io as pio
 import pandas as pd
@@ -28,6 +29,9 @@ logger = logging.getLogger(__name__)
 
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free")
+TRANSCRIPTION_MODEL = "google/gemini-3-flash-preview"
 
 WEATHER_CODES = {
     0: "clear sky",
@@ -383,21 +387,112 @@ async def todo_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text(f"✅ Added: {title}")
 
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle regular messages through the agent."""
-    if update.message is None:
+async def transcribe_voice(voice_bytes: bytearray) -> str:
+    """Transcribe audio using OpenRouter."""
+    if not OPENROUTER_API_KEY:
+        logger.error("OPENROUTER_API_KEY not found.")
+        return ""
+
+    audio_base64 = base64.b64encode(voice_bytes).decode("utf-8")
+    
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "http://localhost:3000",
+        "X-Title": "Telegram Bot Transcription"
+    }
+
+    payload = {
+        "model": TRANSCRIPTION_MODEL,
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "Please transcribe this audio exactly. Just the text, nothing else."
+                    },
+                    {
+                        "type": "input_audio",
+                        "input_audio": {
+                            "data": audio_base64,
+                            "format": "ogg"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+
+    logger.info(f"Sending audio to {TRANSCRIPTION_MODEL} via OpenRouter...")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, headers=headers, json=payload) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    try:
+                        return result['choices'][0]['message']['content']
+                    except (KeyError, IndexError):
+                        logger.error(f"Unexpected response format: {result}")
+                        return ""
+                else:
+                    logger.error(f"OpenRouter Error: {response.status} - {await response.text()}")
+                    return ""
+    except Exception as e:
+        logger.error(f"Error calling OpenRouter: {e}")
+        return ""
+
+
+async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle voice messages."""
+    if update.message is None or update.message.voice is None:
         return
 
+    # Inform the user that we are processing the voice message
+    processing_msg = await update.message.reply_text("🎤 Processing voice message...")
+
+    try:
+        # Download the file
+        voice_file = await context.bot.get_file(update.message.voice.file_id)
+        voice_bytes = await voice_file.download_as_bytearray()
+        
+        # Transcribe
+        transcription = await transcribe_voice(voice_bytes)
+        
+        if transcription:
+            logger.info(f"Transcription: {transcription}")
+            # Replace the message text with the transcription
+            # Update objects are immutable in some ways, but we can call handle_message 
+            # with the transcription logic.
+            # We'll create a fake update or just pass the text to our logic.
+            
+            # For simplicity, we'll inform the user and then process.
+            safe_transcription = telegramify_markdown.markdownify(f"📝 *Transcription:* {transcription}")
+            await processing_msg.edit_text(safe_transcription, parse_mode=ParseMode.MARKDOWN_V2)
+            
+            # Now call handle_message logic
+            await _process_agent_message(update, context, transcription)
+        else:
+            await processing_msg.edit_text("Sorry, I couldn't transcribe that voice message.")
+            
+    except Exception as e:
+        logger.error(f"Error in handle_voice: {e}")
+        await processing_msg.edit_text("An error occurred while processing your voice message.")
+
+
+async def _process_agent_message(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
+    """Refactored logic to handle agent processing for both text and voice."""
     user_id = update.effective_user.id
-    text = update.message.text
-
-    logger.info(f"Received message: {text} from {update.effective_user}")
-
+    
     user_persona_name = user_modes.get(user_id, DEFAULT_PERSONA)
     if user_persona_name not in personas:
         user_persona_name = DEFAULT_PERSONA
 
     user_agent_executor = personas[user_persona_name].executor
+
+    # Show typing action while the agent is "thinking"
+    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=telegram.constants.ChatAction.TYPING)
 
     try:
         response = await user_agent_executor.ainvoke({"input": text})
@@ -411,6 +506,17 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "I'm having a bit of trouble thinking right now. Please try again."
         )
+
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle regular messages through the agent."""
+    if update.message is None or update.message.text is None:
+        return
+
+    text = update.message.text
+    logger.info(f"Received message: {text} from {update.effective_user}")
+    
+    await _process_agent_message(update, context, text)
 
 
 async def send_long_message(message, content: str, max_length: int = 4096):
@@ -537,6 +643,10 @@ async def main():
         fallbacks=[CommandHandler("cancel", cancel_conversation)],
     )
     application.add_handler(conv_rust_restart)
+
+    application.add_handler(
+        MessageHandler(filters.VOICE, handle_voice)
+    )
 
     application.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message)

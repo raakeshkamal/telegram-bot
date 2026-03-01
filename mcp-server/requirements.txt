@@ -5,3 +5,4 @@ requests
 pymongo
 curl_cffi
 pandas
+python-dotenv

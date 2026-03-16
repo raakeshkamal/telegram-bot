@@ -10,6 +10,7 @@ from pymongo import MongoClient
 import logging
 import pandas as pd
 from playwright_session import fetch_html_sync
+from difflib import SequenceMatcher
 
 load_dotenv()
 
@@ -491,6 +492,163 @@ def remove_todos(todo_numbers: str) -> str:
     if removed:
         return f"✅ Removed todo(s): {', '.join(f'#{n}' for n in removed)}"
     return "❌ No todos found to remove."
+
+
+def calculate_similarity(query: str, title: str) -> float:
+    """Calculate similarity score between query and title using multiple methods.
+
+    Args:
+        query: The search query
+        title: The todo title to compare against
+
+    Returns:
+        Similarity score between 0.0 and 1.0
+    """
+    query = query.lower().strip()
+    title = title.lower().strip()
+
+    # Method 1: Exact substring match (highest priority)
+    if query in title:
+        return 1.0
+
+    # Method 2: Word overlap (Jaccard similarity)
+    query_words = set(query.split())
+    title_words = set(title.split())
+    if query_words and title_words:
+        jaccard = len(query_words & title_words) / len(query_words | title_words)
+    else:
+        jaccard = 0.0
+
+    # Method 3: Sequence similarity
+    seq_ratio = SequenceMatcher(None, query, title).ratio()
+
+    # Weighted average (word overlap 0.4, sequence 0.6)
+    weighted_score = (jaccard * 0.4) + (seq_ratio * 0.6)
+
+    return weighted_score
+
+
+@mcp.tool
+def remove_todo_by_search(query: str) -> Dict[str, Any]:
+    """Remove a todo item by searching for matching text in the title.
+
+    Uses fuzzy matching to find the best matching todo based on the search query.
+
+    Args:
+        query: The search term/phrase to match against todo titles
+
+    Returns:
+        Dictionary with status, message, and details about the match/removal:
+        - status: "success" | "multiple_matches" | "no_match"
+        - message: Human-readable message
+        - matched_todos: List of matching todos (for disambiguation)
+        - removed_todo: The removed todo details (on success)
+        - similarity_score: Match confidence score
+    """
+    # Normalize query
+    query = query.strip().lower()
+
+    if not query or len(query) < 2:
+        return {
+            "status": "no_match",
+            "message": "Please provide a search term to remove a todo. Example: 'remove lunch' or use todo numbers.",
+            "matched_todos": [],
+            "removed_todo": None,
+            "similarity_score": None
+        }
+
+    # Get all todos
+    all_todos = list(todos_col.find({}, {"_id": 0}).sort("created_at", 1))
+
+    if not all_todos:
+        return {
+            "status": "no_match",
+            "message": "No todos found in your list.",
+            "matched_todos": [],
+            "removed_todo": None,
+            "similarity_score": None
+        }
+
+    # Calculate similarity scores for all todos
+    scored_todos = []
+    for todo in all_todos:
+        title = todo.get("title", "").lower()
+        score = calculate_similarity(query, title)
+        if score >= 0.5:  # Only consider matches above threshold
+            scored_todos.append({
+                **todo,
+                "similarity_score": score
+            })
+
+    # Sort by similarity score descending
+    scored_todos.sort(key=lambda x: x["similarity_score"], reverse=True)
+
+    # Handle results
+    if not scored_todos:
+        # No matches found - show current todos
+        todo_list = "\n".join([
+            f"{t['todo_number']}. {t['title']}"
+            for t in all_todos
+        ])
+        return {
+            "status": "no_match",
+            "message": f"No todos found matching '{query}'. Your current todos are:\n{todo_list}\n\nYou can:\n- List todos with 'show my todos'\n- Remove by number: 'remove todo <number>'\n- Try a different search term",
+            "matched_todos": [],
+            "removed_todo": None,
+            "similarity_score": None
+        }
+
+    # Check for multiple high-confidence matches
+    high_confidence = [t for t in scored_todos if t["similarity_score"] >= 0.8]
+
+    if len(high_confidence) > 1:
+        # Multiple high-confidence matches - ask for clarification
+        matches_text = "\n".join([
+            f"{t['todo_number']}. {t['title']}"
+            for t in high_confidence
+        ])
+        return {
+            "status": "multiple_matches",
+            "message": f"Found multiple todos matching '{query}'. Please specify which one to remove:\n{matches_text}\n\nYou can use the todo number (e.g., 'remove todo 5') or be more specific.",
+            "matched_todos": high_confidence,
+            "removed_todo": None,
+            "similarity_score": None
+        }
+
+    # Single best match
+    best_match = scored_todos[0]
+    todo_number = best_match["todo_number"]
+    score = best_match["similarity_score"]
+
+    # Remove the todo
+    result = todos_col.delete_one({"todo_number": todo_number})
+
+    if result.deleted_count > 0:
+        confidence_level = "high" if score >= 0.9 else "medium" if score >= 0.7 else "low"
+        message = f"Removed todo #{todo_number}: '{best_match['title']}' (match confidence: {int(score * 100)}% - {confidence_level})"
+
+        if score < 0.7:
+            message += "\nDid you mean to remove a different todo? Check with 'show my todos'"
+
+        return {
+            "status": "success",
+            "message": message,
+            "matched_todos": [],
+            "removed_todo": {
+                "todo_number": todo_number,
+                "title": best_match["title"],
+                "description": best_match.get("description", "")
+            },
+            "similarity_score": score
+        }
+    else:
+        return {
+            "status": "no_match",
+            "message": f"Error: Could not remove todo #{todo_number}. Please try again.",
+            "matched_todos": [],
+            "removed_todo": None,
+            "similarity_score": None
+        }
 
 
 @mcp.tool

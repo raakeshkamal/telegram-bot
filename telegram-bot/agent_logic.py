@@ -52,17 +52,19 @@ SYSTEM_INSTRUCTIONS = {
         "You MUST call these tools to gather information: \n"
         "1. 'get_current_weather_cambridge' for the current weather.\n"
         "2. 'list_todos' to get the user's pending tasks.\n"
-        "3. 'get_top_efficient_models' to get the latest AI model rankings.\n\n"
+        "3. 'get_top_efficient_models' to get the latest AI model rankings.\n"
+        "4. 'get_portfolio_stats' to get the latest portfolio performance metrics.\n\n"
         "After gathering the data, create a consolidated report with the following sections:\n"
         "1. Start with a friendly morning greeting and a relevant emoji.\n"
         "2. '🌤 Weather': Describe current conditions in Cambridge.\n"
         "3. '📝 Pending TODOs': List all todos clearly.\n"
-        "4. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
+        "4. '📈 Portfolio Performance': Summarize the portfolio status in British Pounds (£). Include Total Invested, Current Value, Profit/Loss, and ROI percentage. Mention the IRR and TWR as well.\n"
+        "5. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
         "   - DO NOT USE MARKDOWN TABLES. Use a clear vertical list.\n"
         "   - Format: '1. **Model Name** - Value: Score/$$ (Score: XX, Price: $YY)'\n"
         "   - Highlight the top model in each category with a special emoji.\n"
-        "5. Use Markdown for headings and emphasis. Keep the tone conversational, professional, and friendly.\n"
-        "6. Keep it concise (under 600 words).\n"
+        "6. Use Markdown for headings and emphasis. Keep the tone conversational, professional, and friendly.\n"
+        "7. Keep it concise (under 600 words).\n"
         "Return ONLY the markdown formatted report. No internal monologues or commentary."
     ),
     "general": (
@@ -71,13 +73,16 @@ SYSTEM_INSTRUCTIONS = {
         "Do NOT skip any of them. Each provides unique events. "
         "When a user asks about AI model efficiency rankings, use the 'get_top_efficient_models' tool "
         "and summarize the top models across intelligence, coding, and tau2 per dollar. "
+        "When a user asks about their portfolio performance or stats, use the 'get_portfolio_stats' tool "
+        "and provide a clear summary in British Pounds (£) of their total invested, current value, profit/loss, and returns (ROI, IRR, TWR). "
         "Combine and cross-reference the information from all sources. "
-        "Provide ONLY the final summarized response organized into these sections: "
+        "Provide ONLY the final summarized response organized into these sections (as applicable): "
         "   - 🌟 Featured Events "
         "   - 📅 Other Notable Events "
         "   - 👶 Notable Births "
         "   - 🕯️ Notable Deaths "
-        "   - 🤖 AI Efficiency Rankings (if requested) "
+        "   - 🤖 AI Efficiency Rankings "
+        "   - 📈 Portfolio Summary "
         "CRITICAL: Do not output your thinking process, internal monologues, or 'Wait, let me check' style commentary. "
         "Return ONLY the final formatted summary with emojis. No meta-talk."
     ),
@@ -105,10 +110,19 @@ SYSTEM_INSTRUCTIONS = {
         "Available actions:\n"
         "- Add a todo: Use add_todo tool with title and optional description\n"
         "- List todos: Use list_todos tool to see all todos (numbered 1, 2, 3...)\n"
-        "- Remove a todo: Use remove_todo tool with the todo NUMBER (single)\n"
-        "- Remove multiple: Use remove_todos tool with comma-separated numbers or ranges (e.g., '1,3,4' or '1-5')\n"
+        "- Remove a todo by number: Use remove_todo tool with the todo NUMBER (single)\n"
+        "- Remove multiple by number: Use remove_todos tool with comma-separated numbers or ranges (e.g., '1,3,4' or '1-5')\n"
+        "- Remove a todo by search: Use remove_todo_by_search tool with a search phrase (e.g., 'lunch', 'buy groceries')\n\n"
         "When listing todos, always show numbers (1, 2, 3...) so users can reference them. "
-        "Users remove todos by saying 'remove todo 1' or 'delete todo 3' or 'remove todo 1,3,4'. "
+        "Users can remove todos in several ways:\n"
+        "1. By exact number: 'remove todo 1', 'delete todo 3'\n"
+        "2. By multiple numbers: 'remove todo 1,3,4', 'delete todos 1-5'\n"
+        "3. By natural language search: 'remove lunch', 'delete the grocery shopping todo'\n\n"
+        "IMPORTANT: When using remove_todo_by_search:\n"
+        "- If status is 'multiple_matches', show the user the matching todos and ask them to clarify by number or be more specific\n"
+        "- If status is 'no_match', show the current todos and suggest alternatives\n"
+        "- If status is 'success', confirm the removal and mention the confidence level if it's low\n"
+        "- Always be helpful and guide users to the best option when search fails\n\n"
         "If the user asks about other topics, suggest switching to general mode."
     ),
 }
@@ -140,6 +154,23 @@ async def get_cambridge_weather():
 async def get_current_weather_cambridge():
     """Get the current weather in Cambridge, UK."""
     return await get_cambridge_weather()
+
+
+@tool
+async def get_portfolio_stats():
+    """Fetch portfolio performance statistics from the local portfolio server."""
+    url = os.environ.get("PORTFOLIO_API_URL", "http://localhost:8800/portfolio-values/")
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.get(url) as response:
+                if response.status != 200:
+                    logger.error(f"Portfolio API returned status {response.status}")
+                    return {"error": f"Portfolio API returned status {response.status}"}
+                data = await response.json()
+                return data.get("portfolio_stats")
+        except Exception as e:
+            logger.error(f"Failed to fetch portfolio stats: {e}")
+            return {"error": f"Failed to fetch portfolio stats: {str(e)}"}
 
 
 # --- Persona Definition ---
@@ -217,13 +248,17 @@ async def load_persona_tools():
     models_mcp = [t for t in mcp_tools if "models" in t.name]
 
     return {
-        "general": [get_current_weather_cambridge] + history_mcp + models_mcp,
+        "general": [get_current_weather_cambridge, get_portfolio_stats]
+        + history_mcp
+        + models_mcp,
         "weight": weight_mcp,
         "rust": rust_mcp,
         "cpp": cpp_mcp,
         "python": python_mcp,
         "todo": todo_mcp,
-        "daily_report": [get_current_weather_cambridge] + todo_mcp + models_mcp,
+        "daily_report": [get_current_weather_cambridge, get_portfolio_stats]
+        + todo_mcp
+        + models_mcp,
     }
 
 

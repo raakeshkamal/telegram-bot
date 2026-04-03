@@ -11,7 +11,7 @@ from pymongo import MongoClient
 # Configure logging
 logger = logging.getLogger(__name__)
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://ferretdb:ferretdb@ferretdb:27017/")
 DB_NAME = "telegram_bot"
 COLLECTION_NAME = "bot_state"
 
@@ -36,7 +36,7 @@ class StatePersistence:
         """Load user state from MongoDB."""
         if self.client is None:
             return None
-            
+
         try:
             doc = self.collection.find_one({"user_id": user_id})
             if doc:
@@ -45,14 +45,14 @@ class StatePersistence:
                 return doc
         except Exception as e:
             logger.error(f"Error loading state for user {user_id}: {e}")
-            
+
         return None
 
     async def save_state(self, user_id: str, state: dict):
         """Save user state to MongoDB."""
         if self.client is None:
             return
-            
+
         try:
             # Prepare state for saving
             save_data = state.copy()
@@ -61,9 +61,7 @@ class StatePersistence:
 
             # Upsert: update if exists, insert if not
             self.collection.update_one(
-                {"user_id": user_id},
-                {"$set": save_data},
-                upsert=True
+                {"user_id": user_id}, {"$set": save_data}, upsert=True
             )
         except Exception as e:
             logger.error(f"Error saving state for user {user_id}: {e}")
@@ -72,27 +70,27 @@ class StatePersistence:
         """Get conversation history for a specific persona."""
         if self.client is None:
             return []
-            
+
         try:
             doc = self.collection.find_one({"user_id": user_id})
             if doc and "persona_histories" in doc:
                 return doc["persona_histories"].get(persona, [])
         except Exception as e:
             logger.error(f"Error getting persona history for user {user_id}: {e}")
-            
+
         return []
 
     async def save_persona_history(self, user_id: str, persona: str, messages: list):
         """Save conversation history for a specific persona."""
         if self.client is None:
             return
-            
+
         try:
             # Update specific persona history in the document
             self.collection.update_one(
                 {"user_id": user_id},
                 {"$set": {f"persona_histories.{persona}": messages}},
-                upsert=True
+                upsert=True,
             )
         except Exception as e:
             logger.error(f"Error saving persona history for user {user_id}: {e}")

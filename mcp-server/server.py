@@ -20,7 +20,9 @@ logger = logging.getLogger(__name__)
 
 mcp = FastMCP("Weight Tracker MCP Server")
 
-MONGO_URI = os.environ.get("MONGO_URI", "mongodb://mongodb:27017/bot_db")
+MONGO_URI = os.environ.get(
+    "MONGO_URI", "mongodb://ferretdb:ferretdb@ferretdb:27017/bot_db"
+)
 CURRICULUM_PATH = os.environ.get("CURRICULUM_PATH", "data/rust_curriculum.json")
 AA_API_KEY = os.environ.get("AA_API_KEY")
 AA_API_URL = "https://artificialanalysis.ai/api/v2/data/llms/models"
@@ -554,7 +556,7 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
             "message": "Please provide a search term to remove a todo. Example: 'remove lunch' or use todo numbers.",
             "matched_todos": [],
             "removed_todo": None,
-            "similarity_score": None
+            "similarity_score": None,
         }
 
     # Get all todos
@@ -566,7 +568,7 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
             "message": "No todos found in your list.",
             "matched_todos": [],
             "removed_todo": None,
-            "similarity_score": None
+            "similarity_score": None,
         }
 
     # Calculate similarity scores for all todos
@@ -575,10 +577,7 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
         title = todo.get("title", "").lower()
         score = calculate_similarity(query, title)
         if score >= 0.5:  # Only consider matches above threshold
-            scored_todos.append({
-                **todo,
-                "similarity_score": score
-            })
+            scored_todos.append({**todo, "similarity_score": score})
 
     # Sort by similarity score descending
     scored_todos.sort(key=lambda x: x["similarity_score"], reverse=True)
@@ -586,16 +585,13 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
     # Handle results
     if not scored_todos:
         # No matches found - show current todos
-        todo_list = "\n".join([
-            f"{t['todo_number']}. {t['title']}"
-            for t in all_todos
-        ])
+        todo_list = "\n".join([f"{t['todo_number']}. {t['title']}" for t in all_todos])
         return {
             "status": "no_match",
             "message": f"No todos found matching '{query}'. Your current todos are:\n{todo_list}\n\nYou can:\n- List todos with 'show my todos'\n- Remove by number: 'remove todo <number>'\n- Try a different search term",
             "matched_todos": [],
             "removed_todo": None,
-            "similarity_score": None
+            "similarity_score": None,
         }
 
     # Check for multiple high-confidence matches
@@ -603,16 +599,15 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
 
     if len(high_confidence) > 1:
         # Multiple high-confidence matches - ask for clarification
-        matches_text = "\n".join([
-            f"{t['todo_number']}. {t['title']}"
-            for t in high_confidence
-        ])
+        matches_text = "\n".join(
+            [f"{t['todo_number']}. {t['title']}" for t in high_confidence]
+        )
         return {
             "status": "multiple_matches",
             "message": f"Found multiple todos matching '{query}'. Please specify which one to remove:\n{matches_text}\n\nYou can use the todo number (e.g., 'remove todo 5') or be more specific.",
             "matched_todos": high_confidence,
             "removed_todo": None,
-            "similarity_score": None
+            "similarity_score": None,
         }
 
     # Single best match
@@ -624,11 +619,15 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
     result = todos_col.delete_one({"todo_number": todo_number})
 
     if result.deleted_count > 0:
-        confidence_level = "high" if score >= 0.9 else "medium" if score >= 0.7 else "low"
+        confidence_level = (
+            "high" if score >= 0.9 else "medium" if score >= 0.7 else "low"
+        )
         message = f"Removed todo #{todo_number}: '{best_match['title']}' (match confidence: {int(score * 100)}% - {confidence_level})"
 
         if score < 0.7:
-            message += "\nDid you mean to remove a different todo? Check with 'show my todos'"
+            message += (
+                "\nDid you mean to remove a different todo? Check with 'show my todos'"
+            )
 
         return {
             "status": "success",
@@ -637,9 +636,9 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
             "removed_todo": {
                 "todo_number": todo_number,
                 "title": best_match["title"],
-                "description": best_match.get("description", "")
+                "description": best_match.get("description", ""),
             },
-            "similarity_score": score
+            "similarity_score": score,
         }
     else:
         return {
@@ -647,14 +646,14 @@ def remove_todo_by_search(query: str) -> Dict[str, Any]:
             "message": f"Error: Could not remove todo #{todo_number}. Please try again.",
             "matched_todos": [],
             "removed_todo": None,
-            "similarity_score": None
+            "similarity_score": None,
         }
 
 
 @mcp.tool
 def get_top_efficient_models(limit: int = 10) -> Dict[str, Any]:
     """Fetch AI model data and return top price-efficient models across indices.
-    
+
     Returns:
         A dictionary with top N models for intelligence, coding, and tau2 values per dollar.
     """
@@ -667,38 +666,47 @@ def get_top_efficient_models(limit: int = 10) -> Dict[str, Any]:
         logger.error(f"Error fetching data from Artificial Analysis: {e}")
         return {"error": str(e)}
 
-    if 'data' not in json_data:
+    if "data" not in json_data:
         return {"error": "'data' key not found in API response"}
 
-    models = json_data['data']
+    models = json_data["data"]
     processed_data = []
     for m in models:
-        evals = m.get('evaluations', {})
-        pricing = m.get('pricing', {})
-        processed_data.append({
-            'name': m.get('name'),
-            'intelligence_index': evals.get('artificial_analysis_intelligence_index'),
-            'coding_index': evals.get('artificial_analysis_coding_index'),
-            'tau2': evals.get('tau2'),
-            'price_blended': pricing.get('price_1m_blended_3_to_1')
-        })
+        evals = m.get("evaluations", {})
+        pricing = m.get("pricing", {})
+        processed_data.append(
+            {
+                "name": m.get("name"),
+                "intelligence_index": evals.get(
+                    "artificial_analysis_intelligence_index"
+                ),
+                "coding_index": evals.get("artificial_analysis_coding_index"),
+                "tau2": evals.get("tau2"),
+                "price_blended": pricing.get("price_1m_blended_3_to_1"),
+            }
+        )
 
     df = pd.DataFrame(processed_data)
-    df = df[df['price_blended'] > 0].copy()
-    
+    df = df[df["price_blended"] > 0].copy()
+
     # Calculate Value Indices (Per Dollar)
-    df['intel_value'] = df['intelligence_index'] / df['price_blended']
-    df['coding_value'] = df['coding_index'] / df['price_blended']
-    df['tau2_value'] = df['tau2'] / df['price_blended']
-    
+    df["intel_value"] = df["intelligence_index"] / df["price_blended"]
+    df["coding_value"] = df["coding_index"] / df["price_blended"]
+    df["tau2_value"] = df["tau2"] / df["price_blended"]
+
     def get_top(df_in, col, value_col, lim):
-        return df_in.dropna(subset=[value_col]).sort_values(by=value_col, ascending=False).head(lim)[['name', col, 'price_blended', value_col]].to_dict(orient='records')
+        return (
+            df_in.dropna(subset=[value_col])
+            .sort_values(by=value_col, ascending=False)
+            .head(lim)[["name", col, "price_blended", value_col]]
+            .to_dict(orient="records")
+        )
 
     limit_val = int(limit)
     return {
-        "top_intelligence": get_top(df, 'intelligence_index', 'intel_value', limit_val),
-        "top_coding": get_top(df, 'coding_index', 'coding_value', limit_val),
-        "top_tau2": get_top(df, 'tau2', 'tau2_value', limit_val)
+        "top_intelligence": get_top(df, "intelligence_index", "intel_value", limit_val),
+        "top_coding": get_top(df, "coding_index", "coding_value", limit_val),
+        "top_tau2": get_top(df, "tau2", "tau2_value", limit_val),
     }
 
 

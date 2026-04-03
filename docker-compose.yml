@@ -8,19 +8,22 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/bot_db
+      - MONGO_URI=mongodb://ferretdb:ferretdb@ferretdb:27017/bot_db
       - AA_API_KEY=${AA_API_KEY:-}
     depends_on:
-      - mongodb
+      - ferretdb
     restart: always
 
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
+  ferretdb:
+    image: ghcr.io/ferretdb/ferretdb-eval:2
+    container_name: ferretdb
     ports:
       - "27117:27017"
+    environment:
+      - POSTGRES_USER=ferretdb
+      - POSTGRES_PASSWORD=ferretdb
     volumes:
-      - ./mongo_data:/data/db
+      - ./ferretdb_data:/var/lib/postgresql/data
     restart: always
 
   telegram-bot:

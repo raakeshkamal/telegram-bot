@@ -44,11 +44,11 @@ else
     pip install -q -r mcp-server/requirements.txt -r telegram-bot/requirements.txt
 fi
 
-# --- Step 3: Ensure MongoDB is running ---
-echo "🍃 Checking MongoDB..."
+# --- Step 3: Ensure FerretDB is running ---
+echo "🦡 Checking FerretDB..."
 if ! nc -z localhost 27017 &> /dev/null; then
-    echo "⚠️ MongoDB is not running on localhost:27017."
-    echo "💡 Suggestion: Run 'docker run -d -p 27017:27017 --name mongodb mongo:latest' to start it quickly."
+    echo "⚠️ FerretDB is not running on localhost:27017."
+    echo "💡 Suggestion: Run 'docker run -d -p 27017:27017 --name ferretdb -e POSTGRES_USER=ferretdb -e POSTGRES_PASSWORD=ferretdb ghcr.io/ferretdb/ferretdb-eval:2' to start it quickly."
     # We'll continue anyway, but the app might fail if it tries to connect
 fi
 
@@ -59,7 +59,7 @@ if [ -f .env ]; then
 fi
 
 # Override service names for local execution
-export MONGO_URI="mongodb://localhost:27017/bot_db"
+export MONGO_URI="mongodb://ferretdb:ferretdb@localhost:27017/bot_db"
 export MCP_SERVER_URL="http://localhost:8000/mcp"
 export PHOENIX_COLLECTOR_ENDPOINT="http://localhost:4317"
 export PHOENIX_WORKING_DIR="$(pwd)/phoenix_data"

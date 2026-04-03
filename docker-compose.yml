@@ -35,6 +35,11 @@ services:
       - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
       - MCP_SERVER_URL=http://mcp-server:8000/mcp
       - PHOENIX_COLLECTOR_ENDPOINT=http://phoenix:4317
+      - MINIFLUX_URL=${MINIFLUX_URL:-http://miniflux:8080}
+      - MINIFLUX_USERNAME=${MINIFLUX_USERNAME:-}
+      - MINIFLUX_PASSWORD=${MINIFLUX_PASSWORD:-}
+      - RSS_POLL_INTERVAL=${RSS_POLL_INTERVAL:-300}
+      - RSS_CHAT_ID=${RSS_CHAT_ID:-}
     depends_on:
       - mcp-server
       - phoenix

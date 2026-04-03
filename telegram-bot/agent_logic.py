@@ -56,7 +56,7 @@ SYSTEM_INSTRUCTIONS = {
         "4. 'get_portfolio_stats' to get the latest portfolio performance metrics.\n\n"
         "After gathering the data, create a consolidated report with the following sections:\n"
         "1. Start with a friendly morning greeting and a relevant emoji.\n"
-        "2. '🌤 Weather': Describe current conditions in Cambridge.\n"
+        "2. '🌤 Weather': Describe current conditions in Cambridge including temperature range (min/max) and precipitation chance percentage.\n"
         "3. '📝 Pending TODOs': List all todos clearly.\n"
         "4. '📈 Portfolio Performance': Summarize the portfolio status in British Pounds (£). Include Total Invested, Current Value, Profit/Loss, and ROI percentage. Mention the IRR and TWR as well.\n"
         "5. '🤖 AI Efficiency Rankings': List top models across Intelligence, Coding, and Tau2 per dollar categories.\n"
@@ -137,6 +137,9 @@ async def get_cambridge_weather():
         "latitude": 52.1951,
         "longitude": 0.1313,
         "current_weather": "true",
+        "daily": "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
+        "timezone": "auto",
+        "forecast_days": 1,
     }
     async with aiohttp.ClientSession() as session:
         try:

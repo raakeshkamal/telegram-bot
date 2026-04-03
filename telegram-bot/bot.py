@@ -27,7 +27,9 @@ logger = logging.getLogger(__name__)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free")
+OPENROUTER_MODEL = os.getenv(
+    "OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free"
+)
 TRANSCRIPTION_MODEL = "google/gemini-3-flash-preview"
 
 user_modes = {}
@@ -46,14 +48,15 @@ async def initialize():
 
 from observability import get_user_state_info, visualize_graph
 
+
 async def graph_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show current graph state for debugging."""
     user_id = str(update.effective_user.id)
     info = await get_user_state_info(user_id)
     await update.message.reply_text(
-        telegramify_markdown.markdownify(info),
-        parse_mode=ParseMode.MARKDOWN_V2
+        telegramify_markdown.markdownify(info), parse_mode=ParseMode.MARKDOWN_V2
     )
+
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Welcome message."""
@@ -357,13 +360,13 @@ async def transcribe_voice(voice_bytes: bytearray) -> str:
         return ""
 
     audio_base64 = base64.b64encode(voice_bytes).decode("utf-8")
-    
+
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
         "HTTP-Referer": "http://localhost:3000",
-        "X-Title": "Telegram Bot Transcription"
+        "X-Title": "Telegram Bot Transcription",
     }
 
     payload = {
@@ -374,18 +377,15 @@ async def transcribe_voice(voice_bytes: bytearray) -> str:
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please transcribe this audio exactly. Just the text, nothing else."
+                        "text": "Please transcribe this audio exactly. Just the text, nothing else.",
                     },
                     {
                         "type": "input_audio",
-                        "input_audio": {
-                            "data": audio_base64,
-                            "format": "ogg"
-                        }
-                    }
-                ]
+                        "input_audio": {"data": audio_base64, "format": "ogg"},
+                    },
+                ],
             }
-        ]
+        ],
     }
 
     logger.info(f"Sending audio to {TRANSCRIPTION_MODEL} via OpenRouter...")
@@ -395,12 +395,14 @@ async def transcribe_voice(voice_bytes: bytearray) -> str:
                 if response.status == 200:
                     result = await response.json()
                     try:
-                        return result['choices'][0]['message']['content']
+                        return result["choices"][0]["message"]["content"]
                     except (KeyError, IndexError):
                         logger.error(f"Unexpected response format: {result}")
                         return ""
                 else:
-                    logger.error(f"OpenRouter Error: {response.status} - {await response.text()}")
+                    logger.error(
+                        f"OpenRouter Error: {response.status} - {await response.text()}"
+                    )
                     return ""
     except Exception as e:
         logger.error(f"Error calling OpenRouter: {e}")
@@ -419,38 +421,51 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Download the file
         voice_file = await context.bot.get_file(update.message.voice.file_id)
         voice_bytes = await voice_file.download_as_bytearray()
-        
+
         # Transcribe
         transcription = await transcribe_voice(voice_bytes)
-        
+
         if transcription:
             logger.info(f"Transcription: {transcription}")
             # Replace the message text with the transcription
-            # Update objects are immutable in some ways, but we can call handle_message 
+            # Update objects are immutable in some ways, but we can call handle_message
             # with the transcription logic.
             # We'll create a fake update or just pass the text to our logic.
-            
+
             # For simplicity, we'll inform the user and then process.
-            safe_transcription = telegramify_markdown.markdownify(f"📝 *Transcription:* {transcription}")
-            await processing_msg.edit_text(safe_transcription, parse_mode=ParseMode.MARKDOWN_V2)
-            
+            safe_transcription = telegramify_markdown.markdownify(
+                f"📝 *Transcription:* {transcription}"
+            )
+            await processing_msg.edit_text(
+                safe_transcription, parse_mode=ParseMode.MARKDOWN_V2
+            )
+
             # Now call handle_message logic
             await _process_graph_message(update, context, transcription, transcription)
         else:
-            await processing_msg.edit_text("Sorry, I couldn't transcribe that voice message.")
-            
+            await processing_msg.edit_text(
+                "Sorry, I couldn't transcribe that voice message."
+            )
+
     except Exception as e:
         logger.error(f"Error in handle_voice: {e}")
-        await processing_msg.edit_text("An error occurred while processing your voice message.")
+        await processing_msg.edit_text(
+            "An error occurred while processing your voice message."
+        )
 
 
-async def _process_graph_message(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str, transcription: str = None):
+async def _process_graph_message(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE,
+    text: str,
+    transcription: str = None,
+):
     """Process message using LangGraph state machine."""
     user_id = str(update.effective_user.id)
-    
+
     # Load user state from MongoDB
     initial_state = await load_user_state(user_id)
-    
+
     # Update with current input
     initial_state["current_input"] = text
     initial_state["transcription"] = transcription
@@ -458,7 +473,9 @@ async def _process_graph_message(update: Update, context: ContextTypes.DEFAULT_T
     initial_state["input_type"] = "voice" if transcription else "text"
 
     # Show typing action while the agent is "thinking"
-    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=telegram.constants.ChatAction.TYPING)
+    await context.bot.send_chat_action(
+        chat_id=update.effective_chat.id, action=telegram.constants.ChatAction.TYPING
+    )
 
     try:
         # Invoke the graph
@@ -469,13 +486,13 @@ async def _process_graph_message(update: Update, context: ContextTypes.DEFAULT_T
 
         # Get the response
         response = result["current_response"]
-        
+
         if response:
-            await send_long_message(
-                update.message, response
-            )
+            await send_long_message(update.message, response)
         else:
-            await update.message.reply_text("I'm sorry, I couldn't generate a response.")
+            await update.message.reply_text(
+                "I'm sorry, I couldn't generate a response."
+            )
 
     except Exception as e:
         logger.error(f"Graph execution error for user {user_id}: {e}")
@@ -491,7 +508,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
     logger.info(f"Received message: {text} from {update.effective_user}")
-    
+
     await _process_graph_message(update, context, text)
 
 
@@ -536,7 +553,7 @@ async def send_long_message(message, content: str, max_length: int = 4096):
 async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
     """Send daily check-in message with weather and todos."""
     logger.info(f"Executing daily_check. CHAT_ID: {CHAT_ID}")
-    
+
     application = context.application
     job_chat_id = CHAT_ID
 
@@ -551,7 +568,7 @@ async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
             # Use the consolidated Daily Report persona
             logger.info("Generating consolidated daily report...")
             report_msg = "Error generating daily report."
-            
+
             try:
                 if "daily_report" in SYSTEM_INSTRUCTIONS:
                     # Use the graph for daily report
@@ -566,7 +583,7 @@ async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
                         "user_id": "system",
                         "last_interaction": datetime.now(),
                         "tool_calls": [],
-                        "tool_results": []
+                        "tool_results": [],
                     }
                     result = await app.ainvoke(initial_state)
                     report_msg = result.get("current_response", "No report generated.")
@@ -576,15 +593,13 @@ async def daily_check_job(context: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 logger.error(f"Consolidated report generation failed: {e}")
                 report_msg = f"Failed to generate report: {e}"
-            
+
             # Use telegramify_markdown to ensure safe output
             safe_msg = telegramify_markdown.markdownify(report_msg)
-            
+
             logger.info(f"Sending daily report to {chat_id_int}")
             await application.bot.send_message(
-                chat_id=chat_id_int, 
-                text=safe_msg, 
-                parse_mode=ParseMode.MARKDOWN_V2
+                chat_id=chat_id_int, text=safe_msg, parse_mode=ParseMode.MARKDOWN_V2
             )
             logger.info(f"Successfully sent daily report to {chat_id_int}")
         except Exception as e:
@@ -634,9 +649,7 @@ async def main():
     )
     application.add_handler(conv_rust_restart)
 
-    application.add_handler(
-        MessageHandler(filters.VOICE, handle_voice)
-    )
+    application.add_handler(MessageHandler(filters.VOICE, handle_voice))
 
     application.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message)
@@ -651,9 +664,13 @@ async def main():
 
     await application.initialize()
     await application.start()
-    
+
     # Run once on startup to verify and provide immediate feedback
     application.job_queue.run_once(daily_check_job, 1)
+
+    from rss_bridge import start_rss_polling
+
+    await start_rss_polling(application.bot)
 
     await application.updater.start_polling()
     await asyncio.Event().wait()
